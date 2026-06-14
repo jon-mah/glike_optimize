@@ -34,7 +34,7 @@ Full likelihood of genealogical trees
 
 Core functionality
 
-    logp = glike.glike_trees(trees, demo, samples, kappa, prune)
+    logp = glike.glike_trees(trees, demo, samples, kappa, prune, n_workers)
     
 Where `trees` is any enumerable that contains `tskit.Tree` objects.
 Note that it is the user's duty to manually pick out trees that are selective neutral and independent, and to wrap them in a list or other iterable objects.
@@ -58,6 +58,11 @@ The default value is 10000. Experiments in the paper were conducted with this de
 `prune` is a float number between 0 and 1, that specifies the proportion of discarding low likelihood trees.
 Enabling this feature often reduces noise when dealing with reconstructed trees.
 The default is 0.0, meaning that all trees are preserved. 
+
+`n_workers` is an integer that controls tree-level parallelization, the trees are independently evaluated across multiple CPU processes.
+Because the trees are evaluated independently, the workload scales naturally with the number of trees: to fully parallelize the computation, request as many CPUs as there are trees.
+Leave `n_workers` at its default value of `-1` and the program automatically uses all available CPUs.
+Setting `n_workers = 1` forces sequential evaluation, which is useful for debugging or when running inside an environment that already manages parallelism.
 
 This function returns the log probability that such genealogical trees are generated under the hypothesized demography.
 
