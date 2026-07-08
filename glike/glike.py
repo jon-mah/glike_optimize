@@ -1,5 +1,7 @@
 import math
+import os
 import itertools
+import multiprocessing
 import tskit
 import numpy as np
 import scipy
@@ -436,13 +438,46 @@ def glike(tree, demo, samples = None, kappa = 10000, spread = 1e-5, verbose = Fa
   
   return origin.logv
 
-def glike_trees(trees, demo, samples = None, kappa = 10000, spread = 1e-5, prune = 0): # trees: generator or list of trees
+# Module-level globals for multiprocessing (workers inherit via fork on Linux).
+# Only integer indices are sent through the pool — no pickling of Tree objects.
+_pool_trees = None
+_pool_common = None
+
+def _glike_single(idx):
+  """Worker function for multiprocessing. Reads tree from inherited global state."""
+  tree = _pool_trees[idx]
+  demo, samples, kappa, spread = _pool_common
+  return glike(tree, demo, samples = samples, kappa = kappa, spread = spread)
+
+def glike_trees(trees, demo, samples = None, kappa = 10000, spread = 1e-5, prune = 0, n_workers = -1): # trees: generator or list of trees
+  # prune: proportion of low-likelihood trees to discard
+  # n_workers: number of parallel processes (1 = sequential, -1 = all CPUs)
+  global _pool_trees, _pool_common
+
   if type(prune) not in (int, float):
     raise Exception("glike_trees input type error: prune should be int or float!")
   if not 0 <= prune <= 1:
     raise Exception("glike_trees input error: prune should be within [0, 1]!")
-  
-  logps = [glike(tree, demo, samples = samples, kappa = kappa, spread = spread) for tree in trees]
+
+  trees = list(trees) # materialize in case it's a generator
+
+  if n_workers == -1:
+    n_workers = os.cpu_count() or 1
+
+  if n_workers > 1 and len(trees) > 1:
+    # Store data in module globals so forked workers inherit it.
+    # Only integer indices are pickled and sent through the pool.
+    _pool_trees = trees
+    _pool_common = (demo, samples, kappa, spread)
+    try:
+      with multiprocessing.Pool(min(n_workers, len(trees))) as pool:
+        logps = pool.map(_glike_single, range(len(trees)))
+    finally:
+      _pool_trees = None
+      _pool_common = None
+  else:
+    logps = [glike(tree, demo, samples = samples, kappa = kappa, spread = spread) for tree in trees]
+
   logps.sort()
   logp = sum(logps[math.ceil(prune * len(logps)):])
   return logp
