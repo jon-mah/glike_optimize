@@ -1,0 +1,81 @@
+2026-08-05 14:09:27,421 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-08-05 14:09:27,421 - INFO - Progress is being logged to ../opt_results_CMA_ES/simulate_ARG.log
+
+2026-08-05 14:09:27,421 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = CMA_ES
+	outprefix = ../opt_results_CMA_ES/
+
+2026-08-05 14:09:27,450 - INFO - Sampling 1000 individuals with ploidy 1 in population 0 (name='admix') at time 0
+2026-08-05 14:09:27,459 - INFO - Starting replicate 0
+2026-08-05 14:09:27,460 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-08-05 14:09:27,460 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-08-05 14:09:28,178 - INFO - Completed at time=24250.7 nodes=39508 edges=264883
+2026-08-05 14:09:29,526 - INFO - Finished simulating ARG.
+[phase from 0.0 to 19.0]
+        admix
+ns   0.000006
+grs  0.078000
+
+[phase from 19.0 to 411.0]
+       afr    eur   asia    pol
+admix  0.0  0.198  0.334  0.468
+        afr       eur     asia       pol
+ns   0.0001  0.000075  0.00004  0.000064
+grs  0.0000  0.000000  0.00000  0.000000
+
+[phase from 411.0 to 1040.0]
+      afr  eur  asia
+afr     1    0     0
+eur     0    1     0
+asia    0    0     1
+pol     0    0     1
+        afr       eur     asia
+ns   0.0001  0.000075  0.00037
+grs  0.0000  0.000000  0.00000
+
+[phase from 1040.0 to 2004.0]
+      afr  eur
+afr     1    0
+eur     0    1
+asia    0    1
+        afr       eur
+ns   0.0001  0.000405
+grs  0.0000  0.000000
+
+[phase from 2004.0 to inf]
+     A
+afr  1
+eur  1
+            A
+ns   0.000375
+grs  0.000000
+
+2026-08-05 14:09:46,081 - INFO - Starting glike optimization.
+-118579.92990166429
+FAILED PARAMETERS:
+{'r1': 0.25536136791663805, 'r2': 0.2152645304453705, 'r3': 0.288148619029285, 'N_admix': 9999.954815118108, 'N_afr': 10000.04080431143, 'N_eur': 10000.077380749037, 'N_asia': 10000.00385533908, 'N_pol': 10000.025641951246, 'N_aa': 9999.960956871366, 'N_ooa': 9999.961104768094, 'N_anc': 10000.061631193039, 'gr': 0.1111745090751921, 't1': 10.615647952021332, 't2': 101.60858349040804, 't3': 946.7891866818475, 't4': 1999.5872667237281}
+Cannot initialize phase: t_end should be a number!
+Traceback (most recent call last):
+  File "simulate_and_fit_ARG.py", line 238, in <module>
+    SimulateARG().main()
+  File "simulate_and_fit_ARG.py", line 222, in main
+    x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds)
+  File "/home1/mahj/glike_optimize/opt_scripts/../glike/estimate.py", line 232, in maximize_CMA_ES
+    Y = [objective(x) for x in X]
+  File "/home1/mahj/glike_optimize/opt_scripts/../glike/estimate.py", line 232, in <listcomp>
+    Y = [objective(x) for x in X]
+  File "/home1/mahj/glike_optimize/opt_scripts/../glike/estimate.py", line 202, in objective
+    y = fun(**params)
+  File "simulate_and_fit_ARG.py", line 203, in fun
+    demo = glike.native_hawaiians_demo(t1, t2, t3, t4, r1, r2, r3, 
+  File "/home1/mahj/glike/glike/models.py", line 250, in native_hawaiians_demo
+    demo.add_phase(Phase(0, t1, [1/N_admix * math.exp(-t1 * gr)], [gr], populations = ["admix"]))
+  File "/home1/mahj/glike/glike/glike.py", line 66, in __init__
+    raise Exception("Cannot initialize phase: t_end should be a number!")
+Exception: Cannot initialize phase: t_end should be a number!
