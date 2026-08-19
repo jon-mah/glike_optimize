@@ -1,0 +1,21 @@
+2026-08-17 23:31:58,491 - INFO - Beginning execution of fit_true_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-08-17 23:31:58,491 - INFO - Progress is being logged to ../opt_results_glike_true_rep/ntree_20_rep_5_simulate_ARG.log
+
+2026-08-17 23:31:58,491 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 20
+	OPTIMIZER = glike
+	outprefix = ../opt_results_glike_true_rep/ntree_20_rep_5
+
+2026-08-17 23:32:01,795 - INFO - Finished simulating ARG with 20 equidistant trees.
+2026-08-17 23:32:36,298 - INFO - Starting glike optimization.
+2026-08-17 23:32:36,298 - INFO - The initial params are the true simulation parameters
+2026-08-18 04:19:40,402 - INFO - Finished fitting ARG to true parameters.
+2026-08-18 04:19:40,402 - INFO - Finished in 4h 47m 4.1s
+2026-08-18 04:19:40,402 - INFO - Estimated: {'t1': 12.57218, 't2': 411, 't3': 1035.43975, 't4': 1846.75211, 'r1': 0.0, 'r2': 0.25773, 'r3': 0.39373, 'N_admix': 74987.44683, 'N_afr': 10000, 'N_eur': 13291.662, 'N_asia': 22888.20451, 'N_pol': 15581.93625, 'N_aa': 3383.30118, 'N_ooa': 2700.4825, 'N_anc': 2293.075, 'gr': 0.01273}
+2026-08-18 04:19:40,402 - INFO - logp = -228851.54946415598  (true = -230892.58785488174)
+2026-08-18 04:19:40,402 - INFO - Pipeline executed succesfully.
