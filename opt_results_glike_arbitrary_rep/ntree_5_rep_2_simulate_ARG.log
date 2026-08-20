@@ -1,0 +1,18 @@
+2026-08-19 16:12:01,902 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-08-19 16:12:01,902 - INFO - Progress is being logged to ../opt_results_glike_arbitrary_rep/ntree_5_rep_2_simulate_ARG.log
+
+2026-08-19 16:12:01,902 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 5
+	OPTIMIZER = glike
+	outprefix = ../opt_results_glike_arbitrary_rep/ntree_5_rep_2
+
+2026-08-19 16:12:03,357 - INFO - Finished simulating ARG.
+2026-08-19 16:12:20,899 - INFO - Starting glike optimization.
+2026-08-19 21:32:03,755 - INFO - Finished fitting ARG.
+2026-08-19 21:32:03,756 - INFO - Finished in 5h 19m 42.9s
+2026-08-19 21:32:03,756 - INFO - Estimated: {'t1': 12.75326, 't2': 291.01835, 't3': 411.6797, 't4': 1032.01522, 'r1': 0.24023, 'r2': 0.30191, 'r3': 0.22489, 'N_admix': 80465.82232, 'N_afr': 11827.41973, 'N_eur': 19921.37172, 'N_asia': 10771.83601, 'N_pol': 9031.6932, 'N_aa': 18211.53225, 'N_ooa': 3381.34394, 'N_anc': 2651.84053, 'gr': 0.00673}
