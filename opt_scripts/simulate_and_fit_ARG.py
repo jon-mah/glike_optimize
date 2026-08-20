@@ -196,7 +196,7 @@ class SimulateARG():
         true_demo = glike.native_hawaiians_demo(**x_true)
         true_demo.print()
 
-        glike.glike_trees(trees, true_demo)
+        logp_true = glike.glike_trees(trees, true_demo)
 
         def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
                 N_pol, N_aa, N_ooa, N_anc, gr):
