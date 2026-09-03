@@ -1,0 +1,59 @@
+2026-09-03 10:09:17,124 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-09-03 10:09:17,124 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_1_simulate_ARG.log
+
+2026-09-03 10:09:17,124 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_1
+
+2026-09-03 10:09:17,151 - INFO - Sampling 1000 individuals with ploidy 1 in population 1 (name='ceu') at time 0
+2026-09-03 10:09:17,154 - INFO - Starting replicate 0
+2026-09-03 10:09:17,155 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-09-03 10:09:17,155 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-09-03 10:09:18,081 - INFO - Completed at time=130012 nodes=28005 edges=152908
+2026-09-03 10:09:18,700 - INFO - Finished simulating ARG.
+[phase from 0.0 to 30.0]
+        yri     ceu     nea
+ns   0.0001  0.0001  0.0001
+grs  0.0000  0.0000  0.0000
+
+[phase from 30.0 to 50.0]
+        yri     ceu     nea
+ns   0.0001  0.0001  0.0001
+grs  0.0000  0.0000  0.0000
+
+[phase from 50.0 to 73.95]
+        yri     ceu     nea
+ns   0.0001  0.0001  0.0001
+grs  0.0000  0.0000  0.0000
+
+[phase from 73.95 to 290.0]
+     yri  nea
+yri    1    0
+ceu    1    0
+nea    0    1
+        yri     nea
+ns   0.0001  0.0001
+grs  0.0000  0.0000
+
+[phase from 290.0 to inf]
+     yri
+yri    1
+nea    1
+        yri
+ns   0.0001
+grs  0.0000
+
+2026-09-03 10:09:39,732 - INFO - Starting glike optimization.
+-94751.5358423607
+2026-09-03 10:23:18,565 - INFO - Finished fitting ARG.
+2026-09-03 10:23:18,566 - INFO - Finished in 0h 13m 38.8s
+2026-09-03 10:23:18,566 - INFO - Estimated: {'N_yri': 10000.026591818181, 'N_ceu': 10000.004914088247, 'N_nea': 9999.940961621865, 'm1': 0.07462028969000772, 't1': 9.662758395389691, 't2': 47.54378065650624, 't3': 93.90092748658873, 't4': 281.44081783049194}
+2026-09-03 10:23:18,566 - INFO - logp = -93826.12187834345  (true = -94795.16842343732)
+2026-09-03 10:23:18,566 - INFO - Pipeline executed succesfully.

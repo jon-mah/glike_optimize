@@ -1,0 +1,15 @@
+2026-09-03 02:23:29,901 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-09-03 02:23:29,901 - INFO - Progress is being logged to ../opt_results_glike_4A21/ntree_10_rep_3_simulate_ARG.log
+
+2026-09-03 02:23:29,901 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = glike
+	MODEL = 4A21
+	outprefix = ../opt_results_glike_4A21/ntree_10_rep_3
+
+2026-09-03 02:23:33,674 - INFO - Finished simulating ARG.

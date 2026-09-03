@@ -1,0 +1,21 @@
+2026-09-03 10:09:16,840 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-09-03 10:09:16,840 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_2_simulate_ARG.log
+
+2026-09-03 10:09:16,840 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_2
+
+2026-09-03 10:09:18,393 - INFO - Finished simulating ARG.
+2026-09-03 10:09:38,678 - INFO - Starting glike optimization.
+2026-09-03 10:24:08,317 - INFO - Finished fitting ARG.
+2026-09-03 10:24:08,317 - INFO - Finished in 0h 14m 29.6s
+2026-09-03 10:24:08,317 - INFO - Estimated: {'N_yri': 10000.016664485278, 'N_ceu': 9999.911510197995, 'N_nea': 9999.908373978476, 'm1': 0.11528763046151888, 't1': 9.949397147249144, 't2': 44.996428256024394, 't3': 91.84328426015153, 't4': 280.43047767400526}
+2026-09-03 10:24:08,317 - INFO - logp = -93742.4430044645  (true = -94793.27727882499)
+2026-09-03 10:24:08,317 - INFO - Pipeline executed succesfully.

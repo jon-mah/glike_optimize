@@ -1,8 +1,8 @@
-2026-09-02 04:45:33,428 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-09-03 02:44:16,953 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-09-02 04:45:33,429 - INFO - Progress is being logged to ../opt_results_CMA_ES_NH/ntree_10_rep_3_simulate_ARG.log
+2026-09-03 02:44:16,953 - INFO - Progress is being logged to ../opt_results_CMA_ES_NH/ntree_10_rep_3_simulate_ARG.log
 
-2026-09-02 04:45:33,429 - INFO - Parsed the following arguments:
+2026-09-03 02:44:16,953 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -12,10 +12,10 @@
 	MODEL = NH
 	outprefix = ../opt_results_CMA_ES_NH/ntree_10_rep_3
 
-2026-09-02 04:45:35,175 - INFO - Finished simulating ARG.
-2026-09-02 04:45:48,510 - INFO - Starting glike optimization.
-2026-09-02 05:01:46,825 - INFO - Finished fitting ARG.
-2026-09-02 05:01:46,826 - INFO - Finished in 0h 15m 58.3s
-2026-09-02 05:01:46,826 - INFO - Estimated: {'r1': 0.29170614503129044, 'r2': 0.3094233690472016, 'r3': 0.18490965570662893, 'N_admix': 9999.979982203447, 'N_afr': 10000.082457048622, 'N_eur': 9999.993278118982, 'N_asia': 9999.99101282744, 'N_pol': 10000.02721428891, 'N_aa': 10000.017877028042, 'N_ooa': 9999.968535657672, 'N_anc': 9999.999286930499, 'gr': 0.28420627691049777, 't1': 10.453618584013702, 't2': 99.64403868064667, 't3': 1020.916319278471, 't4': 2040.2269468790723}
-2026-09-02 05:01:46,826 - INFO - logp = -117461.30475583952  (true = -115564.70780424199)
-2026-09-02 05:01:46,826 - INFO - Pipeline executed succesfully.
+2026-09-03 02:44:18,718 - INFO - Finished simulating ARG.
+2026-09-03 02:44:31,687 - INFO - Starting glike optimization.
+2026-09-03 03:00:08,393 - INFO - Finished fitting ARG.
+2026-09-03 03:00:08,393 - INFO - Finished in 0h 15m 36.7s
+2026-09-03 03:00:08,393 - INFO - Estimated: {'r1': 0.28868022824273465, 'r2': 0.3304938455155242, 'r3': 0.2523015511171453, 'N_admix': 9999.950659057755, 'N_afr': 9999.97669318236, 'N_eur': 9999.984985559448, 'N_asia': 10000.025179071574, 'N_pol': 10000.016766410508, 'N_aa': 10000.002604927351, 'N_ooa': 10000.083863148759, 'N_anc': 9999.996988968514, 'gr': 0.2943349030509322, 't1': 9.874381301870024, 't2': 103.38815403342409, 't3': 918.1002925654329, 't4': 1841.4801465604987}
+2026-09-03 03:00:08,394 - INFO - logp = -117567.16295477212  (true = -115570.75552659866)
+2026-09-03 03:00:08,394 - INFO - Pipeline executed succesfully.

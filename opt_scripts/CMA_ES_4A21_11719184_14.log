@@ -1,0 +1,88 @@
+2026-09-03 10:10:53,555 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-09-03 10:10:53,555 - INFO - Progress is being logged to ../opt_results_CMA_ES_4A21/ntree_10_rep_14_simulate_ARG.log
+
+2026-09-03 10:10:53,555 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = CMA_ES
+	MODEL = 4A21
+	outprefix = ../opt_results_CMA_ES_4A21/ntree_10_rep_14
+
+2026-09-03 10:10:53,612 - INFO - Sampling 1000 individuals with ploidy 1 in population 3 (name='bronze') at time 0
+2026-09-03 10:10:53,616 - INFO - Starting replicate 0
+2026-09-03 10:10:53,617 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-09-03 10:10:53,617 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-09-03 10:10:56,362 - INFO - Completed at time=72668 nodes=64190 edges=476446
+2026-09-03 10:10:58,486 - INFO - Finished simulating ARG.
+[phase from 0.0 to 140.0]
+         ana      neo     whg        bronze     yam     ehg     chg
+ns   0.00002  0.00002  0.0001  1.687904e-09  0.0002  0.0001  0.0001
+grs  0.00000  0.00000  0.0000  6.700000e-02  0.0000  0.0000  0.0000
+
+[phase from 140.0 to 180.0]
+        ana  neo  whg  yam  ehg  chg
+ana     1.0  0.0  0.0  0.0  0.0  0.0
+neo     0.0  1.0  0.0  0.0  0.0  0.0
+whg     0.0  0.0  1.0  0.0  0.0  0.0
+bronze  0.0  0.5  0.0  0.5  0.0  0.0
+yam     0.0  0.0  0.0  1.0  0.0  0.0
+ehg     0.0  0.0  0.0  0.0  1.0  0.0
+chg     0.0  0.0  0.0  0.0  0.0  1.0
+         ana      neo     whg     yam     ehg     chg
+ns   0.00002  0.00002  0.0001  0.0002  0.0001  0.0001
+grs  0.00000  0.00000  0.0000  0.0000  0.0000  0.0000
+
+[phase from 180.0 to 200.0]
+     ana  neo  whg  ehg  chg
+ana  1.0  0.0  0.0  0.0  0.0
+neo  0.0  1.0  0.0  0.0  0.0
+whg  0.0  0.0  1.0  0.0  0.0
+yam  0.0  0.0  0.0  0.5  0.5
+ehg  0.0  0.0  0.0  1.0  0.0
+chg  0.0  0.0  0.0  0.0  1.0
+         ana      neo     whg     ehg     chg
+ns   0.00002  0.00002  0.0001  0.0001  0.0001
+grs  0.00000  0.00000  0.0000  0.0000  0.0000
+
+[phase from 200.0 to 600.0]
+      ana   whg  ehg  chg
+ana  1.00  0.00  0.0  0.0
+neo  0.75  0.25  0.0  0.0
+whg  0.00  1.00  0.0  0.0
+ehg  0.00  0.00  1.0  0.0
+chg  0.00  0.00  0.0  1.0
+         ana     whg     ehg     chg
+ns   0.00002  0.0001  0.0001  0.0001
+grs  0.00000  0.0000  0.0000  0.0000
+
+[phase from 600.0 to 800.0]
+     ana  ne  chg
+ana    1   0    0
+whg    0   1    0
+ehg    0   1    0
+chg    0   0    1
+         ana      ne     chg
+ns   0.00002  0.0002  0.0001
+grs  0.00000  0.0000  0.0000
+
+[phase from 800.0 to 1500.0]
+     wa  ne
+ana   1   0
+ne    0   1
+chg   1   0
+         wa      ne
+ns   0.0002  0.0002
+grs  0.0000  0.0000
+
+[phase from 1500.0 to inf]
+    ooa
+wa    1
+ne    1
+        ooa
+ns   0.0002
+grs  0.0000
+

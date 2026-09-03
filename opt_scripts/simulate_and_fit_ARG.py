@@ -63,7 +63,7 @@ class SimulateARG():
         parser.add_argument(
             '--SEQUENCE_LENGTH', type=float,
             dest='SEQUENCE_LENGTH',
-            help=('Lenght of sequence to be simulated.'),
+            help=('Length of sequence to be simulated.'),
             default=3e7)
         parser.add_argument(
             '--RECOMBINATION_RATE', type=float,
@@ -84,8 +84,12 @@ class SimulateARG():
             '--OPTIMIZER', type=str,
             dest='OPTIMIZER',
             help=('Optimization strategy for fitting ARGs.'),
-            default='maximize',
-        )
+            default='maximize')
+        parser.add_argument(
+            '--MODEL', type=str,
+            dest='MODEL',
+            help=('Assumed demographic scenario.'),
+            default='NH')
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files.')
@@ -105,6 +109,7 @@ class SimulateARG():
         SEED = args['SEED']
         NUM_TREES = args['NUM_TREES']
         OPTIMIZER = args['OPTIMIZER']
+        MODEL = args['MODEL']
         outprefix = args['outprefix']
 
         # Numpy options
@@ -154,15 +159,40 @@ class SimulateARG():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # inherit true params from glike
-        demography = glike.native_hawaiians_demography()
-        arg = msprime.sim_ancestry(
-            {"admix": N_SAMPLES},
-            sequence_length=SEQUENCE_LENGTH,
-            recombination_rate=RECOMBINATION_RATE,
-            demography=demography,
-            ploidy=1,
-            random_seed=SEED,
-        )
+        if MODEL == '3G09':
+            demography = glike.neandertal_admixture_demography(
+                t1=30, t2=50, t3=73.95, t4=290, 
+                N_yri=10000, N_ceu=10000, N_nea = 10000,
+                m1=0.029
+            )
+            arg = msprime.sim_ancestry(
+                {"ceu": N_SAMPLES},
+                sequence_length=SEQUENCE_LENGTH,
+                recombination_rate=RECOMBINATION_RATE,
+                demography=demography,
+                ploidy=1,
+                random_seed=SEED
+            )
+        elif MODEL == '4A21':
+            demography = glike.ancient_europe_demography()
+            arg = msprime.sim_ancestry(
+                {"bronze": N_SAMPLES},
+                sequence_length=SEQUENCE_LENGTH,
+                recombination_rate=RECOMBINATION_RATE,
+                demography=demography,
+                ploidy=1,
+                random_seed=SEED
+            )
+        else:
+            demography = glike.native_hawaiians_demography()
+            arg = msprime.sim_ancestry(
+                {"admix": N_SAMPLES},
+                sequence_length=SEQUENCE_LENGTH,
+                recombination_rate=RECOMBINATION_RATE,
+                demography=demography,
+                ploidy=1,
+                random_seed=SEED,
+            )
 
         trees = [
             arg.at((i + 0.5) * SEQUENCE_LENGTH // NUM_TREES).copy()
@@ -178,10 +208,9 @@ class SimulateARG():
             arg.dump(arg_path)
             i = i + 1
 
-        # Compute and save tree positions
-        N_TREES = 20
-        step = int(SEQUENCE_LENGTH) // (N_TREES + 1)
-        positions = list(range(step, int(SEQUENCE_LENGTH), step))[:N_TREES]
+        # Compute and save tree position
+        step = int(SEQUENCE_LENGTH) // (NUM_TREES + 1)
+        positions = list(range(step, int(SEQUENCE_LENGTH), step))[:NUM_TREES]
         positions_path = output_posfile
         with open(positions_path, "w") as f:
             json.dump(positions, f)
@@ -189,37 +218,95 @@ class SimulateARG():
         logger.info('Finished simulating ARG.')
 
         # Demographic model
-        x_true = {'t1':19, 't2':411, 't3':1040, 't4':2004, 'r1':0.0, 
-                  'r2':0.198, 'r3':0.334, 'N_admix':35682, 'N_afr':10000, 
-                  'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702, 
-                  'N_ooa':2470, 'N_anc':2665, 'gr':0.078}
-        true_demo = glike.native_hawaiians_demo(**x_true)
+        if MODEL == '3G09':
+            x_true = {
+                't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
+                'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000, 
+                'm1': 0.0
+            }
+            # m1 temporarily set to 0, originally set to 0.029
+            true_demo = glike.neandertal_admixture_demo(**x_true)
+        elif MODEL == '4A21':
+            x_true = {
+                't1': 140, 't2': 180, 't3': 200, 't4': 600, 
+                't5': 800, 't6': 1500,'r1': 0.5, 'r2': 0.5, 'r3': 0.75,
+                'N_ana': 50000, 'N_neo': 50000, 'N_whg': 10000, 
+                'N_bronze': 50000, 'N_yam': 5000, 'N_ehg': 10000,
+                'N_ne': 5000, 'N_wa': 5000, 'N_ooa': 5000, 'gr': 0.067
+            }
+            true_demo = glike.ancient_europe_demo(**x_true)
+        else: 
+            x_true = {
+                't1':19, 't2':411, 't3':1040, 't4':2004, 'r1':0.0, 
+                'r2':0.198, 'r3':0.334, 'N_admix':35682, 'N_afr':10000, 
+                'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702, 
+                'N_ooa':2470, 'N_anc':2665, 'gr':0.078
+            }
+            true_demo = glike.native_hawaiians_demo(**x_true)
         true_demo.print()
 
         logp_true = glike.glike_trees(trees, true_demo)
 
-        def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
-                N_pol, N_aa, N_ooa, N_anc, gr):
-            demo = glike.native_hawaiians_demo(t1, t2, t3, t4, r1, r2, r3, 
-                                        N_admix, N_afr, N_eur, N_asia, 
-                                        N_pol, N_aa, N_ooa, N_anc, gr) 
-            return glike.glike_trees(trees, demo)
+        if MODEL == '3G09':
+            def fun(t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1):
+                demo = glike.neandertal_admixture_demo(
+                    t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1
+                )
+                return glike.glike_trees(trees, demo)
+            x0 = {
+                't1': 10, 't2': 50, 't3': 100, 't4': 300,
+                'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000,
+                'm1': 0.0
+            }
+            bounds = [
+                (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 1e3),
+                (100, 100000), (100, 100000), (100, 100000), (0.0, 0.0)
+            ]
+        elif MODEL == '4A21':
+            def fun(t1, t2, t3, t4, t5, t6, r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, 
+                    N_yam, N_ehg, N_chg, N_ne, N_wa, N_ooa, gr):
+                demo = glike.ancient_europe_demo(
+                    t1, t2, t3, t4, t5, t6,
+                    r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, N_yam, N_ehg, N_chg, 
+                    N_ne, N_wa, N_ooa, gr
+                )
+            x0 = {
+                't1': 100, 't2': 200, 't3': 300, 't4': 500, 't5': 1000, 't6': 2000,
+                'r1': 0.5, 'r2': 0.5, 'r3': 0.5,
+                'N_ana': 10000, 'N_neo': 10000, 'N_whg': 10000, 'N_bronze': 10000, 
+                'N_yam': 10000, 'N_ehg': 10000, 'N_ne': 10000, 'N_wa': 10000, 'N_ooa': 10000,
+                'gr': 0.1
+            }
+            bounds = [
+                (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 't5'), ('t4', 't6'), 
+                ('t5', 5e3), (0, 1), (0, 1), (0, 1),
+                (100, 100000), (100, 100000), (100, 100000), (100, 100000),
+                (100, 100000), (100, 100000), (100, 100000), (100, 100000),
+                (100, 100000), (0, 0.5)
+            ]
+        else:
+            def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
+                    N_pol, N_aa, N_ooa, N_anc, gr):
+                demo = glike.native_hawaiians_demo(t1, t2, t3, t4, r1, r2, r3, 
+                                            N_admix, N_afr, N_eur, N_asia, 
+                                            N_pol, N_aa, N_ooa, N_anc, gr) 
+                return glike.glike_trees(trees, demo)
 
-        x0 = {'t1':10, 't2': 100, 't3': 1000, 't4': 2000,
-              'r1':0.25, 'r2':0.25, 'r3':0.25,
-              'N_admix': 10000, 'N_afr': 10000, 'N_eur': 10000,
-              'N_asia': 10000, 'N_pol': 10000, 'N_aa': 10000,
-              'N_ooa': 10000, 'N_anc': 10000, 'gr': 0.1}
-        bounds = [(1, "t2"), ("t1", "t3"), ("t2", "t4"), ("t3", 1e4), 
-                  (0.0, 1.0), (0.0, 1.0), (0.0, 1.0), 
-                  (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
-                  (100, 100000), (100, 100000), (100, 100000), (100, 100000),
-                  (0, 0.5)]
+            x0 = {'t1':10, 't2': 100, 't3': 1000, 't4': 2000,
+                  'r1':0.25, 'r2':0.25, 'r3':0.25,
+                  'N_admix': 10000, 'N_afr': 10000, 'N_eur': 10000,
+                  'N_asia': 10000, 'N_pol': 10000, 'N_aa': 10000,
+                  'N_ooa': 10000, 'N_anc': 10000, 'gr': 0.1}
+            bounds = [(1, "t2"), ("t1", "t3"), ("t2", "t4"), ("t3", 1e4), 
+                      (0.0, 1.0), (0.0, 1.0), (0.0, 1.0), 
+                      (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
+                      (100, 100000), (100, 100000), (100, 100000), (100, 100000),
+                      (0, 0.5)]
 
         logger.info('Starting glike optimization.')
         t_start = time.time()
         if OPTIMIZER == 'CMA_ES':
-            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds)
+            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL)
         else: 
             x, logp = glike.maximize(fun, x0, bounds = bounds)
         elapsed = time.time() - t_start
