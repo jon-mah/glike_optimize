@@ -209,6 +209,39 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
     # -------------------------
 
     if model == '3G09':
+      if params["N_anc"] <= 0:
+        return np.inf
+
+      if params["N_yri"] <= 0:
+        return np.inf
+
+      if params["N_ooa"] <= 0:
+        return np.inf
+
+      if params["N_ceu"] <= 0:
+        return np.inf
+
+      if params["N_chb"] <= 0:
+        return np.inf
+
+      if params["gr_ceu"] < 0 or params["gr_ceu"] > 1:
+        return np.inf
+
+      if params["gr_chb"] < 0 or params["gr_chb"] > 1:
+        return np.inf
+
+      if params["t1"] <= 0:
+        return np.inf
+
+      if params["t2"] <= params["t1"]:
+        return np.inf
+
+      if params["t3"] <= params["t2"]:
+        return np.inf
+
+      if params["t4"] <= params["t3"]:
+        return np.inf
+    elif model == '3I21':
       if params["N_yri"] <= 0:
         return np.inf
 

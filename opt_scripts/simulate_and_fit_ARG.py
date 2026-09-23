@@ -91,6 +91,11 @@ class SimulateARG():
             help=('Assumed demographic scenario.'),
             default='NH')
         parser.add_argument(
+            '--KAPPA', type=float,
+            dest='KAPPA',
+            help=('Kappa parameter for the simulation.'),
+            default=10000.0),
+        parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files.')
         return parser
@@ -110,6 +115,7 @@ class SimulateARG():
         NUM_TREES = args['NUM_TREES']
         OPTIMIZER = args['OPTIMIZER']
         MODEL = args['MODEL']
+        KAPPA = args['KAPPA']
         outprefix = args['outprefix']
 
         # Numpy options
@@ -159,7 +165,22 @@ class SimulateARG():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # inherit true params from glike
-        if MODEL == '3G09':
+        if MODEL =='3G09':
+            demography = glike.three_pop_out_of_africa_demography(
+                t1=848, t2=5600, t3=8800,
+                N_anc=7300, N_yri=12300, N_ooa=2100, N_ceu=1000, N_chb=510,
+                gr_ceu=0.004, gr_chb=0.0055,
+                m_yri_ooa=0, m_yri_ceu=0, m_yri_chb=0, m_ceu_chb=0
+            )
+            arg = msprime.sim_ancestry(
+                {"ceu": N_SAMPLES},
+                sequence_length=SEQUENCE_LENGTH,
+                recombination_rate=RECOMBINATION_RATE,
+                demography=demography,
+                ploidy=1,
+                random_seed=SEED
+            )
+        elif MODEL == '3I21':
             demography = glike.neandertal_admixture_demography(
                 t1=30, t2=50, t3=73.95, t4=290, 
                 N_yri=10000, N_ceu=10000, N_nea = 10000,
@@ -218,11 +239,20 @@ class SimulateARG():
         logger.info('Finished simulating ARG.')
 
         # Demographic model
-        if MODEL == '3G09':
+        if MODEL =='3G09':
+            x_true = {
+                "t1": 848, "t2": 5600, "t3": 8800,
+                "N_anc": 7300, "N_yri": 12300, "N_ooa": 2100, "N_ceu": 1000, "N_chb": 510,
+                "gr_ceu": 0.004, "gr_chb": 0.0055,
+                "m_yri_ooa": 0, "m_yri_ceu": 0, "m_yri_chb": 0, "m_ceu_chb": 0,
+            }
+            # m1 temporarily set to 0
+            true_demo = glike.three_pop_out_of_africa_demo(**x_true)
+        if MODEL == '3I21':
             x_true = {
                 't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
                 'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000, 
-                'm1': 0.0
+                'm1': 0.029
             }
             # m1 temporarily set to 0, originally set to 0.029
             true_demo = glike.neandertal_admixture_demo(**x_true)
@@ -248,6 +278,20 @@ class SimulateARG():
         logp_true = glike.glike_trees(trees, true_demo)
 
         if MODEL == '3G09':
+            def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb, 
+                    m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb):
+                demo = glike.three_pop_out_of_africa_demo(
+                    t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, 
+                    gr_ceu, gr_chb, m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb
+                )
+                return glike.glike_trees(trees, demo, kappa=KAPPA)
+            bounds = [
+                (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 1e3),
+                (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
+                (100, 100000), (0, 0.5), (0, 0.5),
+                (0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0)
+            ]
+        elif MODEL == '3I21':
             def fun(t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1):
                 demo = glike.neandertal_admixture_demo(
                     t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1
@@ -306,9 +350,9 @@ class SimulateARG():
         logger.info('Starting glike optimization.')
         t_start = time.time()
         if OPTIMIZER == 'CMA_ES':
-            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL)
+            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True)
         else: 
-            x, logp = glike.maximize(fun, x0, bounds = bounds)
+            x, logp = glike.maximize(fun, x0, bounds = bounds, verbose = True)
         elapsed = time.time() - t_start
         hours = int(elapsed // 3600)
         minutes = int((elapsed % 3600) // 60)

@@ -70,6 +70,248 @@ def threeway_admixture_demography(t1 = 30, t2 = 60, t3 = 10000, r1 = 0.4, r2 = 0
   
   return demography
 
+########## Three popopulation out of Africa
+def three_pop_out_of_africa_demo(
+    t1 = 848, t2 = 5600, t3 = 8800,
+    N_anc = 7300, N_yri = 12300, N_ooa = 2100,
+    N_ceu = 1000, N_chb = 510,
+    gr_ceu = 0.004, gr_chb = 0.0055,
+    m_yri_ooa = 25e-5, m_yri_ceu = 3e-5,
+    m_yri_chb = 1.9e-5, m_ceu_chb = 9.6e-5
+):
+    # Migration matrices for each demographic epoch
+    Q0 = np.array([
+        [-m_yri_ceu-m_yri_chb,  m_yri_ceu,                 m_yri_chb],
+        [ m_yri_ceu,            -m_yri_ceu-m_ceu_chb,      m_ceu_chb],
+        [ m_yri_chb,             m_ceu_chb,                -m_yri_chb-m_ceu_chb]
+    ]) if max(m_yri_ceu, m_yri_chb, m_ceu_chb) > 0 else None
+
+    Q1 = np.array([
+        [-m_yri_ooa,  m_yri_ooa],
+        [ m_yri_ooa, -m_yri_ooa]
+    ]) if m_yri_ooa > 0 else None
+
+    demo = Demo()
+
+    # ---------------------------------------------------------
+    # Epoch 0 -> t1
+    #
+    # Three populations:
+    #   yri
+    #   ceu
+    #   chb
+    #
+    # CEU and CHB are growing populations.
+    # ---------------------------------------------------------
+
+    demo.add_phase(
+        Phase(
+            0,
+            1e-6,
+            [
+                1/N_yri,
+                1/(N_ceu * math.exp(gr_ceu * t1)),
+                1/(N_chb * math.exp(gr_chb * t1))
+            ],
+            grs=[0, gr_ceu, gr_chb],
+            populations=["yri", "ceu", "chb"]
+        )
+    )
+
+    demo.add_phase(
+        Phase(
+            1e-6,
+            t1,
+            [
+                1/N_yri,
+                1/(N_ceu * math.exp(gr_ceu * t1)),
+                1/(N_chb * math.exp(gr_chb * t1))
+            ],
+            grs=[0, gr_ceu, gr_chb],
+            Q=Q0,
+            populations=["yri", "ceu", "chb"]
+        ),
+        discretize=200
+    )
+
+    # ---------------------------------------------------------
+    # t1 -> t2
+    #
+    # CEU and CHB merge into the OOA population.
+    #
+    # Going backwards in time:
+    #
+    #     YRI       -> YRI
+    #     CEU + CHB -> OOA
+    #
+    # After t1, CEU/CHB migration is replaced by YRI-OOA
+    # migration.
+    # ---------------------------------------------------------
+
+    P_ceu_chb_split = np.array([
+        [1, 0],
+        [0, 1],
+        [0, 1]
+    ])
+
+    demo.add_phase(
+        Phase(
+            t1,
+            t2,
+            [
+                1/N_yri,
+                1/N_ooa
+            ],
+            [0, 0],
+            P=P_ceu_chb_split,
+            Q=Q1,
+            populations=["yri", "ooa"]
+        ),
+        discretize=500
+    )
+
+    # ---------------------------------------------------------
+    # t2 -> t3
+    #
+    # OOA merges into the ancestral YRI population.
+    #
+    # Going backwards:
+    #
+    #     YRI + OOA -> ancestral population
+    # ---------------------------------------------------------
+
+    P_ooa_split = np.array([
+        [1],
+        [1]
+    ])
+
+    demo.add_phase(
+        Phase(
+            t2,
+            t3,
+            [1/N_ooa],
+            P=P_ooa_split,
+            populations=["anc"]
+        )
+    )
+
+    # ---------------------------------------------------------
+    # t3 -> infinity
+    #
+    # The ancestral population changes size to N_anc.
+    # ---------------------------------------------------------
+
+    demo.add_phase(
+        Phase(
+            t3,
+            math.inf,
+            [1/N_anc],
+            populations=["anc"]
+        )
+    )
+
+    return demo
+
+def three_pop_out_of_africa_demography(
+    t1=848,
+    t2=5600,
+    t3=8800,
+    N_anc=7300,
+    N_yri=12300,
+    N_ooa=2100,
+    N_ceu=1000,
+    N_chb=510,
+    gr_ceu=0.004,
+    gr_chb=0.0055,
+    m_yri_ooa=25e-5,
+    m_yri_ceu=3e-5,
+    m_yri_chb=1.9e-5,
+    m_ceu_chb=9.6e-5,
+):
+    demography = msprime.Demography()
+
+    # Present-day populations
+    demography.add_population(
+        name="yri",
+        initial_size=N_yri,
+    )
+
+    demography.add_population(
+        name="ceu",
+        initial_size=N_ceu,
+        growth_rate=gr_ceu,
+    )
+
+    demography.add_population(
+        name="chb",
+        initial_size=N_chb,
+        growth_rate=gr_chb,
+    )
+
+    # Migration between populations
+    demography.set_symmetric_migration_rate(
+        populations=["yri", "ceu"],
+        rate=m_yri_ceu,
+    )
+
+    demography.set_symmetric_migration_rate(
+        populations=["yri", "chb"],
+        rate=m_yri_chb,
+    )
+
+    demography.set_symmetric_migration_rate(
+        populations=["ceu", "chb"],
+        rate=m_ceu_chb,
+    )
+
+    # t1: CEU and CHB split.
+    # Going backwards in time, CHB merges into CEU.
+    demography.add_mass_migration(
+        time=t1,
+        source="chb",
+        dest="ceu",
+        proportion=1,
+    )
+
+    # After the CEU/CHB split, CEU and CHB no longer exchange migrants.
+    demography.set_symmetric_migration_rate(
+        populations=["ceu", "chb"],
+        rate=0,
+    )
+
+    # OOA ancestral population
+    demography.add_population(
+        name="ooa",
+        initial_size=N_ooa,
+    )
+
+    # t2: OOA population joins the YRI population.
+    # Going backwards in time, OOA merges into YRI.
+    demography.add_mass_migration(
+        time=t2,
+        source="ceu",
+        dest="yri",
+        proportion=1,
+    )
+
+    # At t2, CEU/CHB ancestry is represented by the OOA population.
+    # Set the appropriate ancestral population size.
+    demography.add_population_parameters_change(
+        time=t2,
+        initial_size=N_ooa,
+        growth_rate=0,
+        population="yri",
+    )
+
+    # t3: ancestral African population size changes.
+    demography.add_population_parameters_change(
+        time=t3,
+        initial_size=N_anc,
+        growth_rate=0,
+        population="yri",
+    )
+
+    return demography
 
 ########## Neandertal admixture (stdpopsim 3I21) ###########
 def neandertal_admixture_demo(t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1):

@@ -13,4 +13,4 @@
 NUM_TREE=10
 NUM_TREE_PREFIX="ntree_${NUM_TREE}_rep_${SLURM_ARRAY_TASK_ID}"
 
-python simulate_and_fit_ARG.py --OPTIMIZER CMA_ES ../opt_results_CMA_ES_3G09/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09'
+python simulate_and_fit_ARG.py --OPTIMIZER CMA_ES ../opt_results_CMA_ES_3G09/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09' --KAPPA 50000
