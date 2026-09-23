@@ -1,21 +1,22 @@
-2026-09-03 10:09:17,968 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-09-23 11:01:49,923 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-09-03 10:09:17,968 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_4_simulate_ARG.log
+2026-09-23 11:01:49,923 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_4_simulate_ARG.log
 
-2026-09-03 10:09:17,969 - INFO - Parsed the following arguments:
+2026-09-23 11:01:49,923 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
 	SEED = 1
 	NUM_TREES = 10
 	OPTIMIZER = CMA_ES
-	MODEL = 3G09
+	MODEL = 3G09_no_m
+	KAPPA = 20000
 	outprefix = ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_4
 
-2026-09-03 10:09:20,005 - INFO - Finished simulating ARG.
-2026-09-03 10:09:40,139 - INFO - Starting glike optimization.
-2026-09-03 10:22:57,681 - INFO - Finished fitting ARG.
-2026-09-03 10:22:57,681 - INFO - Finished in 0h 13m 17.5s
-2026-09-03 10:22:57,681 - INFO - Estimated: {'N_yri': 9999.873175608034, 'N_ceu': 9999.94068928888, 'N_nea': 9999.939466989325, 'm1': 0.0851243665687644, 't1': 10.176455424641002, 't2': 51.292757450258264, 't3': 93.8445585569711, 't4': 281.4992676349078}
-2026-09-03 10:22:57,682 - INFO - logp = -93803.0895400352  (true = -94793.72966755583)
-2026-09-03 10:22:57,682 - INFO - Pipeline executed succesfully.
+2026-09-23 11:01:51,695 - INFO - Finished simulating ARG.
+2026-09-23 11:02:04,731 - INFO - Starting glike optimization.
+2026-09-23 11:35:58,954 - INFO - Finished fitting ARG.
+2026-09-23 11:35:58,954 - INFO - Finished in 0h 33m 54.2s
+2026-09-23 11:35:58,954 - INFO - Estimated: {'t1': 10.132877695940016, 't2': 49.95051761250351, 't3': 100.00118899361765, 'N_anc': 9999.982957948343, 'N_yri': 10000.033859441459, 'N_ooa': 9999.911246934467, 'N_ceu': 9999.971174106071, 'N_chb': 10000.076239805263, 'gr_ceu': 0.19807712047620507, 'gr_chb': 0.14473816099841783}
+2026-09-23 11:35:58,954 - INFO - logp = -118320.36668072022  (true = -115542.46745636237)
+2026-09-23 11:35:58,954 - INFO - Pipeline executed succesfully.
