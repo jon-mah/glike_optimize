@@ -169,7 +169,7 @@ def maximize(fun, x0, bounds = None, precision = 0.05, epochs = 20, verbose = Fa
   x, y = xs[idx], ys[idx]
   return x, y
 
-def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbose = False):
+def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbose = False, model = None):
   # fun: Objective function to be maximized
   # x0: dictionary of initial params
   # bounds: Tuple list of paramer bounds
@@ -179,38 +179,161 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
   # return best_x: dict of fit params
   # return best_y: log likelihood float
 
-  search = Search(x0, bounds = bounds, precision = precision)
-  z0 = search.encode_parameters(x0)
+  search = Search(
+    x0,
+    bounds=bounds,
+    precision=precision
+  )
 
+  z0 = search.encode_parameters(x0)
   names = list(z0.keys())
 
-  x_init = np.array([z0[k] for k in names], dtype=float)
+  x_init = np.array(
+    [z0[k] for k in names],
+    dtype=float
+  )
 
-  # Check boundary conditions, else make -Inf to Inf
-  if bounds is None:
-    lower = [-np.inf] * len(names)
-    upper = [np.inf] * len(names)
-  else:
-    # Split boundary pairs
-    lower = [b[0] for b in bounds]
-    upper = [b[1] for b in bounds]
-  # inverse minimzation process of CMA-ES --> maximize likelihood
   def objective(x):
-    params = search.decode_parameters(dict(zip(names, x)))
 
-    try:
-      y = fun(**params)
-      if np.isnan(y):
+    params = search.decode_parameters(
+      dict(zip(names, x))
+    )
+
+    # Convert numpy scalars to Python floats
+    params = {
+      k: float(v) for k, v in params.items()
+    }
+
+    # -------------------------
+    # Parameter validity
+    # -------------------------
+
+    if model == '3G09':
+      if params["N_yri"] <= 0:
         return np.inf
 
-      return -y # negative likelihood for minimize
+      if params["N_ceu"] <= 0:
+        return np.inf
+
+      if params["N_nea"] <= 0:
+        return np.inf
+
+      if params["m1"] < 0:
+        return np.inf
+
+      if params["t1"] <= 0:
+        return np.inf
+
+      if params["t2"] <= params["t1"]:
+        return np.inf
+
+      if params["t3"] <= params["t2"]:
+        return np.inf
+
+      if params["t4"] <= params["t3"]:
+        return np.inf
+    elif model == '4A21':
+      if params["t1"] <= 0:
+        return np.inf
+      if params["t2"] <= params["t1"]:
+        return np.inf
+      if params["t3"] <= params["t2"]:
+        return np.inf
+      if params["t4"] <= params["t3"]:
+        return np.inf
+      if params["t5"] <= params["t4"]:
+        return np.inf
+      if params["t6"] <= params["t5"]:
+        return np.inf
+      if params["r1"] <= 0:
+        return np.inf
+      if params["r2"] <= 0:
+        return np.inf
+      if params["r3"] <= 0:
+        return np.inf
+      if params["N_ana"] <= 0:
+        return np.inf
+      if params["N_neo"] <= 0:
+        return np.inf
+      if params["N_whg"] <= 0:
+        return np.inf
+      if params["N_bronze"] <= 0:
+        return np.inf
+      if params["N_yam"] <= 0:
+        return np.inf
+      if params["N_ehg"] <= 0:
+        return np.inf
+      if params["chg"] <= 0:
+        return np.inf
+      if params["N_ne"] <= 0:
+        return np.inf
+      if params["N_wa"] <= 0:
+        return np.inf
+      if params["N_ooa"] <= 0:
+        return np.inf
+      if params["gr"] < 0:
+        return np.inf
+      if params["gr"] > 1:
+        return np.inf
+    else:
+      if params["t1"] <= 0:
+        return np.inf
+      if params["t2"] <= params["t1"]:
+        return np.inf
+      if params["t3"] <= params["t2"]:
+        return np.inf
+      if params["t4"] <= params["t3"]:
+        return np.inf
+      if params["r1"] <= 0:
+        return np.inf
+      if params["r2"] <= 0:
+        return np.inf
+      if params["r3"] <= 0:
+        return np.inf
+      if params["N_admix"] <= 0:
+        return np.inf
+      if params["N_afr"] <= 0:
+        return np.inf
+      if params["N_eur"] <= 0:
+        return np.inf
+      if params["N_asia"] <= 0:
+        return np.inf
+      if params["N_pol"] <= 0:
+        return np.inf
+      if params["N_aa"] <= 0:
+        return np.inf
+      if params["N_ooa"] <= 0:
+        return np.inf
+      if params["N_anc"] <= 0:
+        return np.inf
+      if params["gr"] < 0:
+        return np.inf
+      if params["gr"] >= 1:
+        return np.inf
+
+    # -------------------------
+    # Evaluate likelihood
+    # -------------------------
+
+    try:
+
+      y = fun(**params)
+
+      if not np.isfinite(y):
+        return np.inf
+
+      return -y
+
     except Exception as e:
+
+      if verbose:
         print("FAILED PARAMETERS:")
         print(params)
         print(e)
-        raise
+
+        return np.inf
+
   opts = {
-    # "bounds": [lower, upper],
     "maxiter": epochs,
     "verbose": -9
   }
@@ -227,33 +350,39 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
   generation = 0
 
   while not es.stop():
+
     X = es.ask()
 
-    Y = [objective(x) for x in X]
+    Y = [
+      objective(x) for x in X
+    ]
 
     es.tell(X, Y)
 
     generation += 1
 
     if verbose:
-      best = dict(zip(names, es.result.xbest))
+
+      best = dict(
+        zip(names, es.result.xbest)
+      )
+
+      best = search.decode_parameters(best)
 
       print(
         f"Generation {generation:3d}"
         f"  Likelihood = {-es.result.fbest:.6f}"
-        
       )
 
       print(best)
-  
+
   if es.result.xbest is None:
-      raise RuntimeError(
-          "CMA-ES failed to find a valid solution. "
-          "All objective evaluations returned invalid values."
-      )
+    raise RuntimeError(
+    "CMA-ES failed to find a valid solution."
+  )
 
   best_x = search.decode_parameters(
-      dict(zip(names, es.result.xbest))
+    dict(zip(names, es.result.xbest))
   )
 
   best_y = -es.result.fbest

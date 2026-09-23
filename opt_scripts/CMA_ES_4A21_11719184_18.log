@@ -86,3 +86,5 @@ ne    1
 ns   0.0002
 grs  0.0000
 
+[2026-09-03T18:12:00.005] error: *** JOB 11719202 ON a04-19 CANCELLED AT 2026-09-03T18:12:00 DUE TO TIME LIMIT ***
+[2026-09-03T18:12:00.010] error: Detected 4 oom_kill events in StepId=11719202.batch. Some of the step tasks have been OOM Killed.
