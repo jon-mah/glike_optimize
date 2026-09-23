@@ -5,7 +5,7 @@
 #SBATCH --time=8:00:00
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=20gb
-#SBATCH --array=1-20
+#SBATCH --array=1-10
 #SBATCH --output=gLike_3G09_%A_%a.log
 
 # SLURM_ARRAY_TASK_ID=1

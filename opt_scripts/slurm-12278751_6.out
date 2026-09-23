@@ -1,0 +1,6 @@
+Reading: gLike_3G09_12273717_6.log
+Replicate: 6
+Found 18 parameter/log-likelihood records.
+Warning: 18 records had no detected optimizer iteration.
+Wrote: ../Analysis/gLike_3G09_chronological_6.csv
+Done: ../Analysis/gLike_3G09_chronological_6.csv

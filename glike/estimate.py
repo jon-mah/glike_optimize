@@ -169,6 +169,12 @@ def maximize(fun, x0, bounds = None, precision = 0.05, epochs = 20, verbose = Fa
   x, y = xs[idx], ys[idx]
   return x, y
 
+def invalid(reason, params):
+  print("INVALID PARAMETERS:")
+  print(reason)
+  print(params)
+  return np.inf
+
 def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbose = False, model = None):
   # fun: Objective function to be maximized
   # x0: dictionary of initial params
@@ -208,39 +214,36 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
     # Parameter validity
     # -------------------------
 
-    if model == '3G09':
+    if model == '3G09' or model == '3G09_no_m':
       if params["N_anc"] <= 0:
-        return np.inf
+        return invalid("N_Anc <== 0", params)
 
       if params["N_yri"] <= 0:
-        return np.inf
+        return invalid("N_yri <= 0", params)
 
       if params["N_ooa"] <= 0:
-        return np.inf
+        return invalid("N_ooa <= 0", params)
 
       if params["N_ceu"] <= 0:
-        return np.inf
+        return invalid("N_ceu <= 0", params)
 
       if params["N_chb"] <= 0:
-        return np.inf
+        return invalid("N_chb <= 0", params)
 
       if params["gr_ceu"] < 0 or params["gr_ceu"] > 1:
-        return np.inf
+        return invalid("gr_ceu out of bounds", params)
 
       if params["gr_chb"] < 0 or params["gr_chb"] > 1:
-        return np.inf
+        return invalid("gr_chb out of bounds", params)
 
       if params["t1"] <= 0:
-        return np.inf
+        return invalid("t1 <= 0", params)
 
       if params["t2"] <= params["t1"]:
-        return np.inf
+        return invalid("t2 <= t1", params)
 
       if params["t3"] <= params["t2"]:
-        return np.inf
-
-      if params["t4"] <= params["t3"]:
-        return np.inf
+        return invalid("t3 <= t2", params)
     elif model == '3I21':
       if params["N_yri"] <= 0:
         return np.inf
@@ -362,9 +365,9 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
       if verbose:
         print("FAILED PARAMETERS:")
         print(params)
-        print(e)
+        print(f"ERROR: {repr(e)}")
 
-        return np.inf
+      return np.inf
 
   opts = {
     "maxiter": epochs,
@@ -394,12 +397,9 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
 
     generation += 1
 
-    if verbose:
-
-      best = dict(
-        zip(names, es.result.xbest)
-      )
-
+  if verbose:
+    if es.result.xbest is not None:
+      best = dict(zip(names, es.result.xbest))
       best = search.decode_parameters(best)
 
       print(
@@ -409,6 +409,11 @@ def maximize_CMA_ES(fun, x0, bounds = None, precision = 0.05, epochs = 5, verbos
 
       print(best)
 
+    else:
+      print(
+        f"Generation {generation:3d}"
+        "  No valid CMA-ES solution yet."
+      )
   if es.result.xbest is None:
     raise RuntimeError(
     "CMA-ES failed to find a valid solution."

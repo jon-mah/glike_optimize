@@ -1,8 +1,8 @@
-2026-09-03 02:21:25,969 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-09-23 06:38:34,446 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-09-03 02:21:25,969 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1/ntree_10_rep_2_simulate_ARG.log
+2026-09-23 06:38:34,446 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1/ntree_10_rep_2_simulate_ARG.log
 
-2026-09-03 02:21:25,969 - INFO - Parsed the following arguments:
+2026-09-23 06:38:34,446 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -10,12 +10,13 @@
 	NUM_TREES = 10
 	OPTIMIZER = glike
 	MODEL = 3G09
+	KAPPA = 10000
 	outprefix = ../opt_results_glike_3G09_no_m1/ntree_10_rep_2
 
-2026-09-03 02:21:27,516 - INFO - Finished simulating ARG.
-2026-09-03 02:21:48,067 - INFO - Starting glike optimization.
-2026-09-03 04:37:34,230 - INFO - Finished fitting ARG.
-2026-09-03 04:37:34,231 - INFO - Finished in 2h 15m 46.2s
-2026-09-03 04:37:34,231 - INFO - Estimated: {'t1': 9.1225, 't2': 49.89888, 't3': 105.03196, 't4': 233.37902, 'N_yri': 5458.86512, 'N_ceu': 2913.40419, 'N_nea': 3162.20864, 'm1': 1e-05}
-2026-09-03 04:37:34,231 - INFO - logp = -91168.55147424123  (true = -94794.65885523966)
-2026-09-03 04:37:34,231 - INFO - Pipeline executed succesfully.
+2026-09-23 06:38:34,577 - INFO - Finished simulating ARG.
+2026-09-23 06:38:34,663 - INFO - Starting glike optimization.
+2026-09-23 13:48:51,946 - INFO - Finished fitting ARG.
+2026-09-23 13:48:51,946 - INFO - Finished in 7h 10m 17.3s
+2026-09-23 13:48:51,946 - INFO - Estimated: {'t1': 1.70839, 't2': 2.34667, 't3': 98.56294, 'N_anc': 470.68973, 'N_yri': 359.74093, 'N_ooa': 922.52346, 'N_ceu': 289.53872, 'N_chb': 351.38128, 'gr_ceu': 1e-05, 'gr_chb': 1e-05, 'm_yri_ooa': 1e-05, 'm_yri_ceu': 1e-05, 'm_yri_chb': 1e-05, 'm_ceu_chb': 0.0}
+2026-09-23 13:48:51,946 - INFO - logp = -67531.31203207129  (true = -115987.79849825357)
+2026-09-23 13:48:51,946 - INFO - Pipeline executed succesfully.

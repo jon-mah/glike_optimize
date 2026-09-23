@@ -1,8 +1,8 @@
-2026-09-03 02:21:25,156 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-09-23 06:39:30,404 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-09-03 02:21:25,156 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1/ntree_10_rep_5_simulate_ARG.log
+2026-09-23 06:39:30,405 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1/ntree_10_rep_5_simulate_ARG.log
 
-2026-09-03 02:21:25,156 - INFO - Parsed the following arguments:
+2026-09-23 06:39:30,405 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -10,12 +10,13 @@
 	NUM_TREES = 10
 	OPTIMIZER = glike
 	MODEL = 3G09
+	KAPPA = 10000
 	outprefix = ../opt_results_glike_3G09_no_m1/ntree_10_rep_5
 
-2026-09-03 02:21:26,718 - INFO - Finished simulating ARG.
-2026-09-03 02:21:46,732 - INFO - Starting glike optimization.
-2026-09-03 04:22:47,748 - INFO - Finished fitting ARG.
-2026-09-03 04:22:47,748 - INFO - Finished in 2h 1m 1.0s
-2026-09-03 04:22:47,748 - INFO - Estimated: {'t1': 10.23295, 't2': 55.95591, 't3': 96.18262, 't4': 251.69972, 'N_yri': 5568.22972, 'N_ceu': 2834.11486, 'N_nea': 2870.56972, 'm1': 0.0}
-2026-09-03 04:22:47,748 - INFO - logp = -91160.5164735092  (true = -94793.3728174218)
-2026-09-03 04:22:47,748 - INFO - Pipeline executed succesfully.
+2026-09-23 06:39:30,519 - INFO - Finished simulating ARG.
+2026-09-23 06:39:30,623 - INFO - Starting glike optimization.
+2026-09-23 12:03:13,263 - INFO - Finished fitting ARG.
+2026-09-23 12:03:13,264 - INFO - Finished in 5h 23m 42.6s
+2026-09-23 12:03:13,264 - INFO - Estimated: {'t1': 1.83771, 't2': 2.32267, 't3': 95.15226, 'N_anc': 478.78884, 'N_yri': 359.74093, 'N_ooa': 897.45017, 'N_ceu': 299.36255, 'N_chb': 330.88082, 'gr_ceu': 1e-05, 'gr_chb': 1e-05, 'm_yri_ooa': 0.0, 'm_yri_ceu': 1e-05, 'm_yri_chb': 1e-05, 'm_ceu_chb': 0.0}
+2026-09-23 12:03:13,264 - INFO - logp = -67536.79056236103  (true = -115987.79849825357)
+2026-09-23 12:03:13,264 - INFO - Pipeline executed succesfully.

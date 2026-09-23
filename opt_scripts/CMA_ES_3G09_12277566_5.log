@@ -1,0 +1,69 @@
+2026-09-23 11:02:15,524 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-09-23 11:02:15,524 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_5_simulate_ARG.log
+
+2026-09-23 11:02:15,524 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 10
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 20000
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1/ntree_10_rep_5
+
+2026-09-23 11:02:15,583 - INFO - Sampling 1000 individuals with ploidy 1 in population 0 (name='admix') at time 0
+2026-09-23 11:02:15,593 - INFO - Starting replicate 0
+2026-09-23 11:02:15,594 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-09-23 11:02:15,594 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-09-23 11:02:16,572 - INFO - Completed at time=24250.7 nodes=39508 edges=264883
+2026-09-23 11:02:17,761 - INFO - Finished simulating ARG.
+[phase from 0.0 to 19.0]
+        admix
+ns   0.000006
+grs  0.078000
+
+[phase from 19.0 to 411.0]
+       afr    eur   asia    pol
+admix  0.0  0.198  0.334  0.468
+        afr       eur     asia       pol
+ns   0.0001  0.000075  0.00004  0.000064
+grs  0.0000  0.000000  0.00000  0.000000
+
+[phase from 411.0 to 1040.0]
+      afr  eur  asia
+afr     1    0     0
+eur     0    1     0
+asia    0    0     1
+pol     0    0     1
+        afr       eur     asia
+ns   0.0001  0.000075  0.00037
+grs  0.0000  0.000000  0.00000
+
+[phase from 1040.0 to 2004.0]
+      afr  eur
+afr     1    0
+eur     0    1
+asia    0    1
+        afr       eur
+ns   0.0001  0.000405
+grs  0.0000  0.000000
+
+[phase from 2004.0 to inf]
+     A
+afr  1
+eur  1
+            A
+ns   0.000375
+grs  0.000000
+
+2026-09-23 11:02:38,823 - INFO - Starting glike optimization.
+-118372.68099229535
+2026-09-23 11:57:34,137 - INFO - Finished fitting ARG.
+2026-09-23 11:57:34,138 - INFO - Finished in 0h 54m 55.3s
+2026-09-23 11:57:34,138 - INFO - Estimated: {'t1': 10.138871693991563, 't2': 49.94531478981844, 't3': 100.0065245972085, 'N_anc': 9999.924171565825, 'N_yri': 9999.932916065307, 'N_ooa': 9999.972635982327, 'N_ceu': 10000.035796533624, 'N_chb': 9999.998310383151, 'gr_ceu': 0.13044703971972418, 'gr_chb': 0.24027041659060616}
+2026-09-23 11:57:34,138 - INFO - logp = -118315.9500651037  (true = -115582.1954094404)
+2026-09-23 11:57:34,138 - INFO - Pipeline executed succesfully.
+Generation   5  Likelihood = -118315.950065
+{'t1': 10.138871693991563, 't2': 49.94531478981844, 't3': 100.0065245972085, 'N_anc': 9999.924171565825, 'N_yri': 9999.932916065307, 'N_ooa': 9999.972635982327, 'N_ceu': 10000.035796533624, 'N_chb': 9999.998310383151, 'gr_ceu': 0.13044703971972418, 'gr_chb': 0.24027041659060616}
