@@ -750,6 +750,7 @@ class SimulateARG():
         true_demo.print()
 
         logp_true = glike.glike_trees(trees, true_demo)
+        parameter_scales = None
 
         if MODEL == '3G09_no_m':
             def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb):
@@ -766,7 +767,16 @@ class SimulateARG():
                 (1, 't2'), ('t1', 't3'), ('t2', 1e4),
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5), (0, 0.5),
-            ]                
+            ]
+            parameter_scales = {
+                "N_anc": 50000,
+                "N_yri": 50000,
+                "N_ceu": 50000,
+                "N_chb": 50000,
+                "N_ooa": 50000,
+                "gr_ceu": 1.0,
+                "gr_chb": 1.0,
+            }
         elif MODEL == '3G09':
             def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb, 
                     m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb):
@@ -788,6 +798,19 @@ class SimulateARG():
                 (100, 100000), (0, 0.5), (0, 0.5),
                 (0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0)
             ]
+            parameter_scales = {
+                "N_anc": 50000,
+                "N_yri": 50000,
+                "N_ceu": 50000,
+                "N_chb": 50000,
+                "N_ooa": 50000,
+                "gr_ceu": 1.0,
+                "gr_chb": 1.0,
+                "m_yri_ooa": 1.0,
+                "m_yri_ceu": 1.0,
+                "m_yri_chb": 1.0,
+                "m_ceu_chb": 1.0
+            }
         elif MODEL == '3I21':
             def fun(t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1):
                 demo = glike.neandertal_admixture_demo(
@@ -803,6 +826,12 @@ class SimulateARG():
                 (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 1e3),
                 (100, 100000), (100, 100000), (100, 100000), (0.0, 0.0)
             ]
+            parameter_scales = {
+                "N_yri": 50000,
+                "N_ceu": 50000,
+                "N_nea": 50000,
+                "m1": 1.0
+            }
         elif MODEL == '4A21':
             def fun(t1, t2, t3, t4, t5, t6, r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, 
                     N_yam, N_ehg, N_chg, N_ne, N_wa, N_ooa, gr):
@@ -825,6 +854,21 @@ class SimulateARG():
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5)
             ]
+            parameter_scales = {
+                "r1": 1.0,
+                "r2": 1.0,
+                "r3": 1.0,
+                "N_ana": 50000,
+                "N_neo": 50000,
+                "N_whg": 50000,
+                "N_bronze": 50000,
+                "N_yam": 50000,
+                "N_ehg": 50000,
+                "N_ne": 50000,
+                "N_wa": 50000,
+                "N_ooa": 50000,
+                "gr": 1.0
+            }
         else:
             def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
                     N_pol, N_aa, N_ooa, N_anc, gr):
@@ -843,11 +887,25 @@ class SimulateARG():
                       (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
                       (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                       (0, 0.5)]
+            parameter_scales = {
+                "r1": 1.0,
+                "r2": 1.0,
+                "r3": 1.0,
+                "N_admix": 50000,
+                "N_afr": 50000,
+                "N_eur": 50000,
+                "N_asia": 50000,
+                "N_pol": 50000,
+                "N_aa": 50000,
+                "N_ooa": 50000,
+                "N_anc": 50000,
+                "gr": 1.0
+            }
 
         logger.info('Starting glike optimization.')
         t_start = time.time()
         if OPTIMIZER == 'CMA_ES':
-            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True)
+            x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True, parameter_scales = parameter_scales)
         else: 
             x, logp = glike.maximize(fun, x0, bounds = bounds, verbose = True)
         elapsed = time.time() - t_start
