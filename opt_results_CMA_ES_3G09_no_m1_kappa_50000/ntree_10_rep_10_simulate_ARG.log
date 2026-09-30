@@ -1,8 +1,8 @@
-2026-09-24 11:18:21,903 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-09-28 13:29:52,096 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-09-24 11:18:21,903 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_50000/ntree_10_rep_10_simulate_ARG.log
+2026-09-28 13:29:52,096 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_50000/ntree_10_rep_10_simulate_ARG.log
 
-2026-09-24 11:18:21,903 - INFO - Parsed the following arguments:
+2026-09-28 13:29:52,096 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -13,5 +13,10 @@
 	KAPPA = 50000
 	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_50000/ntree_10_rep_10
 
-2026-09-24 11:18:23,685 - INFO - Finished simulating ARG.
-2026-09-24 11:18:36,716 - INFO - Starting glike optimization.
+2026-09-28 13:29:53,966 - INFO - Finished simulating ARG.
+2026-09-28 13:30:10,774 - INFO - Starting glike optimization.
+2026-09-28 15:11:35,249 - INFO - Finished fitting ARG.
+2026-09-28 15:11:35,250 - INFO - Finished in 1h 41m 24.5s
+2026-09-28 15:11:35,250 - INFO - Estimated: {'t1': 12.459564956934186, 't2': 59.64080933373843, 't3': 1379.3161295312862, 'N_anc': 5216.152341684681, 'N_yri': 14478.771906820064, 'N_ooa': 27207.59816251441, 'N_ceu': 8055.32719607657, 'N_chb': 14157.18167954056, 'gr_ceu': 0.18365359447025917, 'gr_chb': 0.09057423281558435}
+2026-09-28 15:11:35,250 - INFO - logp = -106122.39640479407  (true = -115503.25178945492)
+2026-09-28 15:11:35,250 - INFO - Pipeline executed succesfully.
