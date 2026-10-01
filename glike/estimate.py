@@ -539,7 +539,7 @@ def maximize_CMA_ES(
     x0,
     bounds=None,
     precision=0.05,
-    epochs=5,
+    epochs=20,
     verbose=False,
     model=None,
     parameter_scales=None

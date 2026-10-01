@@ -4,6 +4,7 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(stringr)
+library(tidyverse)
 
 ## gLike (3G09)
 
@@ -28,13 +29,36 @@ CMA_ES_3G09_params <- read.csv(
   "../opt_results_CMA_ES_3G09_no_m1/params.csv"
 )
 
+CMA_kappa_10000_benchmarks = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_10000/benchmarks.csv'
+)
+
+CMA_kappa_10000_params = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_10000/params.csv'
+)
+
+CMA_kappa_25000_benchmarks = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/benchmarks.csv'
+)
+
+CMA_kappa_25000_params = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/params.csv'
+)
+
+CMA_kappa_50000_benchmarks = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/benchmarks.csv'
+)
+
+CMA_kappa_50000_params = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/params.csv'
+)
 
 # ============================================================
 # Parameter error plot
 # ============================================================
 
 # ============================================================
-# Parameter error plot
+# Parameter value plot
 # ============================================================
 
 # Initial parameter values
@@ -52,91 +76,120 @@ x0 <- c(
 )
 
 
-# CMA-ES parameter data
-param_data_CMA_ES <- CMA_ES_3G09_params |>
-  mutate(
-    method = "CMA-ES"
-  )
+# Parameters to plot
+parameters <- c(
+  "t1", "t2", "t3",
+  "N_anc", "N_yri", "N_ooa", "N_ceu", "N_chb",
+  "gr_ceu", "gr_chb"
+)
 
 
+# ------------------------------------------------------------
 # CMA-ES results
-plot_data_CMA_ES <- param_data_CMA_ES |>
+# ------------------------------------------------------------
+
+plot_data_CMA_ES <- CMA_ES_3G09_params |>
   pivot_longer(
-    cols = c(
-      t1, t2, t3,
-      N_anc, N_yri, N_ooa, N_ceu, N_chb,
-      gr_ceu, gr_chb
-    ),
+    cols = all_of(parameters),
     names_to = "parameter",
     values_to = "value"
   ) |>
   mutate(
-    true_value = true_values_3G09[parameter],
-    percent_error = ((value - true_value) / true_value) * 100
+    method = "CMA-ES",
+    true_value = true_values_3G09[parameter]
   )
 
 
+# ------------------------------------------------------------
 # Initial values
+# ------------------------------------------------------------
+
 plot_data_x0 <- data.frame(
   parameter = names(x0),
-  value = as.numeric(x0),
-  method = "CMA-ES"
+  x0 = as.numeric(x0)
 ) |>
   mutate(
-    true_value = true_values_3G09[parameter],
-    percent_error = ((value - true_value) / true_value) * 100
+    true_value = true_values_3G09[parameter]
   )
 
 
+# ------------------------------------------------------------
+# True values
+# ------------------------------------------------------------
+
+true_values_plot <- data.frame(
+  parameter = parameters,
+  true_value = true_values_3G09[parameters]
+)
+
+
+# ------------------------------------------------------------
 # Plot
+# ------------------------------------------------------------
+
 ggplot(
   plot_data_CMA_ES,
   aes(
     x = method,
-    y = percent_error,
+    y = value,
     fill = method
   )
 ) +
+
+  # CMA-ES boxplots
   geom_boxplot(
     outlier.shape = NA
   ) +
+
+  # Individual CMA-ES replicates
   geom_jitter(
     width = 0.1,
     size = 1.8,
     alpha = 0.8
   ) +
+
+  # Initial x0 value
   geom_point(
     data = plot_data_x0,
     aes(
-      x = method,
-      y = percent_error
+      x = "CMA-ES",
+      y = x0
     ),
     inherit.aes = FALSE,
-    shape = 12,
-    size = 4,
-    color = "blue"
+    shape = 18,
+    size = 4
   ) +
-  facet_wrap(
-    ~ parameter,
-    nrow = 1
-  ) +
+
+  # True parameter value
   geom_hline(
-    yintercept = 0,
+    data = true_values_plot,
+    aes(
+      yintercept = true_value
+    ),
     color = "red",
     linetype = "dashed"
   ) +
+
+  facet_wrap(
+    ~ parameter,
+    nrow = 1,
+    scales = "free_y"
+  ) +
+
   labs(
     x = NULL,
-    y = "Percent Error (%)",
+    y = "Parameter Value",
     fill = NULL
   ) +
+
   theme_classic() +
+
   theme(
     legend.position = "right",
     strip.background = element_blank()
   ) +
-  ggtitle("CMA-ES (3G09)")
 
+  ggtitle("CMA-ES (3G09)")
 
 # ============================================================
 # Runtime / likelihood benchmark plot
@@ -364,3 +417,169 @@ for (param in parameters_3G09) {
 for (param in parameters_3G09) {
   print(parameter_plots[[param]])
 }
+
+### Kappa tests
+
+convert_runtime <- function(x) {
+    h <- as.numeric(sub(".*([0-9]+)h.*", "\\1", x))
+    m <- as.numeric(sub(".*h ([0-9]+)m.*", "\\1", x))
+    s <- as.numeric(sub(".*m ([0-9.]+)s.*", "\\1", x))
+
+    h * 3600 + m * 60 + s
+}
+
+
+# Combine into one data frame
+# Read benchmark files
+benchmarks_10000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_10000/benchmarks.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 10000)
+
+benchmarks_25000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/benchmarks.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 25000)
+
+benchmarks_50000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/benchmarks.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 50000)
+
+# Combine into one data frame
+benchmarks <- bind_rows(
+    benchmarks_10000,
+    benchmarks_25000,
+    benchmarks_50000
+)
+
+benchmarks <- benchmarks %>%
+    mutate(runtime_seconds = convert_runtime(runtime))
+
+# Treat kappa as a categorical variable
+benchmarks$kappa <- factor(
+    benchmarks$kappa,
+    levels = c(10000, 25000, 50000),
+    labels = c("κ = 10,000", "κ = 25,000", "κ = 50,000")
+)
+
+ggplot(benchmarks, aes(x = kappa, y = runtime_seconds)) +
+    geom_boxplot(outlier.shape = NA) +
+    geom_jitter(
+        width = 0.1,
+        alpha = 0.5
+    ) +
+    labs(
+        x = "κ",
+        y = "Runtime (seconds)",
+        title = "CMA-ES Runtime across κ Values"
+    ) +
+    theme_classic()
+
+true_logp <- benchmarks$true[1]
+
+ggplot(benchmarks, aes(x = kappa, y = logp)) +
+    geom_boxplot(outlier.shape = NA) +
+    geom_jitter(
+        width = 0.1,
+        alpha = 0.5
+    ) +
+    geom_hline(
+      yintercept = true_logp,
+      linetype = "dashed",
+      color = 'red'
+    ) +
+    labs(
+        x = "κ",
+        y = "Log-likelihood",
+        title = "CMA-ES Log-likelihood across κ Values"
+    ) +
+    theme_classic()
+
+# Read parameter files
+params_10000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_10000/params.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 10000)
+
+params_25000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/params.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 25000)
+
+params_50000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/params.csv',
+    show_col_types = FALSE
+) %>%
+    mutate(kappa = 50000)
+
+# Combine files
+params <- bind_rows(
+    params_10000,
+    params_25000,
+    params_50000
+)
+
+# Make kappa categorical
+params$kappa <- factor(
+    params$kappa,
+    levels = c(10000, 25000, 50000),
+    labels = c("κ = 10,000", "κ = 25,000", "κ = 50,000")
+)
+
+parameter_names <- c(
+    "N_anc",
+    "N_ceu",
+    "N_chb",
+    "N_ooa",
+    "N_yri",
+    "gr_ceu",
+    "gr_chb",
+    "t1",
+    "t2",
+    "t3"
+)
+
+plots <- list()
+
+for (parameter in parameter_names) {
+
+    plots[[parameter]] <- ggplot(
+        params,
+        aes(
+            x = kappa,
+            y = .data[[parameter]]
+        )
+    ) +
+        geom_boxplot(outlier.shape = NA) +
+        geom_jitter(
+            width = 0.1,
+            alpha = 0.5
+        ) +
+        geom_hline(
+          yintercept = true_values_3G09[parameter],
+          linetype = "dashed",
+          color='red'
+        ) +
+        labs(
+            x = "κ",
+            y = parameter,
+            title = paste("CMA-ES estimates of", parameter)
+        ) +
+        theme_classic()
+}
+plots[1]
+plots[2]
+plots[3]
+plots[4]
+plots[5]
+plots[6]
+plots[7]
+plots[8]
+plots[9]
+plots[10]
