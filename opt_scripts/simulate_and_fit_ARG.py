@@ -750,6 +750,7 @@ class SimulateARG():
         true_demo.print()
 
         logp_true = glike.glike_trees(trees, true_demo)
+        logger.info(f'Log likelihood of simulation parameters: {logp_true}.')
         parameter_scales = None
 
         if MODEL == '3G09_no_m':
