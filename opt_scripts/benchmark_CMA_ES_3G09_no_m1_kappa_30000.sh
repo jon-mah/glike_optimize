@@ -2,9 +2,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-#SBATCH --time=12:00:00
+#SBATCH --time=48:00:00
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=40gb
+#SBATCH --mem=120gb
 #SBATCH --array=1-10
 #SBATCH --output=CMA_kappa_30000_%A_%a.log
 
