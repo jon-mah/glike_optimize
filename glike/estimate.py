@@ -531,6 +531,217 @@ def invalid(reason, params):
 
 
 # =============================================================================
+# CMA-ES log-space parameter transform
+# =============================================================================
+
+class CMAParameterTransform:
+    """
+    Map demographic parameters to a common CMA-ES coordinate system [0, 1].
+
+    The transformation is based on one quantity for every parameter:
+
+        d = x - lower_bound
+
+    and optimizes log(d).
+
+    For finite bounds L < x < U:
+
+        u = [log(x - L) - log(U - L)] / [log(U - L) - log(U - L)]
+
+    More explicitly, since the lower endpoint itself is singular under the
+    logarithm, the implementation uses a small positive distance from L as
+    the lower log-space endpoint. This gives a numerically stable mapping
+    whose interior is strictly inside (0, 1).
+
+    A cleaner equivalent representation used below is to define a positive
+    log-space interval [log(delta_min), log(delta_max)] where delta_min is
+    chosen from the supplied starting point and numerical precision. CMA-ES
+    then operates on the normalized position within that interval.
+
+    For an unbounded upper limit, an explicit parameter scale defines the
+    reference distance and the same log-distance coordinate is mapped to
+    (0, 1) with a logistic transform:
+
+        u = sigmoid(log((x-L)/scale)).
+
+    Thus all CMA-ES coordinates have the same interpretation regardless of
+    the original units of the demographic parameter.
+    """
+
+    EPS = 1e-12
+
+    def __init__(self, x0, bounds=None, parameter_scales=None):
+        self.x0 = {k: float(v) for k, v in x0.items()}
+        self.names = list(x0.keys())
+
+        if bounds is None:
+            bounds = [(0, math.inf) for _ in self.names]
+
+        self.bounds = dict(zip(self.names, bounds))
+        self.parameter_scales = parameter_scales or {}
+
+        self._validate_bounds()
+
+    def _eval_bound(self, value, params):
+        if isinstance(value, str):
+            return float(eval(value, {"__builtins__": {}}, dict(params)))
+        return float(value)
+
+    def _raw_bounds(self, name, params):
+        low, high = self.bounds[name]
+        return self._eval_bound(low, params), self._eval_bound(high, params)
+
+    def _ordered_lower_bound(self, name, params, low):
+        """Enforce strict ordering for consecutively numbered time parameters."""
+        if name.startswith("t") and name[1:].isdigit():
+            idx = int(name[1:])
+            if idx > 1:
+                previous = f"t{idx - 1}"
+                if previous in params:
+                    low = max(low, float(params[previous]))
+        return low
+
+    def _validate_bounds(self):
+        # Check static bounds and the supplied starting point. Dynamic bounds
+        # are checked after earlier parameters have been decoded.
+        for name in self.names:
+            low, high = self.bounds[name]
+            if not isinstance(low, str) and not np.isfinite(float(low)):
+                raise ValueError(f"Lower bound for {name} must be finite.")
+            if not isinstance(high, str) and float(high) <= float(low):
+                raise ValueError(f"Upper bound for {name} must be greater than lower bound.")
+
+    def _scale_for_unbounded(self, name, lower):
+        if name in self.parameter_scales:
+            scale = float(self.parameter_scales[name])
+        else:
+            # A scale is only needed when the upper bound is infinite.
+            # One unit of distance from the lower bound is the neutral default.
+            scale = 1.0
+
+        if scale <= 0 or not np.isfinite(scale):
+            raise ValueError(
+                f"Scale for {name} must be finite and > 0 (got {scale})."
+            )
+        return scale
+
+    def _bounds_for_name(self, name, decoded):
+        low, high = self._raw_bounds(name, decoded)
+        low = self._ordered_lower_bound(name, decoded, low)
+        if np.isfinite(high) and high <= low:
+            raise ValueError(
+                f"Invalid bounds for {name}: lower={low}, upper={high}."
+            )
+        return low, high
+
+    @staticmethod
+    def _logit(u):
+        u = min(max(float(u), CMAParameterTransform.EPS), 1.0 - CMAParameterTransform.EPS)
+        return math.log(u / (1.0 - u))
+
+    @staticmethod
+    def _sigmoid(z):
+        z = float(z)
+        if z >= 0:
+            ez = math.exp(-z)
+            return 1.0 / (1.0 + ez)
+        ez = math.exp(z)
+        return ez / (1.0 + ez)
+
+    def encode(self, x):
+        """
+        Convert original parameters to CMA-ES coordinates in (0, 1).
+
+        Parameters are processed in their supplied order. This is important
+        for ordered times because t2, t3, ... use the previously decoded time
+        as their effective lower bound.
+        """
+        decoded = {}
+        u = {}
+
+        for name in self.names:
+            value = float(x[name])
+            low, high = self._bounds_for_name(name, decoded)
+            distance = value - low
+
+            if not distance > 0:
+                raise ValueError(
+                    f"Initial value for {name} must be strictly above its "
+                    f"lower bound: value={value}, lower={low}."
+                )
+
+            if np.isfinite(high):
+                upper_distance = high - low
+                log_d = math.log(distance)
+                log_upper = math.log(upper_distance)
+
+                # The lower endpoint of the finite log interval is chosen
+                # from machine-scale precision relative to the interval.
+                log_lower = math.log(max(upper_distance * self.EPS, np.finfo(float).tiny))
+
+                ui = (log_d - log_lower) / (log_upper - log_lower)
+                if not (0.0 < ui < 1.0):
+                    raise ValueError(
+                        f"Initial value for {name} lies outside its log-scaled "
+                        f"finite bounds: value={value}, bounds=({low}, {high})."
+                    )
+            else:
+                scale = self._scale_for_unbounded(name, low)
+                ui = self._sigmoid(math.log(distance / scale))
+
+            u[name] = ui
+            decoded[name] = value
+
+        return u
+
+    def decode(self, u):
+        """
+        Convert CMA-ES coordinates in (0, 1) back to original parameters.
+
+        No clipping or model-specific repair is performed. Values outside
+        (0, 1) are rejected, making bounds hard constraints.
+        """
+        params = {}
+
+        for name in self.names:
+            ui = float(u[name])
+            if not (0.0 < ui < 1.0):
+                raise ValueError(
+                    f"CMA-ES coordinate for {name} must lie strictly within "
+                    f"(0, 1); got {ui}."
+                )
+
+            low, high = self._bounds_for_name(name, params)
+
+            if np.isfinite(high):
+                upper_distance = high - low
+                log_lower = math.log(max(upper_distance * self.EPS, np.finfo(float).tiny))
+                log_upper = math.log(upper_distance)
+                log_distance = log_lower + ui * (log_upper - log_lower)
+                value = low + math.exp(log_distance)
+            else:
+                scale = self._scale_for_unbounded(name, low)
+                value = low + scale * math.exp(self._logit(ui))
+
+            params[name] = float(value)
+
+        return params
+
+    def validate(self, params):
+        """Return True only when params satisfy the original hard bounds."""
+        checked = {}
+        for name in self.names:
+            low, high = self._bounds_for_name(name, checked)
+            value = float(params[name])
+            if value <= low:
+                return False
+            if np.isfinite(high) and value >= high:
+                return False
+            checked[name] = value
+        return True
+
+
+# =============================================================================
 # CMA-ES optimizer
 # =============================================================================
 
@@ -545,460 +756,79 @@ def maximize_CMA_ES(
     parameter_scales=None
 ):
     """
-    Maximize an objective function using CMA-ES.
+    Maximize an objective function using CMA-ES in a common log-scaled space.
 
-    Parameters
-    ----------
-    fun : callable
-        Objective function to maximize.
+    CMA-ES operates exclusively on normalized coordinates in (0, 1). Every
+    parameter uses the same mathematical transformation: log of its distance
+    above its lower bound. Finite upper bounds define the upper end of the
+    log-space interval; infinite upper bounds use parameter_scales as the
+    reference distance in the same log transform.
 
-    x0 : dict
-        Initial demographic parameters.
-
-    bounds : list of tuples, optional
-        Parameter bounds in the ORIGINAL parameterization.
-
-    precision : float
-        Initial CMA-ES standard deviation in NORMALIZED parameter space.
-
-        For example:
-
-            precision = 0.05
-
-        means that the initial CMA-ES search distribution has a standard
-        deviation of 0.05 normalized units for every parameter.
-
-    epochs : int
-        Maximum number of CMA-ES generations.
-
-    verbose : bool
-        Print intermediate progress.
-
-    model : str, optional
-        Demographic model name.
-
-    parameter_scales : dict, optional
-        Characteristic scale for each parameter.
-
-        Example:
-
-            {
-                "N_afr": 50000,
-                "N_eur": 50000,
-                "N_asia": 50000,
-                "r1": 1.0,
-                "r2": 1.0,
-                "r3": 1.0,
-                "gr": 1.0
-            }
-
-        Parameters not included in this dictionary fall back to their
-        finite bound range or a scale of 1.0.
+    No model-specific clipping or parameter repair is performed. A candidate
+    that violates a hard constraint is assigned an infinite minimization
+    objective and therefore cannot become the best solution.
     """
 
-    # -------------------------------------------------------------------------
-    # Construct Search object
-    # -------------------------------------------------------------------------
-
-    if parameter_scales is None:
-        parameter_scales = {}
-
-        for name in x0:
-            if name.startswith("N_"):
-                parameter_scales[name] = 50000
-            elif name.startswith("r"):
-                parameter_scales[name] = 1.0
-            elif name.startswith("m"):
-                parameter_scales[name] = 1.0
-            elif name.startswith("gr"):
-                parameter_scales[name] = 1.0
-
-    search = Search(
-        x0,
+    transform = CMAParameterTransform(
+        x0=x0,
         bounds=bounds,
-        precision=precision,
         parameter_scales=parameter_scales
     )
 
-    # -------------------------------------------------------------------------
-    # Encode original parameters
-    # -------------------------------------------------------------------------
-
-    z0 = search.encode_parameters(
-        x0
-    )
-
-    # -------------------------------------------------------------------------
-    # Normalize parameters for CMA-ES
-    # -------------------------------------------------------------------------
-
-    q0 = search.normalize_parameters(
-        z0
-    )
-
-    names = list(
-        q0.keys()
-    )
-
-    # CMA-ES initial vector
-    x_init = np.array(
-        [
-            q0[k]
-            for k in names
-        ],
-        dtype=float
-    )
-
-    # -------------------------------------------------------------------------
-    # Print initial parameterization
-    # -------------------------------------------------------------------------
+    names = list(x0.keys())
+    u0_dict = transform.encode(x0)
+    u0 = np.array([u0_dict[name] for name in names], dtype=float)
 
     if verbose:
-
-        print(
-            "\nInitial parameters:"
-        )
-
-        print(
-            x0
-        )
-
-        print(
-            "\nEncoded parameters:"
-        )
-
-        print(
-            z0
-        )
-
-        print(
-            "\nNormalized CMA-ES parameters:"
-        )
-
-        print(
-            q0
-        )
-
-        print(
-            "\nCMA-ES parameter scales:"
-        )
-
-        for name in names:
-
-            print(
-                f"  {name}: "
-                f"{search.get_scale(name)}"
-            )
-
-        print(
-            ""
-        )
-
-    # -------------------------------------------------------------------------
-    # Objective function
-    # -------------------------------------------------------------------------
-
-    def objective(q):
-        """
-        Convert normalized CMA-ES coordinates back into the original
-        demographic parameters and evaluate the likelihood.
-        """
-
-        # -------------------------------------------------------------
-        # Normalized CMA-ES coordinates
-        # -------------------------------------------------------------
-
-        q_dict = dict(
-            zip(
-                names,
-                q
-            )
-        )
-
-        # -------------------------------------------------------------
-        # Undo parameter scaling
-        # -------------------------------------------------------------
-
-        z = search.denormalize_parameters(
-            q_dict
-        )
-
-        # -------------------------------------------------------------
-        # Decode ordered times
-        # -------------------------------------------------------------
-
-        params = search.decode_parameters(
-            z
-        )
-
-        # -------------------------------------------------------------
-        # Convert numpy scalars to Python floats
-        # -------------------------------------------------------------
-
-        params = {
-            k: float(v)
-            for k, v in params.items()
-        }
-
-        # -------------------------------------------------------------
-        # Parameter validity
-        # -------------------------------------------------------------
-
-        if (
-            model == "3G09"
-            or model == "3G09_no_m"
-        ):
-
-            if params["N_anc"] <= 0:
-                params["N_anc"] = 1e-5
-
-            if params["N_yri"] <= 0:
-                params["N_yri"] = 1e-5
-
-            if params["N_ooa"] <= 0:
-                params["N_ooa"] = 1e-5
-
-            if params["N_ceu"] <= 0:
-                params["N_ceu"] = 1e-5
-
-            if params["N_chb"] <= 0:
-                params["N_chb"] = 1e-5
-
-            if params["gr_ceu"] < 0:
-                params["gr_ceu"] = 1e-5
-
-            if params["gr_ceu"] > 1:
-                params["gr_ceu"] = 1 - 1e-5
-
-            if params["gr_chb"] < 0:
-                params["gr_chb"] = 1e-5
-
-            if params["gr_chb"] > 1:
-                params["gr_chb"] = 1 - 1e-5
-
-            if params["t1"] <= 0:
-                params["t1"] = 1e-5
-
-            if params["t2"] <= params["t1"]:
-                params["t2"] = params["t1"] + 1e-5
-
-            if params["t3"] <= params["t2"]:
-                params["t3"] = params["t2"] + 1e-5
-
-        elif model == "3I21":
-
-            if params["N_yri"] <= 0:
-                params["N_yri"] = 1e-5
-
-            if params["N_ceu"] <= 0:
-                params["N_ceu"] = 1e-5
-
-            if params["N_nea"] <= 0:
-                params["N_nea"] = 1e-5
-
-            if params["m1"] < 0:
-                params["m1"] = 1e-5
-
-            if params["m1"] > 1:
-                params["m1"] = 1 - 1e-5
-
-            if params["t1"] <= 0:
-                params["t1"] = 1e-5
-
-            if params["t2"] <= params["t1"]:
-                params["t2"] = params["t1"] + 1e-5
-
-            if params["t3"] <= params["t2"]:
-                params["t3"] = params["t2"] + 1e-5
-
-            if params["t4"] <= params["t3"]:
-                params["t4"] = params["t3"] + 1e-5
-
-        elif model == "4A21":
-
-            if params["t1"] <= 0:
-                params["t1"] = 1e-5
-
-            if params["t2"] <= params["t1"]:
-                params["t2"] = params["t1"] + 1e-5
-
-            if params["t3"] <= params["t2"]:
-                params["t3"] = params["t2"] + 1e-5
-
-            if params["t4"] <= params["t3"]:
-                params["t4"] = params["t3"] + 1e-5
-
-            if params["t5"] <= params["t4"]:
-                params["t5"] = params["t4"] + 1e-5
-
-            if params["t6"] <= params["t5"]:
-                params["t6"] = params["t5"] + 1e-5
-
-            if params["r1"] <= 0:
-                params["r1"] = 1e-5
-
-            if params["r2"] <= 0:
-                params["r2"] = 1e-5
-
-            if params["r3"] <= 0:
-                params["r3"] = 1e-5
-
-            if params["N_ana"] <= 0:
-                params["N_ana"] = 1e-5
-
-            if params["N_neo"] <= 0:
-                params["N_neo"] = 1e-5
-
-            if params["N_whg"] <= 0:
-                params["N_whg"] = 1e-5
-
-            if params["N_bronze"] <= 0:
-                params["N_bronze"] = 1e-5
-
-            if params["N_yam"] <= 0:
-                params["N_yam"] = 1e-5
-
-            if params["N_ehg"] <= 0:
-                params["N_ehg"] = 1e-5
-
-            if params["N_chg"] <= 0:
-                params["N_chg"] = 1e-5
-
-            if params["N_ne"] <= 0:
-                params["N_ne"] = 1e-5
-
-            if params["N_wa"] <= 0:
-                params["N_wa"] = 1e-5
-
-            if params["N_ooa"] <= 0:
-                params["N_ooa"] = 1e-5
-
-            if params["gr"] < 0:
-                params["gr"] = 1e-5
-
-            if params["gr"] > 1:
-                params["gr"] = 1 - 1e-5
-
-        else:
-
-            if params["t1"] <= 0:
-                params["t1"] = 1e-5
-
-            if params["t2"] <= params["t1"]:
-                params["t2"] = params["t1"] + 1e-5
-
-            if params["t3"] <= params["t2"]:
-                params["t3"] = params["t2"] + 1e-5
-
-            if params["t4"] <= params["t3"]:
-                params["t4"] = params["t3"] + 1e-5
-
-            if params["r1"] <= 0:
-                params["r1"] = 1e-5
-
-            if params["r2"] <= 0:
-                params["r2"] = 1e-5
-
-            if params["r3"] <= 0:
-                params["r3"] = 1e-5
-
-            if params["N_admix"] <= 0:
-                params["N_admix"] = 1e-5
-
-            if params["N_afr"] <= 0:
-                params["N_afr"] = 1e-5
-
-            if params["N_eur"] <= 0:
-                params["N_eur"] = 1e-5
-
-            if params["N_asia"] <= 0:
-                params["N_asia"] = 1e-5
-
-            if params["N_pol"] <= 0:
-                params["N_pol"] = 1e-5
-
-            if params["N_aa"] <= 0:
-                params["N_aa"] = 1e-5
-
-            if params["N_ooa"] <= 0:
-                params["N_ooa"] = 1e-5
-
-            if params["N_anc"] <= 0:
-                params["N_anc"] = 1e-5
-
-            if params["gr"] < 0:
-                params["gr"] = 1e-5
-
-            if params["gr"] >= 1:
-                params["gr"] = 1 - 1e-5
-
-        # -------------------------------------------------------------
-        # Evaluate likelihood
-        # -------------------------------------------------------------
-
+        print("\nInitial parameters:")
+        print(x0)
+        print("\nInitial log-scaled CMA-ES coordinates:")
+        print(u0_dict)
+
+    def objective(u):
         try:
+            u_dict = dict(zip(names, u))
 
-            y = fun(
-                **params
-            )
+            # Hard normalized-domain constraint. No clipping.
+            if any(not (0.0 < float(v) < 1.0) for v in u):
+                return np.inf
+
+            params = transform.decode(u_dict)
+
+            if not transform.validate(params):
+                return np.inf
+
+            y = float(fun(**params))
 
             if not np.isfinite(y):
                 return np.inf
 
-            # CMA-ES minimizes, while we want to maximize.
             return -y
 
         except Exception as e:
-
             if verbose:
-
-                print(
-                    "FAILED PARAMETERS:"
-                )
-
-                print(
-                    params
-                )
-
-                print(
-                    f"ERROR: {repr(e)}"
-                )
-
+                print("FAILED PARAMETERS:")
+                try:
+                    print(transform.decode(dict(zip(names, u))))
+                except Exception:
+                    print(dict(zip(names, u)))
+                print(f"ERROR: {repr(e)}")
             return np.inf
 
-    # -------------------------------------------------------------------------
-    # CMA-ES options
-    # -------------------------------------------------------------------------
+    y0 = float(fun(**x0))
+    print(y0)
 
+    # CMA-ES is constrained to the common normalized coordinate system.
+    # The explicit objective-domain check above remains the final hard
+    # constraint; pycma's bounds option prevents excursions beyond [0, 1].
     opts = {
         "maxiter": epochs,
+        "bounds": [0.0, 1.0],
         "verbose": -9
     }
 
-    # -------------------------------------------------------------------------
-    # Evaluate initial likelihood
-    # -------------------------------------------------------------------------
-
-    y0 = fun(
-        **x0
-    )
-
-    print(
-        y0
-    )
-
-    # -------------------------------------------------------------------------
-    # Run CMA-ES
-    #
-    # IMPORTANT:
-    #
-    # x_init is normalized.
-    #
-    # precision is therefore also expressed in normalized units.
-    # -------------------------------------------------------------------------
-
     es = cma.CMAEvolutionStrategy(
-        x_init,
+        u0,
         precision,
         opts
     )
@@ -1006,143 +836,38 @@ def maximize_CMA_ES(
     generation = 0
 
     while not es.stop():
-
-        # -------------------------------------------------------------
-        # Generate candidate solutions in normalized space
-        # -------------------------------------------------------------
-
         X = es.ask()
-
-        # -------------------------------------------------------------
-        # Evaluate candidates
-        # -------------------------------------------------------------
-
-        Y = [
-            objective(x)
-            for x in X
-        ]
-
-        # -------------------------------------------------------------
-        # Update CMA-ES
-        # -------------------------------------------------------------
-
-        es.tell(
-            X,
-            Y
-        )
-
+        Y = [objective(u) for u in X]
+        es.tell(X, Y)
         generation += 1
 
-        # -------------------------------------------------------------
-        # Optional progress reporting
-        # -------------------------------------------------------------
-
         if verbose:
-
-            if es.result.xbest is not None:
-
-                best_normalized = dict(
-                    zip(
-                        names,
-                        es.result.xbest
-                    )
-                )
-
-                best_encoded = (
-                    search.denormalize_parameters(
-                        best_normalized
-                    )
-                )
-
-                best = (
-                    search.decode_parameters(
-                        best_encoded
-                    )
-                )
-
+            if es.result.xbest is not None and np.isfinite(es.result.fbest):
+                best_u = dict(zip(names, es.result.xbest))
+                best_x = transform.decode(best_u)
                 print(
                     f"Generation {generation:3d}"
-                    f"  Likelihood = "
-                    f"{-es.result.fbest:.6f}"
+                    f"  Likelihood = {-es.result.fbest:.6f}"
                 )
-
-                print(
-                    best
-                )
-
+                print(best_x)
             else:
-
                 print(
                     f"Generation {generation:3d}"
                     "  No valid CMA-ES solution yet."
                 )
 
-    # -------------------------------------------------------------------------
-    # Check for valid result
-    # -------------------------------------------------------------------------
+    if es.result.xbest is None or not np.isfinite(es.result.fbest):
+        raise RuntimeError("CMA-ES failed to find a valid solution.")
 
-    if es.result.xbest is None:
-
-        raise RuntimeError(
-            "CMA-ES failed to find a valid solution."
-        )
-
-    # -------------------------------------------------------------------------
-    # Convert best CMA-ES solution back to original parameters
-    # -------------------------------------------------------------------------
-
-    best_normalized = dict(
-        zip(
-            names,
-            es.result.xbest
-        )
-    )
-
-    best_encoded = (
-        search.denormalize_parameters(
-            best_normalized
-        )
-    )
-
-    best_x = (
-        search.decode_parameters(
-            best_encoded
-        )
-    )
-
-    # -------------------------------------------------------------------------
-    # Best likelihood
-    # -------------------------------------------------------------------------
-
-    best_y = (
-        -es.result.fbest
-    )
-
-    # -------------------------------------------------------------------------
-    # Final verbose output
-    # -------------------------------------------------------------------------
+    best_u = dict(zip(names, es.result.xbest))
+    best_x = transform.decode(best_u)
+    best_y = -float(es.result.fbest)
 
     if verbose:
-
-        print(
-            "\nFinal normalized parameters:"
-        )
-
-        print(
-            best_normalized
-        )
-
-        print(
-            "\nFinal demographic parameters:"
-        )
-
-        print(
-            best_x
-        )
-
-        print(
-            f"\nFinal likelihood = "
-            f"{best_y:.6f}"
-        )
+        print("\nFinal log-scaled CMA-ES coordinates:")
+        print(best_u)
+        print("\nFinal demographic parameters:")
+        print(best_x)
+        print(f"\nFinal likelihood = {best_y:.6f}")
 
     return best_x, best_y

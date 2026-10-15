@@ -906,6 +906,7 @@ class SimulateARG():
         logger.info('Starting glike optimization.')
         t_start = time.time()
         if OPTIMIZER == 'CMA_ES':
+            print(bounds)
             x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True, parameter_scales = parameter_scales)
         else: 
             x, logp = glike.maximize(fun, x0, bounds = bounds, verbose = True)

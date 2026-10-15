@@ -37,20 +37,20 @@ CMA_kappa_10000_params = read.csv(
   '../opt_results_CMA_ES_3G09_no_m1_kappa_10000/params.csv'
 )
 
-CMA_kappa_25000_benchmarks = read.csv(
-  '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/benchmarks.csv'
+CMA_kappa_20000_benchmarks = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_20000/benchmarks.csv'
 )
 
-CMA_kappa_25000_params = read.csv(
-  '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/params.csv'
+CMA_kappa_20000_params = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_20000/params.csv'
 )
 
-CMA_kappa_50000_benchmarks = read.csv(
-  '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/benchmarks.csv'
+CMA_kappa_30000_benchmarks = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_30000/benchmarks.csv'
 )
 
-CMA_kappa_50000_params = read.csv(
-  '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/params.csv'
+CMA_kappa_30000_params = read.csv(
+  '../opt_results_CMA_ES_3G09_no_m1_kappa_30000/params.csv'
 )
 
 # ============================================================
@@ -363,7 +363,7 @@ ggplot(
   theme(
     strip.background = element_blank()
   ) +
-  ggtitle("gLike (3G09): Likelihood Trajectories, kappa = 50000")
+  ggtitle("gLike (3G09): Likelihood Trajectories, kappa = 30000")
 
 true_values_3G09 <- c(
   t1 = 848,
@@ -406,7 +406,7 @@ for (param in parameters_3G09) {
       breaks = 1:10
     ) +
     labs(
-      title = paste("gLike (3G09), kappa = 50000:", param),
+      title = paste("gLike (3G09), kappa = 30000:", param),
       x = "Iteration",
       y = param,
       color = "Replicate"
@@ -437,23 +437,23 @@ benchmarks_10000 <- read_csv(
 ) %>%
     mutate(kappa = 10000)
 
-benchmarks_25000 <- read_csv(
-    '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/benchmarks.csv',
+benchmarks_20000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_20000/benchmarks.csv',
     show_col_types = FALSE
 ) %>%
-    mutate(kappa = 25000)
+    mutate(kappa = 20000)
 
-benchmarks_50000 <- read_csv(
-    '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/benchmarks.csv',
+benchmarks_30000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_30000/benchmarks.csv',
     show_col_types = FALSE
 ) %>%
-    mutate(kappa = 50000)
+    mutate(kappa = 30000)
 
 # Combine into one data frame
 benchmarks <- bind_rows(
     benchmarks_10000,
-    benchmarks_25000,
-    benchmarks_50000
+    benchmarks_20000,
+    benchmarks_30000
 )
 
 benchmarks <- benchmarks %>%
@@ -462,7 +462,7 @@ benchmarks <- benchmarks %>%
 # Treat kappa as a categorical variable
 benchmarks$kappa <- factor(
     benchmarks$kappa,
-    levels = c(10000, 25000, 50000),
+    levels = c(10000, 20000, 30000),
     labels = c("κ = 10,000", "κ = 25,000", "κ = 50,000")
 )
 
@@ -506,29 +506,29 @@ params_10000 <- read_csv(
 ) %>%
     mutate(kappa = 10000)
 
-params_25000 <- read_csv(
-    '../opt_results_CMA_ES_3G09_no_m1_kappa_25000/params.csv',
+params_20000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_20000/params.csv',
     show_col_types = FALSE
 ) %>%
-    mutate(kappa = 25000)
+    mutate(kappa = 20000)
 
-params_50000 <- read_csv(
-    '../opt_results_CMA_ES_3G09_no_m1_kappa_50000/params.csv',
+params_30000 <- read_csv(
+    '../opt_results_CMA_ES_3G09_no_m1_kappa_30000/params.csv',
     show_col_types = FALSE
 ) %>%
-    mutate(kappa = 50000)
+    mutate(kappa = 30000)
 
 # Combine files
 params <- bind_rows(
     params_10000,
-    params_25000,
-    params_50000
+    params_20000,
+    params_30000
 )
 
 # Make kappa categorical
 params$kappa <- factor(
     params$kappa,
-    levels = c(10000, 25000, 50000),
+    levels = c(10000, 20000, 30000),
     labels = c("κ = 10,000", "κ = 25,000", "κ = 50,000")
 )
 
