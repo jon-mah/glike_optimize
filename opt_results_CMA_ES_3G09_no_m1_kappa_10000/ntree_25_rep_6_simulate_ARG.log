@@ -1,8 +1,8 @@
-2026-10-02 20:00:46,279 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-10-15 15:30:28,930 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-10-02 20:00:46,279 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_6_simulate_ARG.log
+2026-10-15 15:30:28,930 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_6_simulate_ARG.log
 
-2026-10-02 20:00:46,279 - INFO - Parsed the following arguments:
+2026-10-15 15:30:28,930 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -13,11 +13,11 @@
 	KAPPA = 10000
 	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_6
 
-2026-10-02 20:00:49,464 - INFO - Finished simulating ARG.
-2026-10-02 20:01:08,619 - INFO - Log likelihood of simulation parameters: -288453.2293377741.
-2026-10-02 20:01:08,619 - INFO - Starting glike optimization.
-2026-10-02 21:41:29,190 - INFO - Finished fitting ARG.
-2026-10-02 21:41:29,190 - INFO - Finished in 1h 40m 20.6s
-2026-10-02 21:41:29,190 - INFO - Estimated: {'t1': -4.333641372685548, 't2': 75.03620255754535, 't3': 432.744542211688, 'N_anc': 8934.832934505039, 'N_yri': 22078.830411819137, 'N_ooa': 43628.530029601854, 'N_ceu': 40888.45469351184, 'N_chb': 34935.14501344611, 'gr_ceu': -0.09142088657698337, 'gr_chb': -0.17619623266015494}
-2026-10-02 21:41:29,190 - INFO - logp = -261843.23938735225  (true = -288453.2293377741)
-2026-10-02 21:41:29,190 - INFO - Pipeline executed succesfully.
+2026-10-15 15:30:32,131 - INFO - Finished simulating ARG.
+2026-10-15 15:30:52,846 - INFO - Log likelihood of simulation parameters: -288231.0566372372.
+2026-10-15 15:30:52,847 - INFO - Starting glike optimization.
+2026-10-15 17:23:14,676 - INFO - Finished fitting ARG.
+2026-10-15 17:23:14,677 - INFO - Finished in 1h 52m 21.8s
+2026-10-15 17:23:14,677 - INFO - Estimated: {'t1': 9.262719613060959, 't2': 67.9865352300645, 't3': 1066.9028742303406, 'N_anc': 9979.357926668295, 'N_yri': 25445.865783207548, 'N_ooa': 31331.375515901298, 'N_ceu': 14500.25333313871, 'N_chb': 27747.29304464926, 'gr_ceu': 0.11850712663252971, 'gr_chb': 0.27439031446184653}
+2026-10-15 17:23:14,677 - INFO - logp = -263977.5026762691  (true = -288231.0566372372)
+2026-10-15 17:23:14,677 - INFO - Pipeline executed succesfully.
