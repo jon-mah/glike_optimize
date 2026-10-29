@@ -1,0 +1,71 @@
+2026-10-26 21:11:57,555 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-10-26 21:11:57,555 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_30000/ntree_25_rep_1_simulate_ARG.log
+
+2026-10-26 21:11:57,555 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 25
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 30000
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_30000/ntree_25_rep_1
+
+2026-10-26 21:11:57,622 - INFO - Sampling 1000 individuals with ploidy 1 in population 0 (name='admix') at time 0
+2026-10-26 21:11:57,634 - INFO - Starting replicate 0
+2026-10-26 21:11:57,635 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-10-26 21:11:57,635 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-10-26 21:11:58,612 - INFO - Completed at time=24250.7 nodes=39508 edges=264883
+2026-10-26 21:12:01,402 - INFO - Finished simulating ARG.
+[phase from 0.0 to 19.0]
+        admix
+ns   0.000006
+grs  0.078000
+
+[phase from 19.0 to 411.0]
+       afr    eur   asia    pol
+admix  0.0  0.198  0.334  0.468
+        afr       eur     asia       pol
+ns   0.0001  0.000075  0.00004  0.000064
+grs  0.0000  0.000000  0.00000  0.000000
+
+[phase from 411.0 to 1040.0]
+      afr  eur  asia
+afr     1    0     0
+eur     0    1     0
+asia    0    0     1
+pol     0    0     1
+        afr       eur     asia
+ns   0.0001  0.000075  0.00037
+grs  0.0000  0.000000  0.00000
+
+[phase from 1040.0 to 2004.0]
+      afr  eur
+afr     1    0
+eur     0    1
+asia    0    1
+        afr       eur
+ns   0.0001  0.000405
+grs  0.0000  0.000000
+
+[phase from 2004.0 to inf]
+     A
+afr  1
+eur  1
+            A
+ns   0.000375
+grs  0.000000
+
+2026-10-26 21:12:43,130 - INFO - Log likelihood of simulation parameters: -288358.60019384604.
+2026-10-26 21:12:43,131 - INFO - Starting glike optimization.
+[(1, 't2'), ('t1', 't3'), ('t2', 10000.0), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (0, 0.5), (0, 0.5)]
+
+Initial parameters:
+{'t1': 10, 't2': 50, 't3': 100, 'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 10000, 'N_ceu': 10000, 'N_chb': 10000, 'gr_ceu': 0.1, 'gr_chb': 0.1}
+
+Initial log-scaled CMA-ES coordinates:
+{'t1': 0.9386705357842342, 't2': 0.9706514568240532, 't3': 0.8084289102991912, 'N_anc': 0.9163391421976306, 'N_yri': 0.9163391421976306, 'N_ooa': 0.9163391421976306, 'N_ceu': 0.9163391421976306, 'N_chb': 0.9163391421976306, 'gr_ceu': 0.941752499638665, 'gr_chb': 0.941752499638665}
+[2026-10-28T21:11:55.008] error: *** JOB 13465740 ON d11-34 CANCELLED AT 2026-10-28T21:11:55 DUE TO TIME LIMIT ***
+[2026-10-28T21:11:55.022] error: Detected 8 oom_kill events in StepId=13465740.batch. Some of the step tasks have been OOM Killed.

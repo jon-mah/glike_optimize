@@ -4,7 +4,7 @@
 
 #SBATCH --time=48:00:00
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=120gb
+#SBATCH --mem=0
 #SBATCH --array=1-10
 #SBATCH --output=CMA_kappa_30000_%A_%a.log
 
