@@ -587,9 +587,23 @@ class CMAParameterTransform:
             return float(eval(value, {"__builtins__": {}}, dict(params)))
         return float(value)
 
-    def _raw_bounds(self, name, params):
+    def _raw_bounds(self, name, params=None, context=None):
+        """Evaluate numeric or expression-based bounds in a parameter context.
+
+        Bounds may refer to parameters that have not yet been decoded (for
+        example, ``("t1", "t3")``). Use x0 as a fallback context, then
+        override it with the supplied full candidate/context and any decoded
+        values. This lets validation evaluate relational bounds against the
+        complete candidate rather than trying to cast expression strings to
+        floats during initialization.
+        """
         low, high = self.bounds[name]
-        return self._eval_bound(low, params), self._eval_bound(high, params)
+        scope = dict(self.x0)
+        if context is not None:
+            scope.update(context)
+        if params is not None:
+            scope.update(params)
+        return self._eval_bound(low, scope), self._eval_bound(high, scope)
 
     def _ordered_lower_bound(self, name, params, low):
         """Enforce strict ordering for consecutively numbered time parameters."""
@@ -602,14 +616,32 @@ class CMAParameterTransform:
         return low
 
     def _validate_bounds(self):
-        # Check static bounds and the supplied starting point. Dynamic bounds
-        # are checked after earlier parameters have been decoded.
+        """Validate fixed bounds now; defer expression-based bounds.
+
+        A bound such as ``"t2"`` is a relationship, not a numeric literal.
+        Its value can only be checked when a parameter context is available.
+        """
         for name in self.names:
             low, high = self.bounds[name]
+
             if not isinstance(low, str) and not np.isfinite(float(low)):
                 raise ValueError(f"Lower bound for {name} must be finite.")
-            if not isinstance(high, str) and float(high) <= float(low):
-                raise ValueError(f"Upper bound for {name} must be greater than lower bound.")
+
+            if not isinstance(low, str) and not isinstance(high, str):
+                low_value = float(low)
+                high_value = float(high)
+                if high_value <= low_value:
+                    raise ValueError(
+                        f"Upper bound for {name} must be greater than lower bound."
+                    )
+
+        # Ensure the starting point itself satisfies the complete set of
+        # numeric and expression-based bounds before optimization begins.
+        if not self.validate(self.x0):
+            raise ValueError(
+                "Initial parameter values do not satisfy the supplied bounds: "
+                f"x0={self.x0}, bounds={self.bounds}."
+            )
 
     def _scale_for_unbounded(self, name, lower):
         if name in self.parameter_scales:
@@ -625,8 +657,8 @@ class CMAParameterTransform:
             )
         return scale
 
-    def _bounds_for_name(self, name, decoded):
-        low, high = self._raw_bounds(name, decoded)
+    def _bounds_for_name(self, name, decoded, context=None):
+        low, high = self._raw_bounds(name, decoded, context=context)
         low = self._ordered_lower_bound(name, decoded, low)
         if np.isfinite(high) and high <= low:
             raise ValueError(
@@ -661,7 +693,7 @@ class CMAParameterTransform:
 
         for name in self.names:
             value = float(x[name])
-            low, high = self._bounds_for_name(name, decoded)
+            low, high = self._bounds_for_name(name, decoded, context=x)
             distance = value - low
 
             if not distance > 0:
@@ -711,6 +743,10 @@ class CMAParameterTransform:
                     f"(0, 1); got {ui}."
                 )
 
+            # Dynamic bounds are evaluated against x0 for parameters that
+            # have not yet been decoded, then against the decoded prefix.
+            # The complete candidate is checked against all relational bounds
+            # by validate() before its likelihood is evaluated.
             low, high = self._bounds_for_name(name, params)
 
             if np.isfinite(high):
@@ -731,7 +767,11 @@ class CMAParameterTransform:
         """Return True only when params satisfy the original hard bounds."""
         checked = {}
         for name in self.names:
-            low, high = self._bounds_for_name(name, checked)
+            # Evaluate expression bounds against the complete candidate, not
+            # just the parameters visited so far.
+            low, high = self._bounds_for_name(
+                name, checked, context=params
+            )
             value = float(params[name])
             if value <= low:
                 return False
