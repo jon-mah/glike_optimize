@@ -1,0 +1,74 @@
+2026-11-05 07:07:49,764 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-05 07:07:49,764 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_20000/ntree_25_rep_7_simulate_ARG.log
+
+2026-11-05 07:07:49,764 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 25
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 20000
+	TRUE_START = False
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_20000/ntree_25_rep_7
+
+2026-11-05 07:07:49,811 - INFO - Sampling 1000 individuals with ploidy 1 in population 1 (name='ceu') at time 0
+2026-11-05 07:07:49,815 - INFO - Starting replicate 0
+2026-11-05 07:07:49,816 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-11-05 07:07:49,816 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-11-05 07:07:49,834 - INFO - Completed at time=825.393 nodes=4008 edges=12940
+2026-11-05 07:07:50,034 - INFO - Finished simulating ARG.
+[phase from 0.0 to 1e-06]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 1e-06 to 848.0]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 848.0 to 5600.0]
+     yri  ooa
+yri    1    0
+ceu    0    1
+chb    0    1
+          yri       ooa
+ns   0.000081  0.000476
+grs  0.000000  0.000000
+
+[phase from 5600.0 to 8800.0]
+     anc
+yri    1
+ooa    1
+          anc
+ns   0.000476
+grs  0.000000
+
+[phase from 8800.0 to inf]
+          anc
+ns   0.000137
+grs  0.000000
+
+2026-11-05 07:07:50,276 - INFO - Log likelihood of simulation parameters: -237148.49872894774.
+2026-11-05 07:07:50,277 - INFO - Starting glike optimization.
+[(1, 't2'), ('t1', 't3'), ('t2', 50000.0), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (0, 0.5), (0, 0.5)]
+
+Initial parameters:
+{'t1': 1000, 't2': 5000, 't3': 10000, 'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 1000, 'N_ceu': 1000, 'N_chb': 1000, 'gr_ceu': 0.01, 'gr_chb': 0.01}
+
+Initial log-scaled CMA-ES coordinates:
+{'t1': 0.9417235292894494, 't2': 0.9706514568240532, 't3': 0.9204797908800564, 'N_anc': 0.9163391421976306, 'N_yri': 0.9163391421976306, 'N_ooa': 0.8295564184344453, 'N_ceu': 0.8295564184344453, 'N_chb': 0.8295564184344453, 'gr_ceu': 0.8584191663053318, 'gr_chb': 0.8584191663053318}
+-232426.83573202897
+Generation   1  Likelihood = -182331.753320
+{'t1': 191.81062451521785, 't2': 9544.382607170426, 't3': 11133.443580583036, 'N_anc': 4303.234761450167, 'N_yri': 13492.224034896737, 'N_ooa': 1474.06675779843, 'N_ceu': 414.94941449108364, 'N_chb': 308.33878801087235, 'gr_ceu': 0.0009908001733085435, 'gr_chb': 0.007137545994847719}
+Generation   2  Likelihood = -182331.753320
+{'t1': 191.81062451521785, 't2': 9544.382607170426, 't3': 11133.443580583036, 'N_anc': 4303.234761450167, 'N_yri': 13492.224034896737, 'N_ooa': 1474.06675779843, 'N_ceu': 414.94941449108364, 'N_chb': 308.33878801087235, 'gr_ceu': 0.0009908001733085435, 'gr_chb': 0.007137545994847719}
+Generation   3  Likelihood = -179413.775763
+{'t1': 15.707749784941125, 't2': 8750.140490819933, 't3': 15345.879827811927, 'N_anc': 3612.163010956529, 'N_yri': 1129.3239038722159, 'N_ooa': 643.8200511310695, 'N_ceu': 659.5891109940617, 'N_chb': 395.4091475846521, 'gr_ceu': 0.0031883848124897073, 'gr_chb': 0.002918306035646062}
+Generation   4  Likelihood = -179413.775763
+{'t1': 15.707749784941125, 't2': 8750.140490819933, 't3': 15345.879827811927, 'N_anc': 3612.163010956529, 'N_yri': 1129.3239038722159, 'N_ooa': 643.8200511310695, 'N_ceu': 659.5891109940617, 'N_chb': 395.4091475846521, 'gr_ceu': 0.0031883848124897073, 'gr_chb': 0.002918306035646062}
+Generation   5  Likelihood = -179160.271547
+{'t1': 154.5357248135962, 't2': 4115.984854164649, 't3': 9200.756984887632, 'N_anc': 66337.32025919101, 'N_yri': 4078.5054680574704, 'N_ooa': 213.1410984710605, 'N_ceu': 277.61906006893514, 'N_chb': 361.1120624496652, 'gr_ceu': 0.0049576316358486815, 'gr_chb': 0.0012546768143379915}

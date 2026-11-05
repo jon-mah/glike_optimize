@@ -1,299 +1,171 @@
 #!/usr/bin/env python3
+"""
+Parse CMA-ES optimization generations from a gLike log and write them to CSV.
+
+Expected log records:
+    Generation   1  Likelihood = -266715.702819
+    {'t1': 14.7, 't2': 49.3, ...}
+
+Usage:
+    python parse_generations.py input.log
+    python parse_generations.py input.log -o generations.csv
+    python parse_generations.py input.log -o generations.csv --include-initial
+"""
 
 import argparse
 import ast
 import csv
 import re
+import sys
 from pathlib import Path
 
-
-def get_replicate(log_file):
-    """
-    Extract the replicate number from the input filename.
-
-    For example:
-
-        gLike_3G09_12273717_1.log  -> 1
-        gLike_3G09_12273717_10.log -> 10
-
-    The replicate is defined as the final underscore-delimited
-    component of the filename before '.log'.
-    """
-
-    stem = log_file.stem
-
-    try:
-        replicate = stem.rsplit("_", 1)[1]
-    except IndexError:
-        raise ValueError(
-            f"Could not determine replicate from filename: {log_file}"
-        )
-
-    return replicate
+GENERATION_RE = re.compile(
+    r"^\s*Generation\s+(\d+)\s+Likelihood\s*=\s*([-+0-9.eE]+)\s*$"
+)
+PARAMETER_DICT_RE = re.compile(r"^\s*(\{.*\})\s*$")
 
 
-def parse_iteration(line):
-    """
-    Attempt to extract an optimizer iteration number from a log line.
+def parse_log(log_path, include_initial=False):
+    """Return parsed generation records and a stable list of parameter names."""
+    records = []
+    parameter_names = []
+    known_parameters = set()
+    pending_generation = None
 
-    Recognizes forms such as:
+    with open(log_path, "r", encoding="utf-8", errors="replace") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            generation_match = GENERATION_RE.match(line)
+            if generation_match:
+                pending_generation = {
+                    "generation": int(generation_match.group(1)),
+                    "log_likelihood": float(generation_match.group(2)),
+                    "_line": line_number,
+                }
+                continue
 
-        Iteration 1
-        iteration 1
-        Iteration: 1
-        iteration: 1
-        Iteration = 1
-        iteration = 1
+            # A parameter dictionary normally appears immediately after a
+            # generation's likelihood line.
+            dict_match = PARAMETER_DICT_RE.match(line)
+            if not dict_match:
+                continue
 
-    Returns the iteration number if found, otherwise None.
-    """
+            try:
+                parameters = ast.literal_eval(dict_match.group(1))
+            except (ValueError, SyntaxError):
+                continue
 
-    match = re.search(
-        r"\biteration\s*(?:[:=]|\s)\s*(\d+)\b",
-        line,
-        flags=re.IGNORECASE
-    )
+            if not isinstance(parameters, dict):
+                continue
 
-    if match:
-        return int(match.group(1))
+            if pending_generation is not None:
+                record = {
+                    "generation": pending_generation["generation"],
+                    "log_likelihood": pending_generation["log_likelihood"],
+                }
+                record.update(parameters)
+                records.append(record)
 
+                for name in parameters:
+                    if name not in known_parameters:
+                        known_parameters.add(name)
+                        parameter_names.append(name)
+
+                pending_generation = None
+            elif include_initial and not records:
+                # Capture the dictionary after "Initial parameters:" only.
+                # Avoid accidentally treating unrelated dictionaries as initial
+                # parameters by checking the preceding line.
+                # The preceding-line check is handled in the main loop below
+                # in typical logs; this fallback is intentionally not used.
+                pass
+
+    if include_initial:
+        initial = extract_initial_parameters(log_path)
+        if initial is not None:
+            initial_record = {
+                "generation": 0,
+                "log_likelihood": "",
+                **initial,
+            }
+            records.insert(0, initial_record)
+            for name in initial:
+                if name not in known_parameters:
+                    known_parameters.add(name)
+                    parameter_names.append(name)
+
+    return records, parameter_names
+
+
+def extract_initial_parameters(log_path):
+    """Extract the dictionary immediately following 'Initial parameters:'."""
+    expecting_dict = False
+    with open(log_path, "r", encoding="utf-8", errors="replace") as handle:
+        for line in handle:
+            if line.strip() == "Initial parameters:":
+                expecting_dict = True
+                continue
+            if expecting_dict:
+                match = PARAMETER_DICT_RE.match(line)
+                if match:
+                    try:
+                        value = ast.literal_eval(match.group(1))
+                        return value if isinstance(value, dict) else None
+                    except (ValueError, SyntaxError):
+                        return None
+                if line.strip():
+                    return None
     return None
 
 
-def parse_log(log_file):
-    """
-    Parse a glike log file.
-
-    Captures only lines whose first non-whitespace character is '{',
-    followed by a Python dictionary and a log-likelihood value.
-
-    Each captured record is additionally assigned:
-
-        iteration
-            The optimizer iteration associated with the record.
-
-        replicate
-            The replicate number extracted from the input filename.
-
-    Example captured line:
-
-        {'t1': 2.7675, 't2': 12.94295, 't3': 100} -75619.74213766128
-
-    Examples ignored:
-
-        x_up: {'t1': 3.65125, 't2': 12.94295, 't3': 100} -75986.61
-        x: {'t1': 2.7675, 't2': 12.94295, 't3': 100} -75619.74
-        x_down: {'t1': 1.88375, 't2': 12.94295, 't3': 100} -75207.96
-
-    The returned records remain in exactly the order in which they
-    appeared in the log file.
-    """
-
-    results = []
-
-    replicate = get_replicate(log_file)
-
-    # Current optimizer iteration.
-    iteration = None
-
-    with open(log_file, "r") as f:
-
-        for line_number, raw_line in enumerate(f, start=1):
-
-            line = raw_line.strip()
-
-            # Ignore empty lines.
-            if not line:
-                continue
-
-            # ---------------------------------------------------------
-            # Check whether this line announces a new iteration.
-            #
-            # This is done BEFORE checking for parameter dictionaries,
-            # so the iteration number is available for subsequent
-            # parameter records.
-            # ---------------------------------------------------------
-            detected_iteration = parse_iteration(line)
-
-            if detected_iteration is not None:
-                iteration = detected_iteration
-                continue
-
-            # ---------------------------------------------------------
-            # Only process lines whose first character is "{"
-            #
-            # This prevents x_up, x, x_down, etc. from being captured.
-            # ---------------------------------------------------------
-            if not line.startswith("{"):
-                continue
-
-            # ---------------------------------------------------------
-            # Separate the dictionary from the final likelihood.
-            #
-            # Using rsplit() means that the last whitespace-separated
-            # field is treated as the likelihood.
-            # ---------------------------------------------------------
-            try:
-                parameter_string, likelihood_string = line.rsplit(
-                    None, 1
-                )
-            except ValueError:
-                print(
-                    f"Warning: could not split line {line_number}:"
-                )
-                print(f"    {line}")
-                continue
-
-            # ---------------------------------------------------------
-            # Parse the parameter dictionary.
-            # ---------------------------------------------------------
-            try:
-                params = ast.literal_eval(parameter_string)
-            except (ValueError, SyntaxError) as e:
-                print(
-                    f"Warning: could not parse dictionary "
-                    f"on line {line_number}: {e}"
-                )
-                print(f"    {line}")
-                continue
-
-            # Make sure what we parsed really is a dictionary.
-            if not isinstance(params, dict):
-                print(
-                    f"Warning: object on line {line_number} "
-                    f"is not a dictionary."
-                )
-                continue
-
-            # ---------------------------------------------------------
-            # Parse the likelihood.
-            # ---------------------------------------------------------
-            try:
-                log_likelihood = float(likelihood_string)
-            except ValueError:
-                print(
-                    f"Warning: could not parse likelihood "
-                    f"on line {line_number}: "
-                    f"{likelihood_string}"
-                )
-                continue
-
-            # ---------------------------------------------------------
-            # Store the result.
-            # ---------------------------------------------------------
-            results.append(
-                {
-                    "params": params,
-                    "log_likelihood": log_likelihood,
-                    "iteration": iteration,
-                    "replicate": replicate,
-                }
-            )
-
-    return results
-
-
-def write_csv(results, output_file):
-    """
-    Write parsed results to CSV while preserving log-file order.
-    """
-
-    if not results:
-        raise RuntimeError(
-            "No parameter/log-likelihood pairs were found."
-        )
-
-    # Use the parameter order from the first dictionary.
-    parameter_names = list(results[0]["params"].keys())
-
-    # Put iteration and replicate first, followed by the parameters
-    # and finally the likelihood.
-    fieldnames = (
-        ["replicate", "iteration"]
-        + parameter_names
-        + ["log_likelihood"]
-    )
-
-    with open(output_file, "w", newline="") as f:
-
-        writer = csv.DictWriter(
-            f,
-            fieldnames=fieldnames,
-            extrasaction="ignore"
-        )
-
+def write_csv(records, parameter_names, output_path):
+    """Write records with a consistent schema and blank cells for missing data."""
+    columns = ["generation", "log_likelihood"] + parameter_names
+    with open(output_path, "w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns, extrasaction="ignore")
         writer.writeheader()
-
-        for result in results:
-
-            row = result["params"].copy()
-
-            row["replicate"] = result["replicate"]
-            row["iteration"] = result["iteration"]
-            row["log_likelihood"] = result["log_likelihood"]
-
-            writer.writerow(row)
+        writer.writerows(records)
 
 
 def main():
-
     parser = argparse.ArgumentParser(
-        description=(
-            "Extract parameter dictionaries, optimizer iterations, "
-            "replicate numbers, and log likelihoods from a glike log file."
-        )
+        description="Extract CMA-ES generation parameters from a gLike log."
     )
-
+    parser.add_argument("input_log", help="Path to the optimization log")
     parser.add_argument(
-        "log_file",
-        type=Path,
-        help="Path to the glike .log file."
+        "-o", "--output",
+        help="Output CSV path (default: <input_log_stem>_generations.csv)",
     )
-
     parser.add_argument(
-        "-o",
-        "--output",
-        type=Path,
-        required=True,
-        help="Path to the output CSV file."
+        "--include-initial",
+        action="store_true",
+        help="Include initial parameters as generation 0 (likelihood left blank)",
     )
-
     args = parser.parse_args()
 
-    if not args.log_file.is_file():
-        raise FileNotFoundError(
-            f"Log file not found: {args.log_file}"
-        )
+    input_path = Path(args.input_log)
+    if not input_path.is_file():
+        parser.error("Input log does not exist or is not a file: {}".format(input_path))
 
-    print(f"Reading: {args.log_file}")
-
-    replicate = get_replicate(args.log_file)
-
-    print(f"Replicate: {replicate}")
-
-    results = parse_log(args.log_file)
-
-    print(
-        f"Found {len(results):,} "
-        "parameter/log-likelihood records."
+    output_path = Path(args.output) if args.output else input_path.with_name(
+        input_path.stem + "_generations.csv"
     )
 
-    # Warn if parameter records were found before an iteration marker.
-    records_without_iteration = sum(
-        result["iteration"] is None
-        for result in results
+    records, parameter_names = parse_log(
+        input_path, include_initial=args.include_initial
     )
-
-    if records_without_iteration:
+    if not records:
         print(
-            f"Warning: {records_without_iteration:,} records "
-            "had no detected optimizer iteration."
+            "No generation records found. Check that the log contains lines like "
+            "'Generation 1 Likelihood = ...' followed by a parameter dictionary.",
+            file=sys.stderr,
         )
+        return 1
 
-    write_csv(results, args.output)
-
-    print(f"Wrote: {args.output}")
+    write_csv(records, parameter_names, output_path)
+    print("Wrote {} generation records to {}".format(len(records), output_path))
+    print("Parameters: {}".format(", ".join(parameter_names)))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -2,10 +2,10 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-#SBATCH --time=8:00:00
+#SBATCH --time=48:00:00
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=80gb
-#SBATCH --array=1-10
+#SBATCH --mem=0
+#SBATCH --array=4-10
 #SBATCH --output=CMA_kappa_10000_%A_%a.log
 
 # SLURM_ARRAY_TASK_ID=1

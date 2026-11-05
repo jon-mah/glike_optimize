@@ -1,0 +1,5 @@
+Wrote 20 generation records to ../Analysis/CMA_ES_10000_chronological_7.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
+Wrote 20 generation records to ../Analysis/CMA_ES_20000_chronological_7.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
+No generation records found. Check that the log contains lines like 'Generation 1 Likelihood = ...' followed by a parameter dictionary.

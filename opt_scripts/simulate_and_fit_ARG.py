@@ -561,7 +561,10 @@ class SimulateARG():
             '--KAPPA', type=int,
             dest='KAPPA',
             help=('Kappa parameter for the simulation.'),
-            default=10000),
+            default=10000)
+        parser.add_argument(
+            '--TRUE_START', action='store_true',
+            help=('Initial starting conditions based on simulation.'))
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files.')
@@ -583,6 +586,7 @@ class SimulateARG():
         OPTIMIZER = args['OPTIMIZER']
         MODEL = args['MODEL']
         KAPPA = args['KAPPA']
+        TRUE_START = args['TRUE_START']
         outprefix = args['outprefix']
 
         # Numpy options
@@ -632,7 +636,7 @@ class SimulateARG():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # inherit true params from glike
-        if MODEL =='3G09':
+        if MODEL == '3G09' or MODEL == '3G09_no_m':
             demography = self.three_pop_out_of_africa_demography( 
                 t1=848, t2=5600, t3=8800,
                 N_anc=7300, N_yri=12300, N_ooa=2100, N_ceu=1000, N_chb=510,
@@ -722,7 +726,7 @@ class SimulateARG():
             }
             # m1 temporarily set to 0
             true_demo = self.three_pop_out_of_africa_demo(**x_true)
-        if MODEL == '3I21':
+        elif MODEL == '3I21':
             x_true = {
                 't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
                 'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000, 
@@ -760,24 +764,15 @@ class SimulateARG():
                 )
                 return glike.glike_trees(trees, demo, kappa=KAPPA)
             x0 = {
-                't1': 10, 't2': 50, 't3': 100,
-                'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 10000, 'N_ceu': 10000,
-                'N_chb': 10000, 'gr_ceu': 0.1, 'gr_chb': 0.1,
+                't1': 1000, 't2': 5000, 't3': 10000,
+                'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 1000, 'N_ceu': 1000,
+                'N_chb': 1000, 'gr_ceu': 0.01, 'gr_chb': 0.01,
             }
             bounds = [
-                (1, 't2'), ('t1', 't3'), ('t2', 1e4),
+                (1, 't2'), ('t1', 't3'), ('t2', 5e4),
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5), (0, 0.5),
             ]
-            parameter_scales = {
-                "N_anc": 50000,
-                "N_yri": 50000,
-                "N_ceu": 50000,
-                "N_chb": 50000,
-                "N_ooa": 50000,
-                "gr_ceu": 1.0,
-                "gr_chb": 1.0,
-            }
         elif MODEL == '3G09':
             def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb, 
                     m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb):
@@ -799,19 +794,6 @@ class SimulateARG():
                 (100, 100000), (0, 0.5), (0, 0.5),
                 (0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0)
             ]
-            parameter_scales = {
-                "N_anc": 50000,
-                "N_yri": 50000,
-                "N_ceu": 50000,
-                "N_chb": 50000,
-                "N_ooa": 50000,
-                "gr_ceu": 1.0,
-                "gr_chb": 1.0,
-                "m_yri_ooa": 1.0,
-                "m_yri_ceu": 1.0,
-                "m_yri_chb": 1.0,
-                "m_ceu_chb": 1.0
-            }
         elif MODEL == '3I21':
             def fun(t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1):
                 demo = glike.neandertal_admixture_demo(
@@ -827,12 +809,6 @@ class SimulateARG():
                 (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 1e3),
                 (100, 100000), (100, 100000), (100, 100000), (0.0, 0.0)
             ]
-            parameter_scales = {
-                "N_yri": 50000,
-                "N_ceu": 50000,
-                "N_nea": 50000,
-                "m1": 1.0
-            }
         elif MODEL == '4A21':
             def fun(t1, t2, t3, t4, t5, t6, r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, 
                     N_yam, N_ehg, N_chg, N_ne, N_wa, N_ooa, gr):
@@ -855,21 +831,6 @@ class SimulateARG():
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5)
             ]
-            parameter_scales = {
-                "r1": 1.0,
-                "r2": 1.0,
-                "r3": 1.0,
-                "N_ana": 50000,
-                "N_neo": 50000,
-                "N_whg": 50000,
-                "N_bronze": 50000,
-                "N_yam": 50000,
-                "N_ehg": 50000,
-                "N_ne": 50000,
-                "N_wa": 50000,
-                "N_ooa": 50000,
-                "gr": 1.0
-            }
         else:
             def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
                     N_pol, N_aa, N_ooa, N_anc, gr):
@@ -888,20 +849,44 @@ class SimulateARG():
                       (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
                       (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                       (0, 0.5)]
-            parameter_scales = {
-                "r1": 1.0,
-                "r2": 1.0,
-                "r3": 1.0,
-                "N_admix": 50000,
-                "N_afr": 50000,
-                "N_eur": 50000,
-                "N_asia": 50000,
-                "N_pol": 50000,
-                "N_aa": 50000,
-                "N_ooa": 50000,
-                "N_anc": 50000,
-                "gr": 1.0
-            }
+
+        if TRUE_START:
+            if MODEL == '3G09_no_m':
+                x_true = {
+                    "t1": 848, "t2": 5600, "t3": 8800,
+                    "N_anc": 7300, "N_yri": 12300, "N_ooa": 2100, "N_ceu": 1000, "N_chb": 510,
+                    "gr_ceu": 0.004, "gr_chb": 0.0055
+                }
+            elif MODEL == '3G09':
+                x_true = {
+                    "t1": 848, "t2": 5600, "t3": 8800,
+                    "N_anc": 7300, "N_yri": 12300, "N_ooa": 2100, "N_ceu": 1000, "N_chb": 510,
+                    "gr_ceu": 0.004, "gr_chb": 0.0055,
+                    "m_yri_ooa": 0, "m_yri_ceu": 0, "m_yri_chb": 0, "m_ceu_chb": 0,
+                }
+            if MODEL == '3I21':
+                x_true = {
+                    't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
+                    'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000,
+                    'm1': 0.029
+                }
+            elif MODEL == '4A21':
+                x_true = {
+                    't1': 140, 't2': 180, 't3': 200, 't4': 600,
+                    't5': 800, 't6': 1500,'r1': 0.5, 'r2': 0.5, 'r3': 0.75,
+                    'N_ana': 50000, 'N_neo': 50000, 'N_whg': 10000,
+                    'N_bronze': 50000, 'N_yam': 5000, 'N_ehg': 10000,
+                    'N_ne': 5000, 'N_wa': 5000, 'N_ooa': 5000, 'gr': 0.067
+                }
+            else:
+                x_true = {
+                    't1':19, 't2':411, 't3':1040, 't4':2004, 'r1':0.0,
+                    'r2':0.198, 'r3':0.334, 'N_admix':35682, 'N_afr':10000,
+                    'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702,
+                    'N_ooa':2470, 'N_anc':2665, 'gr':0.078
+                }
+
+            x0 = x_true
 
         logger.info('Starting glike optimization.')
         t_start = time.time()

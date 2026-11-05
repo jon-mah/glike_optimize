@@ -1,0 +1,77 @@
+2026-11-05 07:13:40,475 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-05 07:13:40,475 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_20000/ntree_25_rep_10_simulate_ARG.log
+
+2026-11-05 07:13:40,475 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 25
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 20000
+	TRUE_START = False
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_20000/ntree_25_rep_10
+
+2026-11-05 07:13:40,535 - INFO - Sampling 1000 individuals with ploidy 1 in population 1 (name='ceu') at time 0
+2026-11-05 07:13:40,542 - INFO - Starting replicate 0
+2026-11-05 07:13:40,543 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-11-05 07:13:40,543 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-11-05 07:13:40,561 - INFO - Completed at time=825.393 nodes=4008 edges=12940
+2026-11-05 07:13:40,769 - INFO - Finished simulating ARG.
+[phase from 0.0 to 1e-06]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 1e-06 to 848.0]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 848.0 to 5600.0]
+     yri  ooa
+yri    1    0
+ceu    0    1
+chb    0    1
+          yri       ooa
+ns   0.000081  0.000476
+grs  0.000000  0.000000
+
+[phase from 5600.0 to 8800.0]
+     anc
+yri    1
+ooa    1
+          anc
+ns   0.000476
+grs  0.000000
+
+[phase from 8800.0 to inf]
+          anc
+ns   0.000137
+grs  0.000000
+
+2026-11-05 07:13:41,027 - INFO - Log likelihood of simulation parameters: -237148.49872894774.
+2026-11-05 07:13:41,027 - INFO - Starting glike optimization.
+[(1, 't2'), ('t1', 't3'), ('t2', 50000.0), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (100, 100000), (0, 0.5), (0, 0.5)]
+
+Initial parameters:
+{'t1': 1000, 't2': 5000, 't3': 10000, 'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 1000, 'N_ceu': 1000, 'N_chb': 1000, 'gr_ceu': 0.01, 'gr_chb': 0.01}
+
+Initial log-scaled CMA-ES coordinates:
+{'t1': 0.9417235292894494, 't2': 0.9706514568240532, 't3': 0.9204797908800564, 'N_anc': 0.9163391421976306, 'N_yri': 0.9163391421976306, 'N_ooa': 0.8295564184344453, 'N_ceu': 0.8295564184344453, 'N_chb': 0.8295564184344453, 'gr_ceu': 0.8584191663053318, 'gr_chb': 0.8584191663053318}
+-232426.83573202897
+FAILED PARAMETERS:
+{'t1': 4920.635459623191, 't2': 5700.865835309959, 't3': 8993.994717237234, 'N_anc': 11893.188615007788, 'N_yri': 4427.255832846492, 'N_ooa': 454.4945606832417, 'N_ceu': 360.0831092571368, 'N_chb': 1320.0449478343623, 'gr_ceu': 0.0029897085098917076, 'gr_chb': 0.17888732939525445}
+ERROR: OverflowError('math range error')
+Generation   1  Likelihood = -196970.513677
+{'t1': 1317.7029631933149, 't2': 9120.393737384265, 't3': 10142.393580552647, 'N_anc': 13349.76893514377, 'N_yri': 8348.795359835021, 'N_ooa': 483.8208040627585, 'N_ceu': 2436.6708150158797, 'N_chb': 175.0251214703448, 'gr_ceu': 0.04890157503624593, 'gr_chb': 0.0011452001605709984}
+Generation   2  Likelihood = -196684.226523
+{'t1': 86.76803512880939, 't2': 9996.347085889134, 't3': 12625.333266900998, 'N_anc': 87541.14673426765, 'N_yri': 1625.2631466794503, 'N_ooa': 710.5796333770772, 'N_ceu': 4847.7550671440895, 'N_chb': 498.2853070995073, 'gr_ceu': 0.015239979620256918, 'gr_chb': 0.0050149493623966}
+Generation   3  Likelihood = -196330.447836
+{'t1': 88.14541462718785, 't2': 4603.289787137818, 't3': 16492.336808368484, 'N_anc': 11595.699937724543, 'N_yri': 3859.115943544722, 'N_ooa': 1091.4192077400016, 'N_ceu': 4391.279149995601, 'N_chb': 716.0596801803972, 'gr_ceu': 0.013623872325538132, 'gr_chb': 0.003703544302582405}
+Generation   4  Likelihood = -184625.345735
+{'t1': 18.53676560349483, 't2': 560.9733655530019, 't3': 10871.255384074317, 'N_anc': 1519.5936863452505, 'N_yri': 16159.389370066567, 'N_ooa': 8022.158671889206, 'N_ceu': 754.3697457776626, 'N_chb': 668.4348606945425, 'gr_ceu': 0.01407032200503618, 'gr_chb': 0.0006770726752041939}
+Generation   5  Likelihood = -179819.253131
+{'t1': 131.85020032272726, 't2': 745.0732206852769, 't3': 5639.996428465613, 'N_anc': 479.4480507147078, 'N_yri': 7373.548482741795, 'N_ooa': 623.1051862214757, 'N_ceu': 325.9568628441525, 'N_chb': 264.63812513915514, 'gr_ceu': 0.0036333051889449156, 'gr_chb': 0.0007104152579904846}
