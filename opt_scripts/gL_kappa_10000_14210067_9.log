@@ -1,0 +1,4 @@
+  File "simulate_and_fit_ARG.py", line 639
+    """Return *argparse.ArgumentParser* for ``simulate_ARG.py``."""
+    ^
+IndentationError: expected an indented block

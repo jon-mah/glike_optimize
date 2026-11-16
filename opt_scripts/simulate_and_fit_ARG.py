@@ -511,7 +511,131 @@ class SimulateARG():
         return demography
 
 
-    def simulateARGParser(self):
+    def sample_random_start(self, x0, bounds, seed=None):
+        """
+        Generate random starting parameters using log-uniform
+        sampling for positive parameters and linear-uniform
+        sampling for parameters whose lower bound is zero.
+
+        Chronological parameters (t1, t2, ...) are sampled
+        jointly and sorted to preserve temporal ordering.
+        """
+
+        rng = numpy.random.default_rng(seed)
+
+        parameters = list(x0.keys())
+
+        if len(parameters) != len(bounds):
+            raise ValueError(
+                "Number of parameters does not match number of bounds."
+            )
+
+        # -----------------------------------------------------
+        # Helper: sample from a log-uniform distribution
+        # -----------------------------------------------------
+        def log_uniform(low, high):
+            if low <= 0:
+                raise ValueError(
+                    "Log-uniform sampling requires positive bounds."
+                )
+
+            if low == high:
+                return float(low)
+
+            u = rng.uniform(0.0, 1.0)
+
+            return float(
+                numpy.exp(
+                    numpy.log(low)
+                    + u * (numpy.log(high) - numpy.log(low))
+                )
+            )
+
+        # -----------------------------------------------------
+        # Helper: sample from a linear-uniform distribution
+        # -----------------------------------------------------
+        def linear_uniform(low, high):
+
+            if low == high:
+                return float(low)
+
+            return float(rng.uniform(low, high))
+
+        # -----------------------------------------------------
+        # Identify chronological parameters
+        # -----------------------------------------------------
+        time_parameters = sorted(
+            [p for p in parameters
+             if p.startswith("t") and p[1:].isdigit()],
+            key=lambda p: int(p[1:])
+        )
+
+        x_random = {}
+
+        # -----------------------------------------------------
+        # Sample chronological parameters jointly
+        # -----------------------------------------------------
+        if time_parameters:
+
+            time_bounds = []
+
+            for parameter, bound in zip(parameters, bounds):
+                if parameter in time_parameters:
+                    for value in bound:
+                        if isinstance(value, (int, float)):
+                            time_bounds.append(float(value))
+
+            time_low = min(time_bounds)
+            time_high = max(time_bounds)
+
+            if time_low <= 0:
+                raise ValueError(
+                    "Chronological log-uniform sampling requires "
+                    "a positive lower bound."
+                )
+
+            sampled_times = sorted([
+                log_uniform(time_low, time_high)
+                for _ in time_parameters
+            ])
+
+            for parameter, value in zip(
+                time_parameters, sampled_times
+            ):
+                x_random[parameter] = value
+
+        # -----------------------------------------------------
+        # Sample all remaining parameters
+        # -----------------------------------------------------
+        for parameter, bound in zip(parameters, bounds):
+
+            if parameter in time_parameters:
+                continue
+
+            low, high = bound
+
+            # Fixed parameters
+            if low == high:
+                x_random[parameter] = float(low)
+
+            # Log-uniform sampling for strictly positive bounds
+            elif low > 0:
+                x_random[parameter] = log_uniform(low, high)
+
+            # Linear-uniform sampling when lower bound is zero
+            else:
+                x_random[parameter] = linear_uniform(low, high)
+
+        # Preserve original parameter ordering
+        x_random = {
+            parameter: x_random[parameter]
+            for parameter in parameters
+        }
+
+        return x_random
+
+
+        def simulateARGParser(self):
         """Return *argparse.ArgumentParser* for ``simulate_ARG.py``."""
         parser = ArgumentParserNoArgHelp(
             description=(
@@ -566,6 +690,18 @@ class SimulateARG():
             '--TRUE_START', action='store_true',
             help=('Initial starting conditions based on simulation.'))
         parser.add_argument(
+            '--RANDOM_START',
+            action=argparse.BooleanOptionalAction,
+            default=True,
+            help='Generate random starting conditions.'
+        )
+        parser.add_argument(
+            '--START_SEED',
+            type=int,
+            default=1,
+            help='Random seed for optimizer starting conditions.'
+        )
+        parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files.')
         return parser
@@ -587,6 +723,8 @@ class SimulateARG():
         MODEL = args['MODEL']
         KAPPA = args['KAPPA']
         TRUE_START = args['TRUE_START']
+        RANDOM_START = args['RANDOM_START']
+        START_SEED = args['START_SEED']
         outprefix = args['outprefix']
 
         # Numpy options
@@ -864,7 +1002,7 @@ class SimulateARG():
                     "gr_ceu": 0.004, "gr_chb": 0.0055,
                     "m_yri_ooa": 0, "m_yri_ceu": 0, "m_yri_chb": 0, "m_ceu_chb": 0,
                 }
-            if MODEL == '3I21':
+            elif MODEL == '3I21':
                 x_true = {
                     't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
                     'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000,
@@ -887,6 +1025,29 @@ class SimulateARG():
                 }
 
             x0 = x_true
+        # -----------------------------------------------------
+        # Random optimizer initialization
+        # -----------------------------------------------------
+        if args['RANDOM_START']:
+
+            START_SEED = (
+                args['START_SEED']
+                if args['START_SEED'] is not None
+                else SEED
+            )
+
+            x0 = self.sample_random_start(
+                x0=x0,
+                bounds=bounds,
+                seed=START_SEED
+            )
+
+            logger.info(
+                f'Using randomly generated starting conditions '
+                f'(seed={START_SEED}).'
+            )
+
+            logger.info(f'Random starting parameters: {x0}')
 
         logger.info('Starting glike optimization.')
         t_start = time.time()
