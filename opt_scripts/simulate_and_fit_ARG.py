@@ -635,7 +635,7 @@ class SimulateARG():
         return x_random
 
 
-        def simulateARGParser(self):
+    def simulateARGParser(self):
         """Return *argparse.ArgumentParser* for ``simulate_ARG.py``."""
         parser = ArgumentParserNoArgHelp(
             description=(
@@ -691,7 +691,7 @@ class SimulateARG():
             help=('Initial starting conditions based on simulation.'))
         parser.add_argument(
             '--RANDOM_START',
-            action=argparse.BooleanOptionalAction,
+            action='store_true',
             default=True,
             help='Generate random starting conditions.'
         )

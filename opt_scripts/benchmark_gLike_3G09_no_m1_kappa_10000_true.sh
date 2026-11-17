@@ -13,4 +13,4 @@
 NUM_TREE=25
 NUM_TREE_PREFIX="ntree_${NUM_TREE}_rep_${SLURM_ARRAY_TASK_ID}"
 
-python simulate_and_fit_ARG.py --OPTIMIZER gLike ../opt_results_glike_3G09_no_m1_kappa_10000/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09_no_m' --SEED 1 --KAPPA 10000 --TRUE_START --START_SEED $SLURM_ARRAY_TASK_ID
+python simulate_and_fit_ARG.py --OPTIMIZER gLike ../opt_results_glike_3G09_no_m1_kappa_10000/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09_no_m' --SEED 1 --KAPPA 1000 --TRUE_START --START_SEED $SLURM_ARRAY_TASK_ID
