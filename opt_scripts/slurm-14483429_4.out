@@ -1,0 +1,8 @@
+Wrote 51 generation records to ../Analysis/CMA_true_chronological_4.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
+Wrote 1 generation records to ../Analysis/CMA_true_bug_chronological_4.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
+Wrote 51 generation records to ../Analysis/CMA_fixed_bug_chronological_4.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
+Wrote 1 generation records to ../Analysis/CMA_fixed_chronological_4.csv
+Parameters: t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb

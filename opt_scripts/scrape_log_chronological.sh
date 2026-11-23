@@ -1,5 +1,7 @@
 #!/bin/bash
 #SBATCH --array=1-10
+#SBATCH --time=00:10:00
+#SBATCH --mem=10G
 
 set -euo pipefail
 
@@ -14,18 +16,18 @@ filenum=$SLURM_ARRAY_TASK_ID
 
 # echo "Done: $OUTPUT"
 
-INPUT="CMA_kappa_10000_13168858_$filenum.log"
-OUTPUT="../Analysis/CMA_ES_10000_chronological_${filenum}.csv"
-python scrape_log_chronological.py "$INPUT" --output "$OUTPUT"
+INPUT="CMA_true_14482288_$filenum.log"
+OUTPUT="../Analysis/CMA_true_chronological_${filenum}.csv"
+python scrape_log_chronological.py "$INPUT" --output "$OUTPUT" --include-initial
 
-INPUT="CMA_kappa_20000_13340499_$filenum.log"
-OUTPUT="../Analysis/CMA_ES_20000_chronological_${filenum}.csv"
-python scrape_log_chronological.py "$INPUT" --output "$OUTPUT"
+INPUT="CMA_true_bug_14482858_$filenum.log"
+OUTPUT="../Analysis/CMA_true_bug_chronological_${filenum}.csv"
+python scrape_log_chronological.py "$INPUT" --output "$OUTPUT" --include-initial
 
-INPUT="gL_kappa_10000_13465827_$filenum.log"
-OUTPUT="../Analysis/glike_10000_chronological_${filenum}.csv"
-python scrape_log_chronological.py "$INPUT" --output "$OUTPUT"
+INPUT="CMA_fixed_bug_14482845_$filenum.log"
+OUTPUT="../Analysis/CMA_fixed_bug_chronological_${filenum}.csv"
+python scrape_log_chronological.py "$INPUT" --output "$OUTPUT" --include-initial
 
-INPUT="gL_kappa_20000_13465828_$filenum.log"
-OUTPUT="../Analysis/glike_20000_chronological_${filenum}.csv"
-python scrape_log_chronological.py "$INPUT" --output "$OUTPUT"
+INPUT="CMA_fixed_14482278_$filenum.log"
+OUTPUT="../Analysis/CMA_fixed_chronological_${filenum}.csv"
+python scrape_log_chronological.py "$INPUT" --output "$OUTPUT" --include-initial
