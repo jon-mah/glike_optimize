@@ -377,7 +377,7 @@ def maximize(
     x0,
     bounds=None,
     precision=0.05,
-    epochs=20,
+    epochs=50,
     verbose=False
 ):
     """
@@ -789,8 +789,8 @@ def maximize_CMA_ES(
     fun,
     x0,
     bounds=None,
-    precision=0.10,
-    epochs=50,
+    precision=0.05,
+    epochs=20,
     verbose=False,
     model=None,
     parameter_scales=None
@@ -866,7 +866,7 @@ def maximize_CMA_ES(
         "bounds": [0.0, 1.0],
         "verbose": -9
     }
-
+    print('Starting iterative process.')
     es = cma.CMAEvolutionStrategy(
         u0,
         precision,

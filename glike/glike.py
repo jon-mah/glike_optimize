@@ -139,6 +139,8 @@ class Phase:
     b = self.t_end
     for a, incr in coals:
       buffer += N*(N-1)/2 * logp_noncoal(n, gr, a - self.t, b - self.t) if (b > a and N >= 2) else 0
+      # print('Using "bugged" logp calculation.')
+      # buffer += incr * logp_coal(n, gr, a) if incr >= 1 else 0
       print("Using bug-fixed logp calculation.")
       buffer += incr * logp_coal(n, gr, a - self.t) if incr >= 1 else 0
       N += incr; b = a

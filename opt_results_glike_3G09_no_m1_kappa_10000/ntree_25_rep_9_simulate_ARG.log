@@ -1,8 +1,8 @@
-2026-10-27 03:48:24,807 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-11-18 06:22:11,363 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-10-27 03:48:24,807 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1_kappa_10000/ntree_25_rep_9_simulate_ARG.log
+2026-11-18 06:22:11,363 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1_kappa_10000/ntree_25_rep_9_simulate_ARG.log
 
-2026-10-27 03:48:24,807 - INFO - Parsed the following arguments:
+2026-11-18 06:22:11,363 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
 	SEQUENCE_LENGTH = 30000000.0
 	RECOMBINATION_RATE = 1e-08
@@ -11,13 +11,18 @@
 	OPTIMIZER = gLike
 	MODEL = 3G09_no_m
 	KAPPA = 10000
+	TRUE_START = True
+	RANDOM_START = True
+	START_SEED = 1
 	outprefix = ../opt_results_glike_3G09_no_m1_kappa_10000/ntree_25_rep_9
 
-2026-10-27 03:48:28,629 - INFO - Finished simulating ARG.
-2026-10-27 03:49:09,807 - INFO - Log likelihood of simulation parameters: -288177.5466389615.
-2026-10-27 03:49:09,808 - INFO - Starting glike optimization.
-2026-10-27 14:58:11,817 - INFO - Finished fitting ARG.
-2026-10-27 14:58:11,818 - INFO - Finished in 11h 9m 2.0s
-2026-10-27 14:58:11,818 - INFO - Estimated: {'t1': 34.08377, 't2': 94.14796, 't3': 94.29773, 'N_anc': 34966.222, 'N_yri': 21034.89325, 'N_ooa': 30724.75812, 'N_ceu': 13029.56539, 'N_chb': 13143.06537, 'gr_ceu': 0.0147, 'gr_chb': 0.03348}
-2026-10-27 14:58:11,818 - INFO - logp = -263979.4122453495  (true = -288177.5466389615)
-2026-10-27 14:58:11,818 - INFO - Pipeline executed succesfully.
+2026-11-18 06:22:11,561 - INFO - Finished simulating ARG.
+2026-11-18 06:22:11,881 - INFO - Log likelihood of simulation parameters: -237148.49872894774.
+2026-11-18 06:22:11,882 - INFO - Using randomly generated starting conditions (seed=1).
+2026-11-18 06:22:11,882 - INFO - Random starting parameters: {'t1': 3.77257993778382, 't2': 111.50298626945477, 't3': 6336.578001821523, 'N_anc': 36339.2870445674, 'N_yri': 694.4224222943129, 'N_ooa': 523.864463371299, 'N_ceu': 2548.249099493679, 'N_chb': 495.6978765442459, 'gr_ceu': 0.027479684383652975, 'gr_chb': 0.0013779556621534184}
+2026-11-18 06:22:11,882 - INFO - Starting glike optimization.
+2026-11-18 11:43:53,126 - INFO - Finished fitting ARG.
+2026-11-18 11:43:53,127 - INFO - Finished in 5h 21m 41.2s
+2026-11-18 11:43:53,127 - INFO - Estimated: {'t1': 6.92237, 't2': 174.67672, 't3': 6336.578001821523, 'N_anc': 36339.2870445674, 'N_yri': 379.49295, 'N_ooa': 503.45432, 'N_ceu': 296.71471, 'N_chb': 291.24202, 'gr_ceu': 0.01696, 'gr_chb': 0.00123}
+2026-11-18 11:43:53,127 - INFO - logp = -168989.2492676095  (true = -237148.49872894774)
+2026-11-18 11:43:53,127 - INFO - Pipeline executed succesfully.

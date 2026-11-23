@@ -1,10 +1,10 @@
-2026-11-05 20:36:58,664 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+2026-11-17 09:15:10,436 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
 
-2026-11-05 20:36:58,664 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_9_simulate_ARG.log
+2026-11-17 09:15:10,436 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_9_simulate_ARG.log
 
-2026-11-05 20:36:58,665 - INFO - Parsed the following arguments:
+2026-11-17 09:15:10,436 - INFO - Parsed the following arguments:
 	N_SAMPLES = 1000.0
-	SEQUENCE_LENGTH = 30000000.0
+	SEQUENCE_LENGTH = 300000.0
 	RECOMBINATION_RATE = 1e-08
 	SEED = 1
 	NUM_TREES = 25
@@ -12,13 +12,12 @@
 	MODEL = 3G09_no_m
 	KAPPA = 10000
 	TRUE_START = False
+	RANDOM_START = True
+	START_SEED = 9
 	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_25_rep_9
 
-2026-11-05 20:36:58,932 - INFO - Finished simulating ARG.
-2026-11-05 20:36:59,173 - INFO - Log likelihood of simulation parameters: -237148.49872894774.
-2026-11-05 20:36:59,174 - INFO - Starting glike optimization.
-2026-11-05 22:34:43,482 - INFO - Finished fitting ARG.
-2026-11-05 22:34:43,483 - INFO - Finished in 1h 57m 44.3s
-2026-11-05 22:34:43,483 - INFO - Estimated: {'t1': 147.13579974967647, 't2': 288.41014760741393, 't3': 9251.079240629697, 'N_anc': 184.9412975694832, 'N_yri': 305.02702743241457, 'N_ooa': 112.1903136805359, 'N_ceu': 142.91183108075197, 'N_chb': 601.4305607841065, 'gr_ceu': 0.002366081538391037, 'gr_chb': 0.00017778764602203057}
-2026-11-05 22:34:43,483 - INFO - logp = -170388.99099121275  (true = -237148.49872894774)
-2026-11-05 22:34:43,483 - INFO - Pipeline executed succesfully.
+2026-11-17 09:15:10,548 - INFO - Finished simulating ARG.
+2026-11-17 09:15:10,722 - INFO - Log likelihood of simulation parameters: -237077.11030734028.
+2026-11-17 09:15:10,723 - INFO - Using randomly generated starting conditions (seed=9).
+2026-11-17 09:15:10,723 - INFO - Random starting parameters: {'t1': 14.036823411221492, 't2': 258.5786121728629, 't3': 3026.891235741908, 'N_anc': 12547.036666696305, 'N_yri': 8563.749322435877, 'N_ooa': 3590.900465439838, 'N_ceu': 2895.896272380028, 'N_chb': 3631.267047583788, 'gr_ceu': 0.0013293867233798607, 'gr_chb': 0.021862400006475435}
+2026-11-17 09:15:10,723 - INFO - Starting glike optimization.

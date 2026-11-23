@@ -1,0 +1,61 @@
+2026-11-17 10:16:20,914 - INFO - Beginning execution of benchmark_ARG_trees.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-17 10:16:20,914 - INFO - Progress is being logged to ../Analysis/benchmark_ARG.log
+
+2026-11-17 10:16:20,915 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 300000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = False
+	CMA_params = True
+	gLike_params = False
+	outprefix = ../Analysis/
+
+2026-11-17 10:16:20,949 - INFO - Finished simulating ARG.
+2026-11-17 10:16:20,969 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:20,969 - INFO - 10
+2026-11-17 10:16:21,356 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:21,356 - INFO - 20
+2026-11-17 10:16:22,102 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:22,102 - INFO - 30
+2026-11-17 10:16:23,228 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:23,228 - INFO - 40
+2026-11-17 10:16:24,750 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:24,750 - INFO - 50
+2026-11-17 10:16:26,669 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:26,669 - INFO - 60
+2026-11-17 10:16:29,079 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:29,079 - INFO - 70
+2026-11-17 10:16:31,681 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:31,682 - INFO - 80
+2026-11-17 10:16:34,757 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:34,757 - INFO - 90
+2026-11-17 10:16:37,947 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:37,947 - INFO - 100
+2026-11-17 10:16:41,611 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:41,611 - INFO - 110
+2026-11-17 10:16:45,324 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:45,325 - INFO - 120
+2026-11-17 10:16:49,421 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:49,421 - INFO - 130
+2026-11-17 10:16:53,897 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:53,898 - INFO - 140
+2026-11-17 10:16:58,531 - INFO - Evaluating log likelihood of:
+2026-11-17 10:16:58,532 - INFO - 150
+2026-11-17 10:17:03,460 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:03,460 - INFO - 160
+2026-11-17 10:17:08,656 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:08,656 - INFO - 170
+2026-11-17 10:17:14,158 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:14,158 - INFO - 180
+2026-11-17 10:17:19,949 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:19,949 - INFO - 190
+2026-11-17 10:17:25,996 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:25,996 - INFO - 200
+2026-11-17 10:17:32,403 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:32,403 - INFO - 210
+2026-11-17 10:17:39,019 - INFO - Evaluating log likelihood of:
+2026-11-17 10:17:39,020 - INFO - 220

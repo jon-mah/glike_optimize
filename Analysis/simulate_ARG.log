@@ -1,0 +1,40 @@
+2026-11-17 09:56:04,628 - INFO - Beginning execution of benchmark_ARG_trees.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-17 09:56:04,628 - INFO - Progress is being logged to ../Analysis/simulate_ARG.log
+
+2026-11-17 09:56:04,628 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 300000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = True
+	outprefix = ../Analysis/
+
+2026-11-17 09:56:04,684 - INFO - Finished simulating ARG.
+2026-11-17 09:56:04,718 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:04,718 - INFO - 10
+2026-11-17 09:56:05,245 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:05,245 - INFO - 20
+2026-11-17 09:56:06,414 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:06,414 - INFO - 30
+2026-11-17 09:56:07,998 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:07,998 - INFO - 40
+2026-11-17 09:56:09,915 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:09,915 - INFO - 50
+2026-11-17 09:56:12,492 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:12,492 - INFO - 60
+2026-11-17 09:56:15,607 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:15,607 - INFO - 70
+2026-11-17 09:56:18,827 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:18,827 - INFO - 80
+2026-11-17 09:56:22,177 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:22,178 - INFO - 90
+2026-11-17 09:56:26,100 - INFO - Evaluating log likelihood of:
+2026-11-17 09:56:26,100 - INFO - 100
+2026-11-17 09:56:30,523 - INFO - range(10, 101, 10)
+2026-11-17 09:56:30,524 - INFO - [-94830.92093305598, -189661.82320712082, -284492.71263142803, -379323.2621020086, -474154.33723694284, -568985.325674093, -663815.9645808282, -758646.9655758359, -853477.7097709222, -948308.6622558557]
+2026-11-17 09:56:30,533 - INFO - Finished fitting ARG.
+2026-11-17 09:56:30,533 - INFO - Finished in 0h 0m 25.8s
+2026-11-17 09:56:30,533 - INFO - Pipeline executed succesfully.

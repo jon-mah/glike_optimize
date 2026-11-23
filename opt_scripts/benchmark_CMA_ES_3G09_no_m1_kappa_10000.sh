@@ -2,9 +2,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-#SBATCH --time=48:00:00
+#SBATCH --time=4:00:00
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=0
+#SBATCH --mem=30G
 #SBATCH --array=1-10
 #SBATCH --output=CMA_kappa_10000_%A_%a.log
 
@@ -13,4 +13,4 @@
 NUM_TREE=25
 NUM_TREE_PREFIX="ntree_${NUM_TREE}_rep_${SLURM_ARRAY_TASK_ID}"
 
-python simulate_and_fit_ARG.py --OPTIMIZER CMA_ES ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09_no_m' --SEED 1 --KAPPA 1000 --START_SEED $SLURM_ARRAY_TASK_ID
+python simulate_and_fit_ARG.py --OPTIMIZER CMA_ES ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/$NUM_TREE_PREFIX --NUM_TREES $NUM_TREE --MODEL '3G09_no_m' --SEED 1 --KAPPA 10000 --START_SEED $SLURM_ARRAY_TASK_ID

@@ -1,0 +1,2027 @@
+2026-11-17 16:48:51,792 - INFO - Beginning execution of benchmark_ARG_trees.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-17 16:48:51,792 - INFO - Progress is being logged to ../Analysis_benchmark_ARG_CMA.log
+
+2026-11-17 16:48:51,792 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = False
+	CMA_params = True
+	gLike_params = False
+	outprefix = ../Analysis
+
+2026-11-17 16:48:51,817 - INFO - Sampling 1000 individuals with ploidy 1 in population 1 (name='ceu') at time 0
+2026-11-17 16:48:51,820 - INFO - Starting replicate 0
+2026-11-17 16:48:51,821 - INFO - model[0] {'name': 'hudson'} started at time=0 nodes=1000 edges=0
+2026-11-17 16:48:51,821 - INFO - Running model {'name': 'hudson'} until max time: inf
+2026-11-17 16:48:51,833 - INFO - Completed at time=825.393 nodes=4008 edges=12940
+2026-11-17 16:48:51,838 - INFO - Finished simulating ARG.
+2026-11-17 16:48:51,838 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:51,838 - INFO - 10
+2026-11-17 16:48:51,941 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:51,941 - INFO - 20
+2026-11-17 16:48:52,087 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:52,087 - INFO - 30
+2026-11-17 16:48:52,285 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:52,286 - INFO - 40
+2026-11-17 16:48:52,543 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:52,543 - INFO - 50
+2026-11-17 16:48:52,869 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:52,869 - INFO - 60
+2026-11-17 16:48:53,247 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:53,247 - INFO - 70
+2026-11-17 16:48:53,640 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:53,640 - INFO - 80
+2026-11-17 16:48:54,107 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:54,107 - INFO - 90
+2026-11-17 16:48:54,561 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:54,561 - INFO - 100
+2026-11-17 16:48:55,283 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:55,283 - INFO - 110
+2026-11-17 16:48:55,945 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:55,945 - INFO - 120
+2026-11-17 16:48:56,422 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:56,423 - INFO - 130
+2026-11-17 16:48:56,907 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:56,907 - INFO - 140
+2026-11-17 16:48:57,439 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:57,439 - INFO - 150
+2026-11-17 16:48:57,989 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:57,989 - INFO - 160
+2026-11-17 16:48:58,542 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:58,542 - INFO - 170
+2026-11-17 16:48:59,166 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:59,166 - INFO - 180
+2026-11-17 16:48:59,755 - INFO - Evaluating log likelihood of:
+2026-11-17 16:48:59,756 - INFO - 190
+2026-11-17 16:49:00,418 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:00,418 - INFO - 200
+2026-11-17 16:49:01,063 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:01,063 - INFO - 210
+2026-11-17 16:49:01,733 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:01,733 - INFO - 220
+2026-11-17 16:49:02,418 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:02,419 - INFO - 230
+2026-11-17 16:49:03,115 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:03,115 - INFO - 240
+2026-11-17 16:49:03,839 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:03,839 - INFO - 250
+2026-11-17 16:49:04,568 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:04,568 - INFO - 260
+2026-11-17 16:49:05,314 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:05,314 - INFO - 270
+2026-11-17 16:49:06,112 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:06,112 - INFO - 280
+2026-11-17 16:49:06,901 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:06,902 - INFO - 290
+2026-11-17 16:49:07,716 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:07,716 - INFO - 300
+2026-11-17 16:49:08,533 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:08,533 - INFO - 310
+2026-11-17 16:49:09,377 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:09,378 - INFO - 320
+2026-11-17 16:49:10,307 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:10,307 - INFO - 330
+2026-11-17 16:49:11,181 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:11,182 - INFO - 340
+2026-11-17 16:49:12,174 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:12,174 - INFO - 350
+2026-11-17 16:49:13,165 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:13,165 - INFO - 360
+2026-11-17 16:49:14,202 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:14,202 - INFO - 370
+2026-11-17 16:49:15,211 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:15,211 - INFO - 380
+2026-11-17 16:49:16,273 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:16,273 - INFO - 390
+2026-11-17 16:49:17,330 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:17,330 - INFO - 400
+2026-11-17 16:49:18,474 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:18,474 - INFO - 410
+2026-11-17 16:49:19,532 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:19,532 - INFO - 420
+2026-11-17 16:49:20,695 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:20,695 - INFO - 430
+2026-11-17 16:49:22,049 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:22,049 - INFO - 440
+2026-11-17 16:49:23,214 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:23,214 - INFO - 450
+2026-11-17 16:49:24,454 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:24,455 - INFO - 460
+2026-11-17 16:49:25,711 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:25,711 - INFO - 470
+2026-11-17 16:49:27,081 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:27,082 - INFO - 480
+2026-11-17 16:49:28,425 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:28,425 - INFO - 490
+2026-11-17 16:49:29,840 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:29,841 - INFO - 500
+2026-11-17 16:49:31,182 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:31,182 - INFO - 510
+2026-11-17 16:49:32,606 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:32,606 - INFO - 520
+2026-11-17 16:49:34,021 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:34,021 - INFO - 530
+2026-11-17 16:49:35,517 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:35,517 - INFO - 540
+2026-11-17 16:49:37,029 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:37,029 - INFO - 550
+2026-11-17 16:49:38,498 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:38,498 - INFO - 560
+2026-11-17 16:49:40,000 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:40,000 - INFO - 570
+2026-11-17 16:49:41,578 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:41,578 - INFO - 580
+2026-11-17 16:49:43,141 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:43,141 - INFO - 590
+2026-11-17 16:49:44,733 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:44,733 - INFO - 600
+2026-11-17 16:49:46,388 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:46,388 - INFO - 610
+2026-11-17 16:49:47,993 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:47,993 - INFO - 620
+2026-11-17 16:49:49,645 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:49,645 - INFO - 630
+2026-11-17 16:49:51,321 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:51,321 - INFO - 640
+2026-11-17 16:49:53,109 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:53,109 - INFO - 650
+2026-11-17 16:49:54,770 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:54,770 - INFO - 660
+2026-11-17 16:49:56,505 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:56,505 - INFO - 670
+2026-11-17 16:49:58,231 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:58,231 - INFO - 680
+2026-11-17 16:49:59,919 - INFO - Evaluating log likelihood of:
+2026-11-17 16:49:59,919 - INFO - 690
+2026-11-17 16:50:01,748 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:01,748 - INFO - 700
+2026-11-17 16:50:03,637 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:03,637 - INFO - 710
+2026-11-17 16:50:05,587 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:05,587 - INFO - 720
+2026-11-17 16:50:07,513 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:07,514 - INFO - 730
+2026-11-17 16:50:09,462 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:09,462 - INFO - 740
+2026-11-17 16:50:11,564 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:11,564 - INFO - 750
+2026-11-17 16:50:13,602 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:13,602 - INFO - 760
+2026-11-17 16:50:15,604 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:15,604 - INFO - 770
+2026-11-17 16:50:17,648 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:17,648 - INFO - 780
+2026-11-17 16:50:19,767 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:19,767 - INFO - 790
+2026-11-17 16:50:21,852 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:21,852 - INFO - 800
+2026-11-17 16:50:24,171 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:24,171 - INFO - 810
+2026-11-17 16:50:26,233 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:26,233 - INFO - 820
+2026-11-17 16:50:28,287 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:28,287 - INFO - 830
+2026-11-17 16:50:30,681 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:30,681 - INFO - 840
+2026-11-17 16:50:32,952 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:32,952 - INFO - 850
+2026-11-17 16:50:35,199 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:35,199 - INFO - 860
+2026-11-17 16:50:37,528 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:37,528 - INFO - 870
+2026-11-17 16:50:39,968 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:39,968 - INFO - 880
+2026-11-17 16:50:42,277 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:42,277 - INFO - 890
+2026-11-17 16:50:44,584 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:44,584 - INFO - 900
+2026-11-17 16:50:46,991 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:46,991 - INFO - 910
+2026-11-17 16:50:49,453 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:49,454 - INFO - 920
+2026-11-17 16:50:51,879 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:51,879 - INFO - 930
+2026-11-17 16:50:54,639 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:54,640 - INFO - 940
+2026-11-17 16:50:57,135 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:57,135 - INFO - 950
+2026-11-17 16:50:59,530 - INFO - Evaluating log likelihood of:
+2026-11-17 16:50:59,530 - INFO - 960
+2026-11-17 16:51:01,881 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:01,881 - INFO - 970
+2026-11-17 16:51:04,260 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:04,260 - INFO - 980
+2026-11-17 16:51:06,639 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:06,639 - INFO - 990
+2026-11-17 16:51:09,044 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:09,044 - INFO - 1000
+2026-11-17 16:51:11,559 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:11,559 - INFO - 1010
+2026-11-17 16:51:14,009 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:14,009 - INFO - 1020
+2026-11-17 16:51:16,471 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:16,471 - INFO - 1030
+2026-11-17 16:51:19,004 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:19,004 - INFO - 1040
+2026-11-17 16:51:21,805 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:21,805 - INFO - 1050
+2026-11-17 16:51:25,135 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:25,135 - INFO - 1060
+2026-11-17 16:51:27,691 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:27,691 - INFO - 1070
+2026-11-17 16:51:30,385 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:30,385 - INFO - 1080
+2026-11-17 16:51:33,028 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:33,029 - INFO - 1090
+2026-11-17 16:51:35,735 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:35,736 - INFO - 1100
+2026-11-17 16:51:38,488 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:38,488 - INFO - 1110
+2026-11-17 16:51:41,286 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:41,286 - INFO - 1120
+2026-11-17 16:51:44,218 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:44,218 - INFO - 1130
+2026-11-17 16:51:47,028 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:47,029 - INFO - 1140
+2026-11-17 16:51:49,809 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:49,809 - INFO - 1150
+2026-11-17 16:51:52,610 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:52,611 - INFO - 1160
+2026-11-17 16:51:55,407 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:55,407 - INFO - 1170
+2026-11-17 16:51:58,369 - INFO - Evaluating log likelihood of:
+2026-11-17 16:51:58,369 - INFO - 1180
+2026-11-17 16:52:01,248 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:01,248 - INFO - 1190
+2026-11-17 16:52:04,248 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:04,248 - INFO - 1200
+2026-11-17 16:52:07,236 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:07,236 - INFO - 1210
+2026-11-17 16:52:10,232 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:10,232 - INFO - 1220
+2026-11-17 16:52:13,281 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:13,281 - INFO - 1230
+2026-11-17 16:52:16,416 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:16,416 - INFO - 1240
+2026-11-17 16:52:19,645 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:19,645 - INFO - 1250
+2026-11-17 16:52:23,263 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:23,263 - INFO - 1260
+2026-11-17 16:52:26,446 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:26,447 - INFO - 1270
+2026-11-17 16:52:29,682 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:29,682 - INFO - 1280
+2026-11-17 16:52:32,941 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:32,941 - INFO - 1290
+2026-11-17 16:52:36,250 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:36,250 - INFO - 1300
+2026-11-17 16:52:39,572 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:39,572 - INFO - 1310
+2026-11-17 16:52:42,713 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:42,713 - INFO - 1320
+2026-11-17 16:52:46,352 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:46,352 - INFO - 1330
+2026-11-17 16:52:49,670 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:49,671 - INFO - 1340
+2026-11-17 16:52:52,857 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:52,858 - INFO - 1350
+2026-11-17 16:52:56,145 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:56,145 - INFO - 1360
+2026-11-17 16:52:59,612 - INFO - Evaluating log likelihood of:
+2026-11-17 16:52:59,612 - INFO - 1370
+2026-11-17 16:53:03,323 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:03,324 - INFO - 1380
+2026-11-17 16:53:06,794 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:06,794 - INFO - 1390
+2026-11-17 16:53:10,411 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:10,411 - INFO - 1400
+2026-11-17 16:53:13,970 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:13,970 - INFO - 1410
+2026-11-17 16:53:18,218 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:18,218 - INFO - 1420
+2026-11-17 16:53:21,959 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:21,959 - INFO - 1430
+2026-11-17 16:53:25,688 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:25,688 - INFO - 1440
+2026-11-17 16:53:29,284 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:29,284 - INFO - 1450
+2026-11-17 16:53:33,005 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:33,006 - INFO - 1460
+2026-11-17 16:53:36,662 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:36,662 - INFO - 1470
+2026-11-17 16:53:40,360 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:40,360 - INFO - 1480
+2026-11-17 16:53:44,399 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:44,399 - INFO - 1490
+2026-11-17 16:53:48,459 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:48,459 - INFO - 1500
+2026-11-17 16:53:52,316 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:52,316 - INFO - 1510
+2026-11-17 16:53:56,472 - INFO - Evaluating log likelihood of:
+2026-11-17 16:53:56,472 - INFO - 1520
+2026-11-17 16:54:00,415 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:00,415 - INFO - 1530
+2026-11-17 16:54:04,549 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:04,550 - INFO - 1540
+2026-11-17 16:54:08,568 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:08,568 - INFO - 1550
+2026-11-17 16:54:12,619 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:12,619 - INFO - 1560
+2026-11-17 16:54:16,771 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:16,771 - INFO - 1570
+2026-11-17 16:54:20,935 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:20,935 - INFO - 1580
+2026-11-17 16:54:25,019 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:25,019 - INFO - 1590
+2026-11-17 16:54:29,491 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:29,492 - INFO - 1600
+2026-11-17 16:54:33,593 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:33,593 - INFO - 1610
+2026-11-17 16:54:37,474 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:37,475 - INFO - 1620
+2026-11-17 16:54:41,478 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:41,478 - INFO - 1630
+2026-11-17 16:54:45,747 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:45,747 - INFO - 1640
+2026-11-17 16:54:50,081 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:50,081 - INFO - 1650
+2026-11-17 16:54:54,165 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:54,165 - INFO - 1660
+2026-11-17 16:54:58,594 - INFO - Evaluating log likelihood of:
+2026-11-17 16:54:58,594 - INFO - 1670
+2026-11-17 16:55:02,766 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:02,767 - INFO - 1680
+2026-11-17 16:55:06,908 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:06,908 - INFO - 1690
+2026-11-17 16:55:11,138 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:11,138 - INFO - 1700
+2026-11-17 16:55:15,393 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:15,393 - INFO - 1710
+2026-11-17 16:55:19,968 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:19,969 - INFO - 1720
+2026-11-17 16:55:24,542 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:24,542 - INFO - 1730
+2026-11-17 16:55:29,038 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:29,038 - INFO - 1740
+2026-11-17 16:55:33,480 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:33,480 - INFO - 1750
+2026-11-17 16:55:37,920 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:37,920 - INFO - 1760
+2026-11-17 16:55:42,467 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:42,468 - INFO - 1770
+2026-11-17 16:55:47,004 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:47,004 - INFO - 1780
+2026-11-17 16:55:51,723 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:51,724 - INFO - 1790
+2026-11-17 16:55:56,097 - INFO - Evaluating log likelihood of:
+2026-11-17 16:55:56,097 - INFO - 1800
+2026-11-17 16:56:00,597 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:00,598 - INFO - 1810
+2026-11-17 16:56:05,104 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:05,104 - INFO - 1820
+2026-11-17 16:56:09,735 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:09,736 - INFO - 1830
+2026-11-17 16:56:14,280 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:14,281 - INFO - 1840
+2026-11-17 16:56:18,852 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:18,852 - INFO - 1850
+2026-11-17 16:56:23,408 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:23,408 - INFO - 1860
+2026-11-17 16:56:27,894 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:27,894 - INFO - 1870
+2026-11-17 16:56:32,378 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:32,378 - INFO - 1880
+2026-11-17 16:56:36,971 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:36,972 - INFO - 1890
+2026-11-17 16:56:41,878 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:41,878 - INFO - 1900
+2026-11-17 16:56:46,496 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:46,496 - INFO - 1910
+2026-11-17 16:56:51,827 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:51,828 - INFO - 1920
+2026-11-17 16:56:56,551 - INFO - Evaluating log likelihood of:
+2026-11-17 16:56:56,552 - INFO - 1930
+2026-11-17 16:57:01,283 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:01,283 - INFO - 1940
+2026-11-17 16:57:06,247 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:06,247 - INFO - 1950
+2026-11-17 16:57:11,291 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:11,291 - INFO - 1960
+2026-11-17 16:57:16,170 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:16,171 - INFO - 1970
+2026-11-17 16:57:21,082 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:21,082 - INFO - 1980
+2026-11-17 16:57:25,927 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:25,927 - INFO - 1990
+2026-11-17 16:57:30,900 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:30,900 - INFO - 2000
+2026-11-17 16:57:35,949 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:35,949 - INFO - 2010
+2026-11-17 16:57:40,873 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:40,874 - INFO - 2020
+2026-11-17 16:57:45,966 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:45,967 - INFO - 2030
+2026-11-17 16:57:51,100 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:51,101 - INFO - 2040
+2026-11-17 16:57:56,367 - INFO - Evaluating log likelihood of:
+2026-11-17 16:57:56,367 - INFO - 2050
+2026-11-17 16:58:01,407 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:01,407 - INFO - 2060
+2026-11-17 16:58:06,610 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:06,611 - INFO - 2070
+2026-11-17 16:58:11,956 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:11,956 - INFO - 2080
+2026-11-17 16:58:17,082 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:17,082 - INFO - 2090
+2026-11-17 16:58:22,153 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:22,154 - INFO - 2100
+2026-11-17 16:58:27,253 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:27,253 - INFO - 2110
+2026-11-17 16:58:32,850 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:32,850 - INFO - 2120
+2026-11-17 16:58:38,090 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:38,091 - INFO - 2130
+2026-11-17 16:58:43,485 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:43,485 - INFO - 2140
+2026-11-17 16:58:48,768 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:48,768 - INFO - 2150
+2026-11-17 16:58:54,096 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:54,096 - INFO - 2160
+2026-11-17 16:58:59,335 - INFO - Evaluating log likelihood of:
+2026-11-17 16:58:59,335 - INFO - 2170
+2026-11-17 16:59:04,736 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:04,736 - INFO - 2180
+2026-11-17 16:59:10,536 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:10,536 - INFO - 2190
+2026-11-17 16:59:16,227 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:16,227 - INFO - 2200
+2026-11-17 16:59:21,612 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:21,612 - INFO - 2210
+2026-11-17 16:59:27,092 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:27,092 - INFO - 2220
+2026-11-17 16:59:32,658 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:32,659 - INFO - 2230
+2026-11-17 16:59:38,601 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:38,601 - INFO - 2240
+2026-11-17 16:59:44,135 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:44,136 - INFO - 2250
+2026-11-17 16:59:49,802 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:49,802 - INFO - 2260
+2026-11-17 16:59:55,833 - INFO - Evaluating log likelihood of:
+2026-11-17 16:59:55,833 - INFO - 2270
+2026-11-17 17:00:01,497 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:01,497 - INFO - 2280
+2026-11-17 17:00:07,227 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:07,227 - INFO - 2290
+2026-11-17 17:00:12,811 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:12,811 - INFO - 2300
+2026-11-17 17:00:18,377 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:18,378 - INFO - 2310
+2026-11-17 17:00:23,952 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:23,952 - INFO - 2320
+2026-11-17 17:00:29,627 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:29,628 - INFO - 2330
+2026-11-17 17:00:36,004 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:36,004 - INFO - 2340
+2026-11-17 17:00:41,881 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:41,882 - INFO - 2350
+2026-11-17 17:00:47,739 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:47,739 - INFO - 2360
+2026-11-17 17:00:53,528 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:53,528 - INFO - 2370
+2026-11-17 17:00:59,506 - INFO - Evaluating log likelihood of:
+2026-11-17 17:00:59,506 - INFO - 2380
+2026-11-17 17:01:05,762 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:05,762 - INFO - 2390
+2026-11-17 17:01:12,135 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:12,135 - INFO - 2400
+2026-11-17 17:01:18,336 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:18,336 - INFO - 2410
+2026-11-17 17:01:24,402 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:24,402 - INFO - 2420
+2026-11-17 17:01:30,521 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:30,521 - INFO - 2430
+2026-11-17 17:01:36,709 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:36,709 - INFO - 2440
+2026-11-17 17:01:42,880 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:42,880 - INFO - 2450
+2026-11-17 17:01:49,074 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:49,074 - INFO - 2460
+2026-11-17 17:01:55,803 - INFO - Evaluating log likelihood of:
+2026-11-17 17:01:55,803 - INFO - 2470
+2026-11-17 17:02:02,371 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:02,371 - INFO - 2480
+2026-11-17 17:02:08,594 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:08,594 - INFO - 2490
+2026-11-17 17:02:15,311 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:15,311 - INFO - 2500
+2026-11-17 17:02:21,580 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:21,580 - INFO - 2510
+2026-11-17 17:02:27,807 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:27,808 - INFO - 2520
+2026-11-17 17:02:34,772 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:34,772 - INFO - 2530
+2026-11-17 17:02:41,012 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:41,013 - INFO - 2540
+2026-11-17 17:02:48,164 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:48,165 - INFO - 2550
+2026-11-17 17:02:54,591 - INFO - Evaluating log likelihood of:
+2026-11-17 17:02:54,591 - INFO - 2560
+2026-11-17 17:03:00,988 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:00,988 - INFO - 2570
+2026-11-17 17:03:07,367 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:07,367 - INFO - 2580
+2026-11-17 17:03:13,823 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:13,823 - INFO - 2590
+2026-11-17 17:03:20,230 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:20,231 - INFO - 2600
+2026-11-17 17:03:26,525 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:26,525 - INFO - 2610
+2026-11-17 17:03:32,994 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:32,994 - INFO - 2620
+2026-11-17 17:03:39,666 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:39,666 - INFO - 2630
+2026-11-17 17:03:46,543 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:46,543 - INFO - 2640
+2026-11-17 17:03:52,930 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:52,930 - INFO - 2650
+2026-11-17 17:03:59,509 - INFO - Evaluating log likelihood of:
+2026-11-17 17:03:59,510 - INFO - 2660
+2026-11-17 17:04:06,402 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:06,402 - INFO - 2670
+2026-11-17 17:04:12,906 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:12,907 - INFO - 2680
+2026-11-17 17:04:19,445 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:19,446 - INFO - 2690
+2026-11-17 17:04:26,271 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:26,272 - INFO - 2700
+2026-11-17 17:04:32,952 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:32,952 - INFO - 2710
+2026-11-17 17:04:39,677 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:39,677 - INFO - 2720
+2026-11-17 17:04:46,134 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:46,134 - INFO - 2730
+2026-11-17 17:04:52,634 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:52,634 - INFO - 2740
+2026-11-17 17:04:59,459 - INFO - Evaluating log likelihood of:
+2026-11-17 17:04:59,459 - INFO - 2750
+2026-11-17 17:05:06,256 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:06,256 - INFO - 2760
+2026-11-17 17:05:13,012 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:13,012 - INFO - 2770
+2026-11-17 17:05:19,863 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:19,863 - INFO - 2780
+2026-11-17 17:05:26,563 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:26,563 - INFO - 2790
+2026-11-17 17:05:33,438 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:33,438 - INFO - 2800
+2026-11-17 17:05:40,090 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:40,090 - INFO - 2810
+2026-11-17 17:05:46,787 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:46,787 - INFO - 2820
+2026-11-17 17:05:54,248 - INFO - Evaluating log likelihood of:
+2026-11-17 17:05:54,248 - INFO - 2830
+2026-11-17 17:06:01,496 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:01,496 - INFO - 2840
+2026-11-17 17:06:08,265 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:08,266 - INFO - 2850
+2026-11-17 17:06:15,244 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:15,244 - INFO - 2860
+2026-11-17 17:06:22,377 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:22,377 - INFO - 2870
+2026-11-17 17:06:29,166 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:29,167 - INFO - 2880
+2026-11-17 17:06:35,992 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:35,992 - INFO - 2890
+2026-11-17 17:06:42,881 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:42,881 - INFO - 2900
+2026-11-17 17:06:49,850 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:49,850 - INFO - 2910
+2026-11-17 17:06:56,894 - INFO - Evaluating log likelihood of:
+2026-11-17 17:06:56,894 - INFO - 2920
+2026-11-17 17:07:03,743 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:03,743 - INFO - 2930
+2026-11-17 17:07:10,616 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:10,616 - INFO - 2940
+2026-11-17 17:07:17,684 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:17,685 - INFO - 2950
+2026-11-17 17:07:24,847 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:24,848 - INFO - 2960
+2026-11-17 17:07:31,797 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:31,797 - INFO - 2970
+2026-11-17 17:07:38,754 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:38,754 - INFO - 2980
+2026-11-17 17:07:45,891 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:45,891 - INFO - 2990
+2026-11-17 17:07:53,059 - INFO - Evaluating log likelihood of:
+2026-11-17 17:07:53,060 - INFO - 3000
+2026-11-17 17:08:00,318 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:00,319 - INFO - 3010
+2026-11-17 17:08:07,610 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:07,610 - INFO - 3020
+2026-11-17 17:08:14,917 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:14,917 - INFO - 3030
+2026-11-17 17:08:22,235 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:22,236 - INFO - 3040
+2026-11-17 17:08:29,359 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:29,359 - INFO - 3050
+2026-11-17 17:08:36,499 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:36,499 - INFO - 3060
+2026-11-17 17:08:43,811 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:43,811 - INFO - 3070
+2026-11-17 17:08:51,132 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:51,132 - INFO - 3080
+2026-11-17 17:08:58,436 - INFO - Evaluating log likelihood of:
+2026-11-17 17:08:58,437 - INFO - 3090
+2026-11-17 17:09:05,796 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:05,796 - INFO - 3100
+2026-11-17 17:09:13,132 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:13,132 - INFO - 3110
+2026-11-17 17:09:20,464 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:20,464 - INFO - 3120
+2026-11-17 17:09:27,769 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:27,770 - INFO - 3130
+2026-11-17 17:09:35,319 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:35,320 - INFO - 3140
+2026-11-17 17:09:42,685 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:42,686 - INFO - 3150
+2026-11-17 17:09:50,160 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:50,161 - INFO - 3160
+2026-11-17 17:09:57,603 - INFO - Evaluating log likelihood of:
+2026-11-17 17:09:57,603 - INFO - 3170
+2026-11-17 17:10:06,971 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:06,971 - INFO - 3180
+2026-11-17 17:10:14,406 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:14,406 - INFO - 3190
+2026-11-17 17:10:23,294 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:23,294 - INFO - 3200
+2026-11-17 17:10:30,822 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:30,822 - INFO - 3210
+2026-11-17 17:10:38,394 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:38,394 - INFO - 3220
+2026-11-17 17:10:46,190 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:46,190 - INFO - 3230
+2026-11-17 17:10:54,108 - INFO - Evaluating log likelihood of:
+2026-11-17 17:10:54,108 - INFO - 3240
+2026-11-17 17:11:01,753 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:01,753 - INFO - 3250
+2026-11-17 17:11:09,398 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:09,398 - INFO - 3260
+2026-11-17 17:11:18,644 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:18,644 - INFO - 3270
+2026-11-17 17:11:26,526 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:26,526 - INFO - 3280
+2026-11-17 17:11:34,288 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:34,288 - INFO - 3290
+2026-11-17 17:11:42,069 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:42,070 - INFO - 3300
+2026-11-17 17:11:49,854 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:49,854 - INFO - 3310
+2026-11-17 17:11:57,565 - INFO - Evaluating log likelihood of:
+2026-11-17 17:11:57,566 - INFO - 3320
+2026-11-17 17:12:05,368 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:05,368 - INFO - 3330
+2026-11-17 17:12:13,345 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:13,346 - INFO - 3340
+2026-11-17 17:12:23,019 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:23,019 - INFO - 3350
+2026-11-17 17:12:31,047 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:31,047 - INFO - 3360
+2026-11-17 17:12:40,820 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:40,820 - INFO - 3370
+2026-11-17 17:12:48,623 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:48,623 - INFO - 3380
+2026-11-17 17:12:56,439 - INFO - Evaluating log likelihood of:
+2026-11-17 17:12:56,439 - INFO - 3390
+2026-11-17 17:13:04,386 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:04,386 - INFO - 3400
+2026-11-17 17:13:13,940 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:13,941 - INFO - 3410
+2026-11-17 17:13:22,017 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:22,017 - INFO - 3420
+2026-11-17 17:13:30,219 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:30,219 - INFO - 3430
+2026-11-17 17:13:38,433 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:38,433 - INFO - 3440
+2026-11-17 17:13:46,575 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:46,575 - INFO - 3450
+2026-11-17 17:13:54,918 - INFO - Evaluating log likelihood of:
+2026-11-17 17:13:54,918 - INFO - 3460
+2026-11-17 17:14:03,181 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:03,181 - INFO - 3470
+2026-11-17 17:14:11,520 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:11,520 - INFO - 3480
+2026-11-17 17:14:19,927 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:19,927 - INFO - 3490
+2026-11-17 17:14:29,926 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:29,926 - INFO - 3500
+2026-11-17 17:14:39,952 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:39,952 - INFO - 3510
+2026-11-17 17:14:48,267 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:48,267 - INFO - 3520
+2026-11-17 17:14:56,521 - INFO - Evaluating log likelihood of:
+2026-11-17 17:14:56,521 - INFO - 3530
+2026-11-17 17:15:06,243 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:06,243 - INFO - 3540
+2026-11-17 17:15:14,723 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:14,723 - INFO - 3550
+2026-11-17 17:15:23,181 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:23,181 - INFO - 3560
+2026-11-17 17:15:33,289 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:33,289 - INFO - 3570
+2026-11-17 17:15:41,868 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:41,869 - INFO - 3580
+2026-11-17 17:15:50,473 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:50,473 - INFO - 3590
+2026-11-17 17:15:58,980 - INFO - Evaluating log likelihood of:
+2026-11-17 17:15:58,980 - INFO - 3600
+2026-11-17 17:16:07,537 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:07,537 - INFO - 3610
+2026-11-17 17:16:16,298 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:16,298 - INFO - 3620
+2026-11-17 17:16:26,999 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:26,999 - INFO - 3630
+2026-11-17 17:16:35,636 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:35,636 - INFO - 3640
+2026-11-17 17:16:45,276 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:45,276 - INFO - 3650
+2026-11-17 17:16:54,457 - INFO - Evaluating log likelihood of:
+2026-11-17 17:16:54,457 - INFO - 3660
+2026-11-17 17:17:03,735 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:03,735 - INFO - 3670
+2026-11-17 17:17:13,103 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:13,103 - INFO - 3680
+2026-11-17 17:17:22,345 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:22,345 - INFO - 3690
+2026-11-17 17:17:32,072 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:32,072 - INFO - 3700
+2026-11-17 17:17:42,129 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:42,130 - INFO - 3710
+2026-11-17 17:17:52,099 - INFO - Evaluating log likelihood of:
+2026-11-17 17:17:52,099 - INFO - 3720
+2026-11-17 17:18:01,480 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:01,480 - INFO - 3730
+2026-11-17 17:18:10,978 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:10,978 - INFO - 3740
+2026-11-17 17:18:20,308 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:20,308 - INFO - 3750
+2026-11-17 17:18:30,481 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:30,481 - INFO - 3760
+2026-11-17 17:18:40,321 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:40,321 - INFO - 3770
+2026-11-17 17:18:49,652 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:49,652 - INFO - 3780
+2026-11-17 17:18:59,513 - INFO - Evaluating log likelihood of:
+2026-11-17 17:18:59,513 - INFO - 3790
+2026-11-17 17:19:09,237 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:09,238 - INFO - 3800
+2026-11-17 17:19:18,829 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:18,829 - INFO - 3810
+2026-11-17 17:19:28,546 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:28,546 - INFO - 3820
+2026-11-17 17:19:38,221 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:38,221 - INFO - 3830
+2026-11-17 17:19:47,898 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:47,898 - INFO - 3840
+2026-11-17 17:19:58,078 - INFO - Evaluating log likelihood of:
+2026-11-17 17:19:58,078 - INFO - 3850
+2026-11-17 17:20:07,544 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:07,545 - INFO - 3860
+2026-11-17 17:20:17,844 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:17,844 - INFO - 3870
+2026-11-17 17:20:27,962 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:27,962 - INFO - 3880
+2026-11-17 17:20:38,060 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:38,061 - INFO - 3890
+2026-11-17 17:20:48,372 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:48,372 - INFO - 3900
+2026-11-17 17:20:58,164 - INFO - Evaluating log likelihood of:
+2026-11-17 17:20:58,164 - INFO - 3910
+2026-11-17 17:21:07,657 - INFO - Evaluating log likelihood of:
+2026-11-17 17:21:07,657 - INFO - 3920
+2026-11-17 17:21:17,321 - INFO - Evaluating log likelihood of:
+2026-11-17 17:21:17,321 - INFO - 3930
+2026-11-17 17:21:27,398 - INFO - Evaluating log likelihood of:
+2026-11-17 17:21:27,398 - INFO - 3940
+2026-11-17 17:21:38,679 - INFO - Evaluating log likelihood of:
+2026-11-17 17:21:38,679 - INFO - 3950
+2026-11-17 17:21:49,757 - INFO - Evaluating log likelihood of:
+2026-11-17 17:21:49,757 - INFO - 3960
+2026-11-17 17:22:01,017 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:01,018 - INFO - 3970
+2026-11-17 17:22:11,452 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:11,453 - INFO - 3980
+2026-11-17 17:22:21,301 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:21,301 - INFO - 3990
+2026-11-17 17:22:31,155 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:31,155 - INFO - 4000
+2026-11-17 17:22:41,693 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:41,693 - INFO - 4010
+2026-11-17 17:22:52,511 - INFO - Evaluating log likelihood of:
+2026-11-17 17:22:52,512 - INFO - 4020
+2026-11-17 17:23:03,234 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:03,234 - INFO - 4030
+2026-11-17 17:23:13,252 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:13,252 - INFO - 4040
+2026-11-17 17:23:24,147 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:24,147 - INFO - 4050
+2026-11-17 17:23:35,120 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:35,120 - INFO - 4060
+2026-11-17 17:23:45,431 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:45,431 - INFO - 4070
+2026-11-17 17:23:55,675 - INFO - Evaluating log likelihood of:
+2026-11-17 17:23:55,675 - INFO - 4080
+2026-11-17 17:24:06,099 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:06,099 - INFO - 4090
+2026-11-17 17:24:16,344 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:16,345 - INFO - 4100
+2026-11-17 17:24:26,213 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:26,213 - INFO - 4110
+2026-11-17 17:24:36,272 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:36,273 - INFO - 4120
+2026-11-17 17:24:46,461 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:46,461 - INFO - 4130
+2026-11-17 17:24:56,869 - INFO - Evaluating log likelihood of:
+2026-11-17 17:24:56,870 - INFO - 4140
+2026-11-17 17:25:08,157 - INFO - Evaluating log likelihood of:
+2026-11-17 17:25:08,158 - INFO - 4150
+2026-11-17 17:25:20,422 - INFO - Evaluating log likelihood of:
+2026-11-17 17:25:20,423 - INFO - 4160
+2026-11-17 17:25:32,463 - INFO - Evaluating log likelihood of:
+2026-11-17 17:25:32,463 - INFO - 4170
+2026-11-17 17:25:44,023 - INFO - Evaluating log likelihood of:
+2026-11-17 17:25:44,023 - INFO - 4180
+2026-11-17 17:25:55,355 - INFO - Evaluating log likelihood of:
+2026-11-17 17:25:55,355 - INFO - 4190
+2026-11-17 17:26:06,852 - INFO - Evaluating log likelihood of:
+2026-11-17 17:26:06,853 - INFO - 4200
+2026-11-17 17:26:18,659 - INFO - Evaluating log likelihood of:
+2026-11-17 17:26:18,660 - INFO - 4210
+2026-11-17 17:26:29,591 - INFO - Evaluating log likelihood of:
+2026-11-17 17:26:29,591 - INFO - 4220
+2026-11-17 17:26:40,569 - INFO - Evaluating log likelihood of:
+2026-11-17 17:26:40,569 - INFO - 4230
+2026-11-17 17:26:51,649 - INFO - Evaluating log likelihood of:
+2026-11-17 17:26:51,649 - INFO - 4240
+2026-11-17 17:27:02,318 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:02,318 - INFO - 4250
+2026-11-17 17:27:14,460 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:14,460 - INFO - 4260
+2026-11-17 17:27:25,730 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:25,730 - INFO - 4270
+2026-11-17 17:27:37,515 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:37,515 - INFO - 4280
+2026-11-17 17:27:48,430 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:48,430 - INFO - 4290
+2026-11-17 17:27:59,434 - INFO - Evaluating log likelihood of:
+2026-11-17 17:27:59,434 - INFO - 4300
+2026-11-17 17:28:11,555 - INFO - Evaluating log likelihood of:
+2026-11-17 17:28:11,556 - INFO - 4310
+2026-11-17 17:28:22,961 - INFO - Evaluating log likelihood of:
+2026-11-17 17:28:22,961 - INFO - 4320
+2026-11-17 17:28:34,274 - INFO - Evaluating log likelihood of:
+2026-11-17 17:28:34,275 - INFO - 4330
+2026-11-17 17:28:46,963 - INFO - Evaluating log likelihood of:
+2026-11-17 17:28:46,963 - INFO - 4340
+2026-11-17 17:28:59,447 - INFO - Evaluating log likelihood of:
+2026-11-17 17:28:59,447 - INFO - 4350
+2026-11-17 17:29:11,000 - INFO - Evaluating log likelihood of:
+2026-11-17 17:29:11,000 - INFO - 4360
+2026-11-17 17:29:23,118 - INFO - Evaluating log likelihood of:
+2026-11-17 17:29:23,118 - INFO - 4370
+2026-11-17 17:29:34,165 - INFO - Evaluating log likelihood of:
+2026-11-17 17:29:34,165 - INFO - 4380
+2026-11-17 17:29:45,308 - INFO - Evaluating log likelihood of:
+2026-11-17 17:29:45,308 - INFO - 4390
+2026-11-17 17:29:56,624 - INFO - Evaluating log likelihood of:
+2026-11-17 17:29:56,624 - INFO - 4400
+2026-11-17 17:30:07,798 - INFO - Evaluating log likelihood of:
+2026-11-17 17:30:07,798 - INFO - 4410
+2026-11-17 17:30:19,279 - INFO - Evaluating log likelihood of:
+2026-11-17 17:30:19,279 - INFO - 4420
+2026-11-17 17:30:30,452 - INFO - Evaluating log likelihood of:
+2026-11-17 17:30:30,452 - INFO - 4430
+2026-11-17 17:30:41,988 - INFO - Evaluating log likelihood of:
+2026-11-17 17:30:41,988 - INFO - 4440
+2026-11-17 17:30:53,238 - INFO - Evaluating log likelihood of:
+2026-11-17 17:30:53,238 - INFO - 4450
+2026-11-17 17:31:04,369 - INFO - Evaluating log likelihood of:
+2026-11-17 17:31:04,369 - INFO - 4460
+2026-11-17 17:31:15,442 - INFO - Evaluating log likelihood of:
+2026-11-17 17:31:15,442 - INFO - 4470
+2026-11-17 17:31:26,422 - INFO - Evaluating log likelihood of:
+2026-11-17 17:31:26,422 - INFO - 4480
+2026-11-17 17:31:38,014 - INFO - Evaluating log likelihood of:
+2026-11-17 17:31:38,014 - INFO - 4490
+2026-11-17 17:31:49,361 - INFO - Evaluating log likelihood of:
+2026-11-17 17:31:49,361 - INFO - 4500
+2026-11-17 17:32:00,904 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:00,904 - INFO - 4510
+2026-11-17 17:32:12,187 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:12,187 - INFO - 4520
+2026-11-17 17:32:23,514 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:23,514 - INFO - 4530
+2026-11-17 17:32:34,862 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:34,863 - INFO - 4540
+2026-11-17 17:32:46,204 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:46,205 - INFO - 4550
+2026-11-17 17:32:57,956 - INFO - Evaluating log likelihood of:
+2026-11-17 17:32:57,957 - INFO - 4560
+2026-11-17 17:33:11,052 - INFO - Evaluating log likelihood of:
+2026-11-17 17:33:11,052 - INFO - 4570
+2026-11-17 17:33:23,714 - INFO - Evaluating log likelihood of:
+2026-11-17 17:33:23,714 - INFO - 4580
+2026-11-17 17:33:35,825 - INFO - Evaluating log likelihood of:
+2026-11-17 17:33:35,825 - INFO - 4590
+2026-11-17 17:33:47,828 - INFO - Evaluating log likelihood of:
+2026-11-17 17:33:47,828 - INFO - 4600
+2026-11-17 17:33:59,658 - INFO - Evaluating log likelihood of:
+2026-11-17 17:33:59,658 - INFO - 4610
+2026-11-17 17:34:11,493 - INFO - Evaluating log likelihood of:
+2026-11-17 17:34:11,494 - INFO - 4620
+2026-11-17 17:34:22,940 - INFO - Evaluating log likelihood of:
+2026-11-17 17:34:22,940 - INFO - 4630
+2026-11-17 17:34:34,271 - INFO - Evaluating log likelihood of:
+2026-11-17 17:34:34,271 - INFO - 4640
+2026-11-17 17:34:45,538 - INFO - Evaluating log likelihood of:
+2026-11-17 17:34:45,538 - INFO - 4650
+2026-11-17 17:34:56,906 - INFO - Evaluating log likelihood of:
+2026-11-17 17:34:56,907 - INFO - 4660
+2026-11-17 17:35:08,376 - INFO - Evaluating log likelihood of:
+2026-11-17 17:35:08,376 - INFO - 4670
+2026-11-17 17:35:19,807 - INFO - Evaluating log likelihood of:
+2026-11-17 17:35:19,807 - INFO - 4680
+2026-11-17 17:35:31,668 - INFO - Evaluating log likelihood of:
+2026-11-17 17:35:31,668 - INFO - 4690
+2026-11-17 17:35:43,432 - INFO - Evaluating log likelihood of:
+2026-11-17 17:35:43,432 - INFO - 4700
+2026-11-17 17:35:55,266 - INFO - Evaluating log likelihood of:
+2026-11-17 17:35:55,266 - INFO - 4710
+2026-11-17 17:36:06,880 - INFO - Evaluating log likelihood of:
+2026-11-17 17:36:06,880 - INFO - 4720
+2026-11-17 17:36:18,446 - INFO - Evaluating log likelihood of:
+2026-11-17 17:36:18,446 - INFO - 4730
+2026-11-17 17:36:30,734 - INFO - Evaluating log likelihood of:
+2026-11-17 17:36:30,735 - INFO - 4740
+2026-11-17 17:36:44,149 - INFO - Evaluating log likelihood of:
+2026-11-17 17:36:44,149 - INFO - 4750
+2026-11-17 17:36:57,141 - INFO - Evaluating log likelihood of:
+2026-11-17 17:36:57,142 - INFO - 4760
+2026-11-17 17:37:09,797 - INFO - Evaluating log likelihood of:
+2026-11-17 17:37:09,797 - INFO - 4770
+2026-11-17 17:37:22,437 - INFO - Evaluating log likelihood of:
+2026-11-17 17:37:22,438 - INFO - 4780
+2026-11-17 17:37:34,966 - INFO - Evaluating log likelihood of:
+2026-11-17 17:37:34,966 - INFO - 4790
+2026-11-17 17:37:47,777 - INFO - Evaluating log likelihood of:
+2026-11-17 17:37:47,777 - INFO - 4800
+2026-11-17 17:38:00,688 - INFO - Evaluating log likelihood of:
+2026-11-17 17:38:00,688 - INFO - 4810
+2026-11-17 17:38:13,561 - INFO - Evaluating log likelihood of:
+2026-11-17 17:38:13,562 - INFO - 4820
+2026-11-17 17:38:26,312 - INFO - Evaluating log likelihood of:
+2026-11-17 17:38:26,312 - INFO - 4830
+2026-11-17 17:38:39,079 - INFO - Evaluating log likelihood of:
+2026-11-17 17:38:39,079 - INFO - 4840
+2026-11-17 17:38:51,414 - INFO - Evaluating log likelihood of:
+2026-11-17 17:38:51,414 - INFO - 4850
+2026-11-17 17:39:03,963 - INFO - Evaluating log likelihood of:
+2026-11-17 17:39:03,963 - INFO - 4860
+2026-11-17 17:39:16,402 - INFO - Evaluating log likelihood of:
+2026-11-17 17:39:16,402 - INFO - 4870
+2026-11-17 17:39:28,881 - INFO - Evaluating log likelihood of:
+2026-11-17 17:39:28,881 - INFO - 4880
+2026-11-17 17:39:41,209 - INFO - Evaluating log likelihood of:
+2026-11-17 17:39:41,209 - INFO - 4890
+2026-11-17 17:39:53,423 - INFO - Evaluating log likelihood of:
+2026-11-17 17:39:53,423 - INFO - 4900
+2026-11-17 17:40:05,264 - INFO - Evaluating log likelihood of:
+2026-11-17 17:40:05,264 - INFO - 4910
+2026-11-17 17:40:17,185 - INFO - Evaluating log likelihood of:
+2026-11-17 17:40:17,186 - INFO - 4920
+2026-11-17 17:40:29,960 - INFO - Evaluating log likelihood of:
+2026-11-17 17:40:29,960 - INFO - 4930
+2026-11-17 17:40:42,797 - INFO - Evaluating log likelihood of:
+2026-11-17 17:40:42,797 - INFO - 4940
+2026-11-17 17:40:55,396 - INFO - Evaluating log likelihood of:
+2026-11-17 17:40:55,396 - INFO - 4950
+2026-11-17 17:41:08,543 - INFO - Evaluating log likelihood of:
+2026-11-17 17:41:08,544 - INFO - 4960
+2026-11-17 17:41:21,087 - INFO - Evaluating log likelihood of:
+2026-11-17 17:41:21,087 - INFO - 4970
+2026-11-17 17:41:33,821 - INFO - Evaluating log likelihood of:
+2026-11-17 17:41:33,821 - INFO - 4980
+2026-11-17 17:41:46,761 - INFO - Evaluating log likelihood of:
+2026-11-17 17:41:46,762 - INFO - 4990
+2026-11-17 17:41:59,386 - INFO - Evaluating log likelihood of:
+2026-11-17 17:41:59,386 - INFO - 5000
+2026-11-17 17:42:12,049 - INFO - Evaluating log likelihood of:
+2026-11-17 17:42:12,049 - INFO - 5010
+2026-11-17 17:42:24,974 - INFO - Evaluating log likelihood of:
+2026-11-17 17:42:24,974 - INFO - 5020
+2026-11-17 17:42:39,299 - INFO - Evaluating log likelihood of:
+2026-11-17 17:42:39,300 - INFO - 5030
+2026-11-17 17:42:53,198 - INFO - Evaluating log likelihood of:
+2026-11-17 17:42:53,198 - INFO - 5040
+2026-11-17 17:43:06,693 - INFO - Evaluating log likelihood of:
+2026-11-17 17:43:06,693 - INFO - 5050
+2026-11-17 17:43:20,541 - INFO - Evaluating log likelihood of:
+2026-11-17 17:43:20,541 - INFO - 5060
+2026-11-17 17:43:34,121 - INFO - Evaluating log likelihood of:
+2026-11-17 17:43:34,121 - INFO - 5070
+2026-11-17 17:43:47,691 - INFO - Evaluating log likelihood of:
+2026-11-17 17:43:47,691 - INFO - 5080
+2026-11-17 17:44:01,005 - INFO - Evaluating log likelihood of:
+2026-11-17 17:44:01,005 - INFO - 5090
+2026-11-17 17:44:15,040 - INFO - Evaluating log likelihood of:
+2026-11-17 17:44:15,040 - INFO - 5100
+2026-11-17 17:44:28,852 - INFO - Evaluating log likelihood of:
+2026-11-17 17:44:28,852 - INFO - 5110
+2026-11-17 17:44:42,754 - INFO - Evaluating log likelihood of:
+2026-11-17 17:44:42,755 - INFO - 5120
+2026-11-17 17:44:56,845 - INFO - Evaluating log likelihood of:
+2026-11-17 17:44:56,845 - INFO - 5130
+2026-11-17 17:45:10,602 - INFO - Evaluating log likelihood of:
+2026-11-17 17:45:10,602 - INFO - 5140
+2026-11-17 17:45:25,167 - INFO - Evaluating log likelihood of:
+2026-11-17 17:45:25,167 - INFO - 5150
+2026-11-17 17:45:38,895 - INFO - Evaluating log likelihood of:
+2026-11-17 17:45:38,895 - INFO - 5160
+2026-11-17 17:45:52,156 - INFO - Evaluating log likelihood of:
+2026-11-17 17:45:52,156 - INFO - 5170
+2026-11-17 17:46:05,279 - INFO - Evaluating log likelihood of:
+2026-11-17 17:46:05,280 - INFO - 5180
+2026-11-17 17:46:18,471 - INFO - Evaluating log likelihood of:
+2026-11-17 17:46:18,471 - INFO - 5190
+2026-11-17 17:46:31,380 - INFO - Evaluating log likelihood of:
+2026-11-17 17:46:31,380 - INFO - 5200
+2026-11-17 17:46:44,696 - INFO - Evaluating log likelihood of:
+2026-11-17 17:46:44,696 - INFO - 5210
+2026-11-17 17:46:58,485 - INFO - Evaluating log likelihood of:
+2026-11-17 17:46:58,485 - INFO - 5220
+2026-11-17 17:47:12,361 - INFO - Evaluating log likelihood of:
+2026-11-17 17:47:12,361 - INFO - 5230
+2026-11-17 17:47:25,788 - INFO - Evaluating log likelihood of:
+2026-11-17 17:47:25,788 - INFO - 5240
+2026-11-17 17:47:39,351 - INFO - Evaluating log likelihood of:
+2026-11-17 17:47:39,351 - INFO - 5250
+2026-11-17 17:47:52,697 - INFO - Evaluating log likelihood of:
+2026-11-17 17:47:52,697 - INFO - 5260
+2026-11-17 17:48:06,093 - INFO - Evaluating log likelihood of:
+2026-11-17 17:48:06,094 - INFO - 5270
+2026-11-17 17:48:21,088 - INFO - Evaluating log likelihood of:
+2026-11-17 17:48:21,088 - INFO - 5280
+2026-11-17 17:48:34,845 - INFO - Evaluating log likelihood of:
+2026-11-17 17:48:34,845 - INFO - 5290
+2026-11-17 17:48:48,887 - INFO - Evaluating log likelihood of:
+2026-11-17 17:48:48,888 - INFO - 5300
+2026-11-17 17:49:02,609 - INFO - Evaluating log likelihood of:
+2026-11-17 17:49:02,609 - INFO - 5310
+2026-11-17 17:49:16,244 - INFO - Evaluating log likelihood of:
+2026-11-17 17:49:16,244 - INFO - 5320
+2026-11-17 17:49:30,399 - INFO - Evaluating log likelihood of:
+2026-11-17 17:49:30,399 - INFO - 5330
+2026-11-17 17:49:44,156 - INFO - Evaluating log likelihood of:
+2026-11-17 17:49:44,156 - INFO - 5340
+2026-11-17 17:49:58,209 - INFO - Evaluating log likelihood of:
+2026-11-17 17:49:58,209 - INFO - 5350
+2026-11-17 17:50:13,045 - INFO - Evaluating log likelihood of:
+2026-11-17 17:50:13,045 - INFO - 5360
+2026-11-17 17:50:28,969 - INFO - Evaluating log likelihood of:
+2026-11-17 17:50:28,970 - INFO - 5370
+2026-11-17 17:50:43,590 - INFO - Evaluating log likelihood of:
+2026-11-17 17:50:43,590 - INFO - 5380
+2026-11-17 17:50:58,024 - INFO - Evaluating log likelihood of:
+2026-11-17 17:50:58,024 - INFO - 5390
+2026-11-17 17:51:11,919 - INFO - Evaluating log likelihood of:
+2026-11-17 17:51:11,919 - INFO - 5400
+2026-11-17 17:51:25,959 - INFO - Evaluating log likelihood of:
+2026-11-17 17:51:25,959 - INFO - 5410
+2026-11-17 17:51:39,672 - INFO - Evaluating log likelihood of:
+2026-11-17 17:51:39,672 - INFO - 5420
+2026-11-17 17:51:53,532 - INFO - Evaluating log likelihood of:
+2026-11-17 17:51:53,532 - INFO - 5430
+2026-11-17 17:52:07,879 - INFO - Evaluating log likelihood of:
+2026-11-17 17:52:07,879 - INFO - 5440
+2026-11-17 17:52:21,429 - INFO - Evaluating log likelihood of:
+2026-11-17 17:52:21,429 - INFO - 5450
+2026-11-17 17:52:35,304 - INFO - Evaluating log likelihood of:
+2026-11-17 17:52:35,304 - INFO - 5460
+2026-11-17 17:52:49,586 - INFO - Evaluating log likelihood of:
+2026-11-17 17:52:49,586 - INFO - 5470
+2026-11-17 17:53:03,962 - INFO - Evaluating log likelihood of:
+2026-11-17 17:53:03,963 - INFO - 5480
+2026-11-17 17:53:18,464 - INFO - Evaluating log likelihood of:
+2026-11-17 17:53:18,464 - INFO - 5490
+2026-11-17 17:53:32,831 - INFO - Evaluating log likelihood of:
+2026-11-17 17:53:32,831 - INFO - 5500
+2026-11-17 17:53:47,411 - INFO - Evaluating log likelihood of:
+2026-11-17 17:53:47,411 - INFO - 5510
+2026-11-17 17:54:01,772 - INFO - Evaluating log likelihood of:
+2026-11-17 17:54:01,772 - INFO - 5520
+2026-11-17 17:54:15,594 - INFO - Evaluating log likelihood of:
+2026-11-17 17:54:15,594 - INFO - 5530
+2026-11-17 17:54:29,653 - INFO - Evaluating log likelihood of:
+2026-11-17 17:54:29,654 - INFO - 5540
+2026-11-17 17:54:43,580 - INFO - Evaluating log likelihood of:
+2026-11-17 17:54:43,580 - INFO - 5550
+2026-11-17 17:54:57,896 - INFO - Evaluating log likelihood of:
+2026-11-17 17:54:57,897 - INFO - 5560
+2026-11-17 17:55:12,134 - INFO - Evaluating log likelihood of:
+2026-11-17 17:55:12,135 - INFO - 5570
+2026-11-17 17:55:26,231 - INFO - Evaluating log likelihood of:
+2026-11-17 17:55:26,231 - INFO - 5580
+2026-11-17 17:55:40,745 - INFO - Evaluating log likelihood of:
+2026-11-17 17:55:40,746 - INFO - 5590
+2026-11-17 17:55:54,569 - INFO - Evaluating log likelihood of:
+2026-11-17 17:55:54,570 - INFO - 5600
+2026-11-17 17:56:08,469 - INFO - Evaluating log likelihood of:
+2026-11-17 17:56:08,469 - INFO - 5610
+2026-11-17 17:56:23,545 - INFO - Evaluating log likelihood of:
+2026-11-17 17:56:23,545 - INFO - 5620
+2026-11-17 17:56:39,138 - INFO - Evaluating log likelihood of:
+2026-11-17 17:56:39,138 - INFO - 5630
+2026-11-17 17:56:53,874 - INFO - Evaluating log likelihood of:
+2026-11-17 17:56:53,875 - INFO - 5640
+2026-11-17 17:57:08,648 - INFO - Evaluating log likelihood of:
+2026-11-17 17:57:08,648 - INFO - 5650
+2026-11-17 17:57:22,960 - INFO - Evaluating log likelihood of:
+2026-11-17 17:57:22,960 - INFO - 5660
+2026-11-17 17:57:37,171 - INFO - Evaluating log likelihood of:
+2026-11-17 17:57:37,171 - INFO - 5670
+2026-11-17 17:57:50,902 - INFO - Evaluating log likelihood of:
+2026-11-17 17:57:50,902 - INFO - 5680
+2026-11-17 17:58:04,579 - INFO - Evaluating log likelihood of:
+2026-11-17 17:58:04,579 - INFO - 5690
+2026-11-17 17:58:18,411 - INFO - Evaluating log likelihood of:
+2026-11-17 17:58:18,411 - INFO - 5700
+2026-11-17 17:58:32,330 - INFO - Evaluating log likelihood of:
+2026-11-17 17:58:32,331 - INFO - 5710
+2026-11-17 17:58:46,364 - INFO - Evaluating log likelihood of:
+2026-11-17 17:58:46,364 - INFO - 5720
+2026-11-17 17:59:02,671 - INFO - Evaluating log likelihood of:
+2026-11-17 17:59:02,671 - INFO - 5730
+2026-11-17 17:59:18,619 - INFO - Evaluating log likelihood of:
+2026-11-17 17:59:18,619 - INFO - 5740
+2026-11-17 17:59:33,896 - INFO - Evaluating log likelihood of:
+2026-11-17 17:59:33,897 - INFO - 5750
+2026-11-17 17:59:49,402 - INFO - Evaluating log likelihood of:
+2026-11-17 17:59:49,402 - INFO - 5760
+2026-11-17 18:00:04,324 - INFO - Evaluating log likelihood of:
+2026-11-17 18:00:04,324 - INFO - 5770
+2026-11-17 18:00:18,609 - INFO - Evaluating log likelihood of:
+2026-11-17 18:00:18,610 - INFO - 5780
+2026-11-17 18:00:32,782 - INFO - Evaluating log likelihood of:
+2026-11-17 18:00:32,783 - INFO - 5790
+2026-11-17 18:00:46,953 - INFO - Evaluating log likelihood of:
+2026-11-17 18:00:46,954 - INFO - 5800
+2026-11-17 18:01:00,979 - INFO - Evaluating log likelihood of:
+2026-11-17 18:01:00,979 - INFO - 5810
+2026-11-17 18:01:14,937 - INFO - Evaluating log likelihood of:
+2026-11-17 18:01:14,937 - INFO - 5820
+2026-11-17 18:01:29,179 - INFO - Evaluating log likelihood of:
+2026-11-17 18:01:29,179 - INFO - 5830
+2026-11-17 18:01:43,160 - INFO - Evaluating log likelihood of:
+2026-11-17 18:01:43,161 - INFO - 5840
+2026-11-17 18:01:57,440 - INFO - Evaluating log likelihood of:
+2026-11-17 18:01:57,440 - INFO - 5850
+2026-11-17 18:02:11,610 - INFO - Evaluating log likelihood of:
+2026-11-17 18:02:11,610 - INFO - 5860
+2026-11-17 18:02:25,768 - INFO - Evaluating log likelihood of:
+2026-11-17 18:02:25,768 - INFO - 5870
+2026-11-17 18:02:39,822 - INFO - Evaluating log likelihood of:
+2026-11-17 18:02:39,823 - INFO - 5880
+2026-11-17 18:02:54,177 - INFO - Evaluating log likelihood of:
+2026-11-17 18:02:54,177 - INFO - 5890
+2026-11-17 18:03:08,249 - INFO - Evaluating log likelihood of:
+2026-11-17 18:03:08,249 - INFO - 5900
+2026-11-17 18:03:22,768 - INFO - Evaluating log likelihood of:
+2026-11-17 18:03:22,768 - INFO - 5910
+2026-11-17 18:03:37,048 - INFO - Evaluating log likelihood of:
+2026-11-17 18:03:37,048 - INFO - 5920
+2026-11-17 18:03:51,593 - INFO - Evaluating log likelihood of:
+2026-11-17 18:03:51,594 - INFO - 5930
+2026-11-17 18:04:06,239 - INFO - Evaluating log likelihood of:
+2026-11-17 18:04:06,239 - INFO - 5940
+2026-11-17 18:04:20,723 - INFO - Evaluating log likelihood of:
+2026-11-17 18:04:20,723 - INFO - 5950
+2026-11-17 18:04:38,048 - INFO - Evaluating log likelihood of:
+2026-11-17 18:04:38,048 - INFO - 5960
+2026-11-17 18:04:54,553 - INFO - Evaluating log likelihood of:
+2026-11-17 18:04:54,553 - INFO - 5970
+2026-11-17 18:05:10,742 - INFO - Evaluating log likelihood of:
+2026-11-17 18:05:10,743 - INFO - 5980
+2026-11-17 18:05:27,326 - INFO - Evaluating log likelihood of:
+2026-11-17 18:05:27,327 - INFO - 5990
+2026-11-17 18:05:43,569 - INFO - Evaluating log likelihood of:
+2026-11-17 18:05:43,570 - INFO - 6000
+2026-11-17 18:05:59,609 - INFO - Evaluating log likelihood of:
+2026-11-17 18:05:59,609 - INFO - 6010
+2026-11-17 18:06:15,457 - INFO - Evaluating log likelihood of:
+2026-11-17 18:06:15,457 - INFO - 6020
+2026-11-17 18:06:31,701 - INFO - Evaluating log likelihood of:
+2026-11-17 18:06:31,701 - INFO - 6030
+2026-11-17 18:06:47,662 - INFO - Evaluating log likelihood of:
+2026-11-17 18:06:47,662 - INFO - 6040
+2026-11-17 18:07:04,717 - INFO - Evaluating log likelihood of:
+2026-11-17 18:07:04,718 - INFO - 6050
+2026-11-17 18:07:21,481 - INFO - Evaluating log likelihood of:
+2026-11-17 18:07:21,481 - INFO - 6060
+2026-11-17 18:07:37,661 - INFO - Evaluating log likelihood of:
+2026-11-17 18:07:37,661 - INFO - 6070
+2026-11-17 18:07:52,821 - INFO - Evaluating log likelihood of:
+2026-11-17 18:07:52,821 - INFO - 6080
+2026-11-17 18:08:08,113 - INFO - Evaluating log likelihood of:
+2026-11-17 18:08:08,113 - INFO - 6090
+2026-11-17 18:08:23,708 - INFO - Evaluating log likelihood of:
+2026-11-17 18:08:23,708 - INFO - 6100
+2026-11-17 18:08:38,962 - INFO - Evaluating log likelihood of:
+2026-11-17 18:08:38,962 - INFO - 6110
+2026-11-17 18:08:54,224 - INFO - Evaluating log likelihood of:
+2026-11-17 18:08:54,224 - INFO - 6120
+2026-11-17 18:09:09,407 - INFO - Evaluating log likelihood of:
+2026-11-17 18:09:09,407 - INFO - 6130
+2026-11-17 18:09:24,716 - INFO - Evaluating log likelihood of:
+2026-11-17 18:09:24,716 - INFO - 6140
+2026-11-17 18:09:39,869 - INFO - Evaluating log likelihood of:
+2026-11-17 18:09:39,869 - INFO - 6150
+2026-11-17 18:09:54,923 - INFO - Evaluating log likelihood of:
+2026-11-17 18:09:54,923 - INFO - 6160
+2026-11-17 18:10:10,026 - INFO - Evaluating log likelihood of:
+2026-11-17 18:10:10,026 - INFO - 6170
+2026-11-17 18:10:25,242 - INFO - Evaluating log likelihood of:
+2026-11-17 18:10:25,242 - INFO - 6180
+2026-11-17 18:10:40,588 - INFO - Evaluating log likelihood of:
+2026-11-17 18:10:40,589 - INFO - 6190
+2026-11-17 18:10:55,833 - INFO - Evaluating log likelihood of:
+2026-11-17 18:10:55,833 - INFO - 6200
+2026-11-17 18:11:11,249 - INFO - Evaluating log likelihood of:
+2026-11-17 18:11:11,249 - INFO - 6210
+2026-11-17 18:11:26,675 - INFO - Evaluating log likelihood of:
+2026-11-17 18:11:26,675 - INFO - 6220
+2026-11-17 18:11:42,323 - INFO - Evaluating log likelihood of:
+2026-11-17 18:11:42,324 - INFO - 6230
+2026-11-17 18:11:59,807 - INFO - Evaluating log likelihood of:
+2026-11-17 18:11:59,807 - INFO - 6240
+2026-11-17 18:12:17,574 - INFO - Evaluating log likelihood of:
+2026-11-17 18:12:17,574 - INFO - 6250
+2026-11-17 18:12:34,375 - INFO - Evaluating log likelihood of:
+2026-11-17 18:12:34,375 - INFO - 6260
+2026-11-17 18:12:51,089 - INFO - Evaluating log likelihood of:
+2026-11-17 18:12:51,089 - INFO - 6270
+2026-11-17 18:13:08,685 - INFO - Evaluating log likelihood of:
+2026-11-17 18:13:08,685 - INFO - 6280
+2026-11-17 18:13:25,807 - INFO - Evaluating log likelihood of:
+2026-11-17 18:13:25,807 - INFO - 6290
+2026-11-17 18:13:42,186 - INFO - Evaluating log likelihood of:
+2026-11-17 18:13:42,186 - INFO - 6300
+2026-11-17 18:13:58,140 - INFO - Evaluating log likelihood of:
+2026-11-17 18:13:58,140 - INFO - 6310
+2026-11-17 18:14:14,256 - INFO - Evaluating log likelihood of:
+2026-11-17 18:14:14,256 - INFO - 6320
+2026-11-17 18:14:32,649 - INFO - Evaluating log likelihood of:
+2026-11-17 18:14:32,650 - INFO - 6330
+2026-11-17 18:14:50,305 - INFO - Evaluating log likelihood of:
+2026-11-17 18:14:50,305 - INFO - 6340
+2026-11-17 18:15:07,502 - INFO - Evaluating log likelihood of:
+2026-11-17 18:15:07,502 - INFO - 6350
+2026-11-17 18:15:24,290 - INFO - Evaluating log likelihood of:
+2026-11-17 18:15:24,290 - INFO - 6360
+2026-11-17 18:15:41,906 - INFO - Evaluating log likelihood of:
+2026-11-17 18:15:41,907 - INFO - 6370
+2026-11-17 18:15:59,157 - INFO - Evaluating log likelihood of:
+2026-11-17 18:15:59,157 - INFO - 6380
+2026-11-17 18:16:15,771 - INFO - Evaluating log likelihood of:
+2026-11-17 18:16:15,771 - INFO - 6390
+2026-11-17 18:16:31,877 - INFO - Evaluating log likelihood of:
+2026-11-17 18:16:31,878 - INFO - 6400
+2026-11-17 18:16:47,933 - INFO - Evaluating log likelihood of:
+2026-11-17 18:16:47,933 - INFO - 6410
+2026-11-17 18:17:04,408 - INFO - Evaluating log likelihood of:
+2026-11-17 18:17:04,409 - INFO - 6420
+2026-11-17 18:17:22,997 - INFO - Evaluating log likelihood of:
+2026-11-17 18:17:22,998 - INFO - 6430
+2026-11-17 18:17:41,196 - INFO - Evaluating log likelihood of:
+2026-11-17 18:17:41,196 - INFO - 6440
+2026-11-17 18:17:58,882 - INFO - Evaluating log likelihood of:
+2026-11-17 18:17:58,883 - INFO - 6450
+2026-11-17 18:18:16,018 - INFO - Evaluating log likelihood of:
+2026-11-17 18:18:16,018 - INFO - 6460
+2026-11-17 18:18:33,817 - INFO - Evaluating log likelihood of:
+2026-11-17 18:18:33,817 - INFO - 6470
+2026-11-17 18:18:51,403 - INFO - Evaluating log likelihood of:
+2026-11-17 18:18:51,403 - INFO - 6480
+2026-11-17 18:19:08,845 - INFO - Evaluating log likelihood of:
+2026-11-17 18:19:08,846 - INFO - 6490
+2026-11-17 18:19:25,853 - INFO - Evaluating log likelihood of:
+2026-11-17 18:19:25,854 - INFO - 6500
+2026-11-17 18:19:43,478 - INFO - Evaluating log likelihood of:
+2026-11-17 18:19:43,479 - INFO - 6510
+2026-11-17 18:20:01,511 - INFO - Evaluating log likelihood of:
+2026-11-17 18:20:01,511 - INFO - 6520
+2026-11-17 18:20:18,549 - INFO - Evaluating log likelihood of:
+2026-11-17 18:20:18,549 - INFO - 6530
+2026-11-17 18:20:35,356 - INFO - Evaluating log likelihood of:
+2026-11-17 18:20:35,357 - INFO - 6540
+2026-11-17 18:20:52,047 - INFO - Evaluating log likelihood of:
+2026-11-17 18:20:52,048 - INFO - 6550
+2026-11-17 18:21:09,521 - INFO - Evaluating log likelihood of:
+2026-11-17 18:21:09,522 - INFO - 6560
+2026-11-17 18:21:26,762 - INFO - Evaluating log likelihood of:
+2026-11-17 18:21:26,762 - INFO - 6570
+2026-11-17 18:21:44,031 - INFO - Evaluating log likelihood of:
+2026-11-17 18:21:44,031 - INFO - 6580
+2026-11-17 18:22:00,788 - INFO - Evaluating log likelihood of:
+2026-11-17 18:22:00,788 - INFO - 6590
+2026-11-17 18:22:18,112 - INFO - Evaluating log likelihood of:
+2026-11-17 18:22:18,112 - INFO - 6600
+2026-11-17 18:22:35,220 - INFO - Evaluating log likelihood of:
+2026-11-17 18:22:35,221 - INFO - 6610
+2026-11-17 18:22:52,542 - INFO - Evaluating log likelihood of:
+2026-11-17 18:22:52,542 - INFO - 6620
+2026-11-17 18:23:10,235 - INFO - Evaluating log likelihood of:
+2026-11-17 18:23:10,236 - INFO - 6630
+2026-11-17 18:23:27,306 - INFO - Evaluating log likelihood of:
+2026-11-17 18:23:27,306 - INFO - 6640
+2026-11-17 18:23:44,488 - INFO - Evaluating log likelihood of:
+2026-11-17 18:23:44,488 - INFO - 6650
+2026-11-17 18:24:01,288 - INFO - Evaluating log likelihood of:
+2026-11-17 18:24:01,288 - INFO - 6660
+2026-11-17 18:24:18,611 - INFO - Evaluating log likelihood of:
+2026-11-17 18:24:18,611 - INFO - 6670
+2026-11-17 18:24:35,970 - INFO - Evaluating log likelihood of:
+2026-11-17 18:24:35,970 - INFO - 6680
+2026-11-17 18:24:53,416 - INFO - Evaluating log likelihood of:
+2026-11-17 18:24:53,416 - INFO - 6690
+2026-11-17 18:25:10,766 - INFO - Evaluating log likelihood of:
+2026-11-17 18:25:10,766 - INFO - 6700
+2026-11-17 18:25:27,306 - INFO - Evaluating log likelihood of:
+2026-11-17 18:25:27,306 - INFO - 6710
+2026-11-17 18:25:43,740 - INFO - Evaluating log likelihood of:
+2026-11-17 18:25:43,740 - INFO - 6720
+2026-11-17 18:26:01,417 - INFO - Evaluating log likelihood of:
+2026-11-17 18:26:01,417 - INFO - 6730
+2026-11-17 18:26:19,372 - INFO - Evaluating log likelihood of:
+2026-11-17 18:26:19,372 - INFO - 6740
+2026-11-17 18:26:36,157 - INFO - Evaluating log likelihood of:
+2026-11-17 18:26:36,157 - INFO - 6750
+2026-11-17 18:26:53,080 - INFO - Evaluating log likelihood of:
+2026-11-17 18:26:53,081 - INFO - 6760
+2026-11-17 18:27:10,149 - INFO - Evaluating log likelihood of:
+2026-11-17 18:27:10,149 - INFO - 6770
+2026-11-17 18:27:27,023 - INFO - Evaluating log likelihood of:
+2026-11-17 18:27:27,023 - INFO - 6780
+2026-11-17 18:27:44,553 - INFO - Evaluating log likelihood of:
+2026-11-17 18:27:44,554 - INFO - 6790
+2026-11-17 18:28:01,310 - INFO - Evaluating log likelihood of:
+2026-11-17 18:28:01,310 - INFO - 6800
+2026-11-17 18:28:19,145 - INFO - Evaluating log likelihood of:
+2026-11-17 18:28:19,146 - INFO - 6810
+2026-11-17 18:28:35,922 - INFO - Evaluating log likelihood of:
+2026-11-17 18:28:35,922 - INFO - 6820
+2026-11-17 18:28:53,891 - INFO - Evaluating log likelihood of:
+2026-11-17 18:28:53,891 - INFO - 6830
+2026-11-17 18:29:11,017 - INFO - Evaluating log likelihood of:
+2026-11-17 18:29:11,017 - INFO - 6840
+2026-11-17 18:29:28,420 - INFO - Evaluating log likelihood of:
+2026-11-17 18:29:28,420 - INFO - 6850
+2026-11-17 18:29:45,492 - INFO - Evaluating log likelihood of:
+2026-11-17 18:29:45,492 - INFO - 6860
+2026-11-17 18:30:02,820 - INFO - Evaluating log likelihood of:
+2026-11-17 18:30:02,820 - INFO - 6870
+2026-11-17 18:30:19,744 - INFO - Evaluating log likelihood of:
+2026-11-17 18:30:19,744 - INFO - 6880
+2026-11-17 18:30:36,663 - INFO - Evaluating log likelihood of:
+2026-11-17 18:30:36,663 - INFO - 6890
+2026-11-17 18:30:54,215 - INFO - Evaluating log likelihood of:
+2026-11-17 18:30:54,215 - INFO - 6900
+2026-11-17 18:31:11,295 - INFO - Evaluating log likelihood of:
+2026-11-17 18:31:11,295 - INFO - 6910
+2026-11-17 18:31:28,443 - INFO - Evaluating log likelihood of:
+2026-11-17 18:31:28,443 - INFO - 6920
+2026-11-17 18:31:45,890 - INFO - Evaluating log likelihood of:
+2026-11-17 18:31:45,890 - INFO - 6930
+2026-11-17 18:32:03,037 - INFO - Evaluating log likelihood of:
+2026-11-17 18:32:03,037 - INFO - 6940
+2026-11-17 18:32:20,444 - INFO - Evaluating log likelihood of:
+2026-11-17 18:32:20,445 - INFO - 6950
+2026-11-17 18:32:37,904 - INFO - Evaluating log likelihood of:
+2026-11-17 18:32:37,905 - INFO - 6960
+2026-11-17 18:32:56,709 - INFO - Evaluating log likelihood of:
+2026-11-17 18:32:56,709 - INFO - 6970
+2026-11-17 18:33:13,673 - INFO - Evaluating log likelihood of:
+2026-11-17 18:33:13,674 - INFO - 6980
+2026-11-17 18:33:30,984 - INFO - Evaluating log likelihood of:
+2026-11-17 18:33:30,984 - INFO - 6990
+2026-11-17 18:33:48,418 - INFO - Evaluating log likelihood of:
+2026-11-17 18:33:48,418 - INFO - 7000
+2026-11-17 18:34:05,853 - INFO - Evaluating log likelihood of:
+2026-11-17 18:34:05,853 - INFO - 7010
+2026-11-17 18:34:23,522 - INFO - Evaluating log likelihood of:
+2026-11-17 18:34:23,522 - INFO - 7020
+2026-11-17 18:34:41,370 - INFO - Evaluating log likelihood of:
+2026-11-17 18:34:41,370 - INFO - 7030
+2026-11-17 18:34:59,796 - INFO - Evaluating log likelihood of:
+2026-11-17 18:34:59,797 - INFO - 7040
+2026-11-17 18:35:17,990 - INFO - Evaluating log likelihood of:
+2026-11-17 18:35:17,990 - INFO - 7050
+2026-11-17 18:35:36,577 - INFO - Evaluating log likelihood of:
+2026-11-17 18:35:36,577 - INFO - 7060
+2026-11-17 18:35:54,432 - INFO - Evaluating log likelihood of:
+2026-11-17 18:35:54,432 - INFO - 7070
+2026-11-17 18:36:11,985 - INFO - Evaluating log likelihood of:
+2026-11-17 18:36:11,986 - INFO - 7080
+2026-11-17 18:36:30,941 - INFO - Evaluating log likelihood of:
+2026-11-17 18:36:30,942 - INFO - 7090
+2026-11-17 18:36:48,524 - INFO - Evaluating log likelihood of:
+2026-11-17 18:36:48,524 - INFO - 7100
+2026-11-17 18:37:06,053 - INFO - Evaluating log likelihood of:
+2026-11-17 18:37:06,054 - INFO - 7110
+2026-11-17 18:37:24,704 - INFO - Evaluating log likelihood of:
+2026-11-17 18:37:24,704 - INFO - 7120
+2026-11-17 18:37:42,634 - INFO - Evaluating log likelihood of:
+2026-11-17 18:37:42,634 - INFO - 7130
+2026-11-17 18:38:00,638 - INFO - Evaluating log likelihood of:
+2026-11-17 18:38:00,638 - INFO - 7140
+2026-11-17 18:38:18,668 - INFO - Evaluating log likelihood of:
+2026-11-17 18:38:18,668 - INFO - 7150
+2026-11-17 18:38:36,550 - INFO - Evaluating log likelihood of:
+2026-11-17 18:38:36,550 - INFO - 7160
+2026-11-17 18:38:54,506 - INFO - Evaluating log likelihood of:
+2026-11-17 18:38:54,506 - INFO - 7170
+2026-11-17 18:39:12,608 - INFO - Evaluating log likelihood of:
+2026-11-17 18:39:12,608 - INFO - 7180
+2026-11-17 18:39:31,766 - INFO - Evaluating log likelihood of:
+2026-11-17 18:39:31,766 - INFO - 7190
+2026-11-17 18:39:50,404 - INFO - Evaluating log likelihood of:
+2026-11-17 18:39:50,405 - INFO - 7200
+2026-11-17 18:40:11,111 - INFO - Evaluating log likelihood of:
+2026-11-17 18:40:11,111 - INFO - 7210
+2026-11-17 18:40:29,099 - INFO - Evaluating log likelihood of:
+2026-11-17 18:40:29,099 - INFO - 7220
+2026-11-17 18:40:47,529 - INFO - Evaluating log likelihood of:
+2026-11-17 18:40:47,529 - INFO - 7230
+2026-11-17 18:41:06,053 - INFO - Evaluating log likelihood of:
+2026-11-17 18:41:06,054 - INFO - 7240
+2026-11-17 18:41:23,949 - INFO - Evaluating log likelihood of:
+2026-11-17 18:41:23,950 - INFO - 7250
+2026-11-17 18:41:42,220 - INFO - Evaluating log likelihood of:
+2026-11-17 18:41:42,220 - INFO - 7260
+2026-11-17 18:42:00,054 - INFO - Evaluating log likelihood of:
+2026-11-17 18:42:00,054 - INFO - 7270
+2026-11-17 18:42:18,210 - INFO - Evaluating log likelihood of:
+2026-11-17 18:42:18,211 - INFO - 7280
+2026-11-17 18:42:36,206 - INFO - Evaluating log likelihood of:
+2026-11-17 18:42:36,206 - INFO - 7290
+2026-11-17 18:42:54,074 - INFO - Evaluating log likelihood of:
+2026-11-17 18:42:54,074 - INFO - 7300
+2026-11-17 18:43:12,115 - INFO - Evaluating log likelihood of:
+2026-11-17 18:43:12,116 - INFO - 7310
+2026-11-17 18:43:30,027 - INFO - Evaluating log likelihood of:
+2026-11-17 18:43:30,027 - INFO - 7320
+2026-11-17 18:43:48,244 - INFO - Evaluating log likelihood of:
+2026-11-17 18:43:48,245 - INFO - 7330
+2026-11-17 18:44:06,318 - INFO - Evaluating log likelihood of:
+2026-11-17 18:44:06,318 - INFO - 7340
+2026-11-17 18:44:24,493 - INFO - Evaluating log likelihood of:
+2026-11-17 18:44:24,493 - INFO - 7350
+2026-11-17 18:44:42,570 - INFO - Evaluating log likelihood of:
+2026-11-17 18:44:42,570 - INFO - 7360
+2026-11-17 18:45:00,640 - INFO - Evaluating log likelihood of:
+2026-11-17 18:45:00,641 - INFO - 7370
+2026-11-17 18:45:19,106 - INFO - Evaluating log likelihood of:
+2026-11-17 18:45:19,106 - INFO - 7380
+2026-11-17 18:45:37,420 - INFO - Evaluating log likelihood of:
+2026-11-17 18:45:37,420 - INFO - 7390
+2026-11-17 18:45:55,427 - INFO - Evaluating log likelihood of:
+2026-11-17 18:45:55,427 - INFO - 7400
+2026-11-17 18:46:14,030 - INFO - Evaluating log likelihood of:
+2026-11-17 18:46:14,030 - INFO - 7410
+2026-11-17 18:46:32,458 - INFO - Evaluating log likelihood of:
+2026-11-17 18:46:32,458 - INFO - 7420
+2026-11-17 18:46:51,000 - INFO - Evaluating log likelihood of:
+2026-11-17 18:46:51,000 - INFO - 7430
+2026-11-17 18:47:09,448 - INFO - Evaluating log likelihood of:
+2026-11-17 18:47:09,448 - INFO - 7440
+2026-11-17 18:47:27,548 - INFO - Evaluating log likelihood of:
+2026-11-17 18:47:27,548 - INFO - 7450
+2026-11-17 18:47:46,263 - INFO - Evaluating log likelihood of:
+2026-11-17 18:47:46,263 - INFO - 7460
+2026-11-17 18:48:04,803 - INFO - Evaluating log likelihood of:
+2026-11-17 18:48:04,803 - INFO - 7470
+2026-11-17 18:48:23,527 - INFO - Evaluating log likelihood of:
+2026-11-17 18:48:23,527 - INFO - 7480
+2026-11-17 18:48:42,009 - INFO - Evaluating log likelihood of:
+2026-11-17 18:48:42,009 - INFO - 7490
+2026-11-17 18:49:00,688 - INFO - Evaluating log likelihood of:
+2026-11-17 18:49:00,688 - INFO - 7500
+2026-11-17 18:49:19,307 - INFO - Evaluating log likelihood of:
+2026-11-17 18:49:19,307 - INFO - 7510
+2026-11-17 18:49:38,229 - INFO - Evaluating log likelihood of:
+2026-11-17 18:49:38,229 - INFO - 7520
+2026-11-17 18:49:57,056 - INFO - Evaluating log likelihood of:
+2026-11-17 18:49:57,056 - INFO - 7530
+2026-11-17 18:50:15,526 - INFO - Evaluating log likelihood of:
+2026-11-17 18:50:15,526 - INFO - 7540
+2026-11-17 18:50:34,216 - INFO - Evaluating log likelihood of:
+2026-11-17 18:50:34,217 - INFO - 7550
+2026-11-17 18:50:53,464 - INFO - Evaluating log likelihood of:
+2026-11-17 18:50:53,464 - INFO - 7560
+2026-11-17 18:51:12,602 - INFO - Evaluating log likelihood of:
+2026-11-17 18:51:12,603 - INFO - 7570
+2026-11-17 18:51:31,408 - INFO - Evaluating log likelihood of:
+2026-11-17 18:51:31,408 - INFO - 7580
+2026-11-17 18:51:50,270 - INFO - Evaluating log likelihood of:
+2026-11-17 18:51:50,271 - INFO - 7590
+2026-11-17 18:52:09,528 - INFO - Evaluating log likelihood of:
+2026-11-17 18:52:09,529 - INFO - 7600
+2026-11-17 18:52:28,075 - INFO - Evaluating log likelihood of:
+2026-11-17 18:52:28,075 - INFO - 7610
+2026-11-17 18:52:47,075 - INFO - Evaluating log likelihood of:
+2026-11-17 18:52:47,075 - INFO - 7620
+2026-11-17 18:53:06,026 - INFO - Evaluating log likelihood of:
+2026-11-17 18:53:06,026 - INFO - 7630
+2026-11-17 18:53:25,225 - INFO - Evaluating log likelihood of:
+2026-11-17 18:53:25,225 - INFO - 7640
+2026-11-17 18:53:44,303 - INFO - Evaluating log likelihood of:
+2026-11-17 18:53:44,303 - INFO - 7650
+2026-11-17 18:54:03,339 - INFO - Evaluating log likelihood of:
+2026-11-17 18:54:03,339 - INFO - 7660
+2026-11-17 18:54:21,971 - INFO - Evaluating log likelihood of:
+2026-11-17 18:54:21,971 - INFO - 7670
+2026-11-17 18:54:40,814 - INFO - Evaluating log likelihood of:
+2026-11-17 18:54:40,814 - INFO - 7680
+2026-11-17 18:54:59,970 - INFO - Evaluating log likelihood of:
+2026-11-17 18:54:59,970 - INFO - 7690
+2026-11-17 18:55:18,892 - INFO - Evaluating log likelihood of:
+2026-11-17 18:55:18,893 - INFO - 7700
+2026-11-17 18:55:38,171 - INFO - Evaluating log likelihood of:
+2026-11-17 18:55:38,171 - INFO - 7710
+2026-11-17 18:55:57,389 - INFO - Evaluating log likelihood of:
+2026-11-17 18:55:57,389 - INFO - 7720
+2026-11-17 18:56:16,563 - INFO - Evaluating log likelihood of:
+2026-11-17 18:56:16,563 - INFO - 7730
+2026-11-17 18:56:35,312 - INFO - Evaluating log likelihood of:
+2026-11-17 18:56:35,313 - INFO - 7740
+2026-11-17 18:56:54,542 - INFO - Evaluating log likelihood of:
+2026-11-17 18:56:54,543 - INFO - 7750
+2026-11-17 18:57:13,637 - INFO - Evaluating log likelihood of:
+2026-11-17 18:57:13,637 - INFO - 7760
+2026-11-17 18:57:32,862 - INFO - Evaluating log likelihood of:
+2026-11-17 18:57:32,862 - INFO - 7770
+2026-11-17 18:57:51,849 - INFO - Evaluating log likelihood of:
+2026-11-17 18:57:51,849 - INFO - 7780
+2026-11-17 18:58:10,760 - INFO - Evaluating log likelihood of:
+2026-11-17 18:58:10,761 - INFO - 7790
+2026-11-17 18:58:29,572 - INFO - Evaluating log likelihood of:
+2026-11-17 18:58:29,572 - INFO - 7800
+2026-11-17 18:58:48,720 - INFO - Evaluating log likelihood of:
+2026-11-17 18:58:48,720 - INFO - 7810
+2026-11-17 18:59:07,688 - INFO - Evaluating log likelihood of:
+2026-11-17 18:59:07,688 - INFO - 7820
+2026-11-17 18:59:26,669 - INFO - Evaluating log likelihood of:
+2026-11-17 18:59:26,669 - INFO - 7830
+2026-11-17 18:59:45,551 - INFO - Evaluating log likelihood of:
+2026-11-17 18:59:45,551 - INFO - 7840
+2026-11-17 19:00:04,723 - INFO - Evaluating log likelihood of:
+2026-11-17 19:00:04,723 - INFO - 7850
+2026-11-17 19:00:24,118 - INFO - Evaluating log likelihood of:
+2026-11-17 19:00:24,118 - INFO - 7860
+2026-11-17 19:00:43,372 - INFO - Evaluating log likelihood of:
+2026-11-17 19:00:43,372 - INFO - 7870
+2026-11-17 19:01:02,215 - INFO - Evaluating log likelihood of:
+2026-11-17 19:01:02,216 - INFO - 7880
+2026-11-17 19:01:22,056 - INFO - Evaluating log likelihood of:
+2026-11-17 19:01:22,056 - INFO - 7890
+2026-11-17 19:01:41,689 - INFO - Evaluating log likelihood of:
+2026-11-17 19:01:41,689 - INFO - 7900
+2026-11-17 19:02:01,470 - INFO - Evaluating log likelihood of:
+2026-11-17 19:02:01,470 - INFO - 7910
+2026-11-17 19:02:20,600 - INFO - Evaluating log likelihood of:
+2026-11-17 19:02:20,601 - INFO - 7920
+2026-11-17 19:02:40,417 - INFO - Evaluating log likelihood of:
+2026-11-17 19:02:40,417 - INFO - 7930
+2026-11-17 19:02:59,832 - INFO - Evaluating log likelihood of:
+2026-11-17 19:02:59,832 - INFO - 7940
+2026-11-17 19:03:19,619 - INFO - Evaluating log likelihood of:
+2026-11-17 19:03:19,619 - INFO - 7950
+2026-11-17 19:03:39,063 - INFO - Evaluating log likelihood of:
+2026-11-17 19:03:39,064 - INFO - 7960
+2026-11-17 19:03:59,048 - INFO - Evaluating log likelihood of:
+2026-11-17 19:03:59,048 - INFO - 7970
+2026-11-17 19:04:18,592 - INFO - Evaluating log likelihood of:
+2026-11-17 19:04:18,592 - INFO - 7980
+2026-11-17 19:04:38,916 - INFO - Evaluating log likelihood of:
+2026-11-17 19:04:38,917 - INFO - 7990
+2026-11-17 19:04:58,879 - INFO - Evaluating log likelihood of:
+2026-11-17 19:04:58,880 - INFO - 8000
+2026-11-17 19:05:18,972 - INFO - Evaluating log likelihood of:
+2026-11-17 19:05:18,972 - INFO - 8010
+2026-11-17 19:05:38,661 - INFO - Evaluating log likelihood of:
+2026-11-17 19:05:38,662 - INFO - 8020
+2026-11-17 19:05:58,223 - INFO - Evaluating log likelihood of:
+2026-11-17 19:05:58,223 - INFO - 8030
+2026-11-17 19:06:17,878 - INFO - Evaluating log likelihood of:
+2026-11-17 19:06:17,878 - INFO - 8040
+2026-11-17 19:06:38,225 - INFO - Evaluating log likelihood of:
+2026-11-17 19:06:38,225 - INFO - 8050
+2026-11-17 19:06:58,391 - INFO - Evaluating log likelihood of:
+2026-11-17 19:06:58,391 - INFO - 8060
+2026-11-17 19:07:18,500 - INFO - Evaluating log likelihood of:
+2026-11-17 19:07:18,500 - INFO - 8070
+2026-11-17 19:07:38,604 - INFO - Evaluating log likelihood of:
+2026-11-17 19:07:38,605 - INFO - 8080
+2026-11-17 19:08:01,588 - INFO - Evaluating log likelihood of:
+2026-11-17 19:08:01,588 - INFO - 8090
+2026-11-17 19:08:23,112 - INFO - Evaluating log likelihood of:
+2026-11-17 19:08:23,112 - INFO - 8100
+2026-11-17 19:08:44,470 - INFO - Evaluating log likelihood of:
+2026-11-17 19:08:44,471 - INFO - 8110
+2026-11-17 19:09:05,654 - INFO - Evaluating log likelihood of:
+2026-11-17 19:09:05,655 - INFO - 8120
+2026-11-17 19:09:25,452 - INFO - Evaluating log likelihood of:
+2026-11-17 19:09:25,452 - INFO - 8130
+2026-11-17 19:09:45,744 - INFO - Evaluating log likelihood of:
+2026-11-17 19:09:45,744 - INFO - 8140
+2026-11-17 19:10:09,457 - INFO - Evaluating log likelihood of:
+2026-11-17 19:10:09,458 - INFO - 8150
+2026-11-17 19:10:30,435 - INFO - Evaluating log likelihood of:
+2026-11-17 19:10:30,435 - INFO - 8160
+2026-11-17 19:10:51,603 - INFO - Evaluating log likelihood of:
+2026-11-17 19:10:51,604 - INFO - 8170
+2026-11-17 19:11:12,724 - INFO - Evaluating log likelihood of:
+2026-11-17 19:11:12,725 - INFO - 8180
+2026-11-17 19:11:33,798 - INFO - Evaluating log likelihood of:
+2026-11-17 19:11:33,799 - INFO - 8190
+2026-11-17 19:11:54,589 - INFO - Evaluating log likelihood of:
+2026-11-17 19:11:54,590 - INFO - 8200
+2026-11-17 19:12:15,554 - INFO - Evaluating log likelihood of:
+2026-11-17 19:12:15,554 - INFO - 8210
+2026-11-17 19:12:36,488 - INFO - Evaluating log likelihood of:
+2026-11-17 19:12:36,488 - INFO - 8220
+2026-11-17 19:12:57,475 - INFO - Evaluating log likelihood of:
+2026-11-17 19:12:57,476 - INFO - 8230
+2026-11-17 19:13:18,621 - INFO - Evaluating log likelihood of:
+2026-11-17 19:13:18,622 - INFO - 8240
+2026-11-17 19:13:39,410 - INFO - Evaluating log likelihood of:
+2026-11-17 19:13:39,410 - INFO - 8250
+2026-11-17 19:14:00,417 - INFO - Evaluating log likelihood of:
+2026-11-17 19:14:00,417 - INFO - 8260
+2026-11-17 19:14:21,375 - INFO - Evaluating log likelihood of:
+2026-11-17 19:14:21,376 - INFO - 8270
+2026-11-17 19:14:42,529 - INFO - Evaluating log likelihood of:
+2026-11-17 19:14:42,529 - INFO - 8280
+2026-11-17 19:15:03,579 - INFO - Evaluating log likelihood of:
+2026-11-17 19:15:03,579 - INFO - 8290
+2026-11-17 19:15:24,836 - INFO - Evaluating log likelihood of:
+2026-11-17 19:15:24,836 - INFO - 8300
+2026-11-17 19:15:45,964 - INFO - Evaluating log likelihood of:
+2026-11-17 19:15:45,964 - INFO - 8310
+2026-11-17 19:16:07,295 - INFO - Evaluating log likelihood of:
+2026-11-17 19:16:07,295 - INFO - 8320
+2026-11-17 19:16:28,188 - INFO - Evaluating log likelihood of:
+2026-11-17 19:16:28,189 - INFO - 8330
+2026-11-17 19:16:49,775 - INFO - Evaluating log likelihood of:
+2026-11-17 19:16:49,775 - INFO - 8340
+2026-11-17 19:17:11,210 - INFO - Evaluating log likelihood of:
+2026-11-17 19:17:11,211 - INFO - 8350
+2026-11-17 19:17:32,424 - INFO - Evaluating log likelihood of:
+2026-11-17 19:17:32,424 - INFO - 8360
+2026-11-17 19:17:53,899 - INFO - Evaluating log likelihood of:
+2026-11-17 19:17:53,899 - INFO - 8370
+2026-11-17 19:18:15,167 - INFO - Evaluating log likelihood of:
+2026-11-17 19:18:15,167 - INFO - 8380
+2026-11-17 19:18:36,720 - INFO - Evaluating log likelihood of:
+2026-11-17 19:18:36,721 - INFO - 8390
+2026-11-17 19:18:58,492 - INFO - Evaluating log likelihood of:
+2026-11-17 19:18:58,492 - INFO - 8400
+2026-11-17 19:19:19,398 - INFO - Evaluating log likelihood of:
+2026-11-17 19:19:19,399 - INFO - 8410
+2026-11-17 19:19:40,806 - INFO - Evaluating log likelihood of:
+2026-11-17 19:19:40,807 - INFO - 8420
+2026-11-17 19:20:02,229 - INFO - Evaluating log likelihood of:
+2026-11-17 19:20:02,230 - INFO - 8430
+2026-11-17 19:20:24,210 - INFO - Evaluating log likelihood of:
+2026-11-17 19:20:24,210 - INFO - 8440
+2026-11-17 19:20:45,775 - INFO - Evaluating log likelihood of:
+2026-11-17 19:20:45,775 - INFO - 8450
+2026-11-17 19:21:07,556 - INFO - Evaluating log likelihood of:
+2026-11-17 19:21:07,557 - INFO - 8460
+2026-11-17 19:21:29,095 - INFO - Evaluating log likelihood of:
+2026-11-17 19:21:29,095 - INFO - 8470
+2026-11-17 19:21:51,496 - INFO - Evaluating log likelihood of:
+2026-11-17 19:21:51,497 - INFO - 8480
+2026-11-17 19:22:13,260 - INFO - Evaluating log likelihood of:
+2026-11-17 19:22:13,260 - INFO - 8490
+2026-11-17 19:22:35,019 - INFO - Evaluating log likelihood of:
+2026-11-17 19:22:35,019 - INFO - 8500
+2026-11-17 19:22:56,869 - INFO - Evaluating log likelihood of:
+2026-11-17 19:22:56,869 - INFO - 8510
+2026-11-17 19:23:18,492 - INFO - Evaluating log likelihood of:
+2026-11-17 19:23:18,492 - INFO - 8520
+2026-11-17 19:23:39,969 - INFO - Evaluating log likelihood of:
+2026-11-17 19:23:39,969 - INFO - 8530
+2026-11-17 19:24:02,020 - INFO - Evaluating log likelihood of:
+2026-11-17 19:24:02,020 - INFO - 8540
+2026-11-17 19:24:24,617 - INFO - Evaluating log likelihood of:
+2026-11-17 19:24:24,617 - INFO - 8550
+2026-11-17 19:24:46,723 - INFO - Evaluating log likelihood of:
+2026-11-17 19:24:46,723 - INFO - 8560
+2026-11-17 19:25:08,396 - INFO - Evaluating log likelihood of:
+2026-11-17 19:25:08,397 - INFO - 8570
+2026-11-17 19:25:29,763 - INFO - Evaluating log likelihood of:
+2026-11-17 19:25:29,763 - INFO - 8580
+2026-11-17 19:25:53,191 - INFO - Evaluating log likelihood of:
+2026-11-17 19:25:53,191 - INFO - 8590
+2026-11-17 19:26:16,843 - INFO - Evaluating log likelihood of:
+2026-11-17 19:26:16,844 - INFO - 8600
+2026-11-17 19:26:39,729 - INFO - Evaluating log likelihood of:
+2026-11-17 19:26:39,730 - INFO - 8610
+2026-11-17 19:27:01,019 - INFO - Evaluating log likelihood of:
+2026-11-17 19:27:01,019 - INFO - 8620
+2026-11-17 19:27:22,189 - INFO - Evaluating log likelihood of:
+2026-11-17 19:27:22,189 - INFO - 8630
+2026-11-17 19:27:43,407 - INFO - Evaluating log likelihood of:
+2026-11-17 19:27:43,407 - INFO - 8640
+2026-11-17 19:28:05,551 - INFO - Evaluating log likelihood of:
+2026-11-17 19:28:05,551 - INFO - 8650
+2026-11-17 19:28:28,371 - INFO - Evaluating log likelihood of:
+2026-11-17 19:28:28,371 - INFO - 8660
+2026-11-17 19:28:50,509 - INFO - Evaluating log likelihood of:
+2026-11-17 19:28:50,509 - INFO - 8670
+2026-11-17 19:29:11,905 - INFO - Evaluating log likelihood of:
+2026-11-17 19:29:11,906 - INFO - 8680
+2026-11-17 19:29:32,761 - INFO - Evaluating log likelihood of:
+2026-11-17 19:29:32,762 - INFO - 8690
+2026-11-17 19:29:53,905 - INFO - Evaluating log likelihood of:
+2026-11-17 19:29:53,905 - INFO - 8700
+2026-11-17 19:30:15,425 - INFO - Evaluating log likelihood of:
+2026-11-17 19:30:15,425 - INFO - 8710
+2026-11-17 19:30:36,923 - INFO - Evaluating log likelihood of:
+2026-11-17 19:30:36,923 - INFO - 8720
+2026-11-17 19:31:01,044 - INFO - Evaluating log likelihood of:
+2026-11-17 19:31:01,044 - INFO - 8730
+2026-11-17 19:31:25,025 - INFO - Evaluating log likelihood of:
+2026-11-17 19:31:25,025 - INFO - 8740
+2026-11-17 19:31:48,411 - INFO - Evaluating log likelihood of:
+2026-11-17 19:31:48,411 - INFO - 8750
+2026-11-17 19:32:11,267 - INFO - Evaluating log likelihood of:
+2026-11-17 19:32:11,268 - INFO - 8760
+2026-11-17 19:32:33,741 - INFO - Evaluating log likelihood of:
+2026-11-17 19:32:33,742 - INFO - 8770
+2026-11-17 19:32:56,318 - INFO - Evaluating log likelihood of:
+2026-11-17 19:32:56,319 - INFO - 8780
+2026-11-17 19:33:18,797 - INFO - Evaluating log likelihood of:
+2026-11-17 19:33:18,797 - INFO - 8790
+2026-11-17 19:33:41,483 - INFO - Evaluating log likelihood of:
+2026-11-17 19:33:41,483 - INFO - 8800
+2026-11-17 19:34:04,188 - INFO - Evaluating log likelihood of:
+2026-11-17 19:34:04,188 - INFO - 8810
+2026-11-17 19:34:27,193 - INFO - Evaluating log likelihood of:
+2026-11-17 19:34:27,193 - INFO - 8820
+2026-11-17 19:34:49,753 - INFO - Evaluating log likelihood of:
+2026-11-17 19:34:49,753 - INFO - 8830
+2026-11-17 19:35:12,195 - INFO - Evaluating log likelihood of:
+2026-11-17 19:35:12,196 - INFO - 8840
+2026-11-17 19:35:34,649 - INFO - Evaluating log likelihood of:
+2026-11-17 19:35:34,649 - INFO - 8850
+2026-11-17 19:35:57,413 - INFO - Evaluating log likelihood of:
+2026-11-17 19:35:57,413 - INFO - 8860
+2026-11-17 19:36:20,570 - INFO - Evaluating log likelihood of:
+2026-11-17 19:36:20,570 - INFO - 8870
+2026-11-17 19:36:43,124 - INFO - Evaluating log likelihood of:
+2026-11-17 19:36:43,124 - INFO - 8880
+2026-11-17 19:37:05,768 - INFO - Evaluating log likelihood of:
+2026-11-17 19:37:05,769 - INFO - 8890
+2026-11-17 19:37:28,323 - INFO - Evaluating log likelihood of:
+2026-11-17 19:37:28,324 - INFO - 8900
+2026-11-17 19:37:51,069 - INFO - Evaluating log likelihood of:
+2026-11-17 19:37:51,069 - INFO - 8910
+2026-11-17 19:38:13,931 - INFO - Evaluating log likelihood of:
+2026-11-17 19:38:13,931 - INFO - 8920
+2026-11-17 19:38:37,006 - INFO - Evaluating log likelihood of:
+2026-11-17 19:38:37,006 - INFO - 8930
+2026-11-17 19:39:00,145 - INFO - Evaluating log likelihood of:
+2026-11-17 19:39:00,146 - INFO - 8940
+2026-11-17 19:39:22,904 - INFO - Evaluating log likelihood of:
+2026-11-17 19:39:22,904 - INFO - 8950
+2026-11-17 19:39:46,598 - INFO - Evaluating log likelihood of:
+2026-11-17 19:39:46,598 - INFO - 8960
+2026-11-17 19:40:09,673 - INFO - Evaluating log likelihood of:
+2026-11-17 19:40:09,673 - INFO - 8970
+2026-11-17 19:40:32,736 - INFO - Evaluating log likelihood of:
+2026-11-17 19:40:32,736 - INFO - 8980
+2026-11-17 19:40:55,785 - INFO - Evaluating log likelihood of:
+2026-11-17 19:40:55,785 - INFO - 8990
+2026-11-17 19:41:19,074 - INFO - Evaluating log likelihood of:
+2026-11-17 19:41:19,074 - INFO - 9000
+2026-11-17 19:41:42,041 - INFO - Evaluating log likelihood of:
+2026-11-17 19:41:42,041 - INFO - 9010
+2026-11-17 19:42:05,177 - INFO - Evaluating log likelihood of:
+2026-11-17 19:42:05,177 - INFO - 9020
+2026-11-17 19:42:28,448 - INFO - Evaluating log likelihood of:
+2026-11-17 19:42:28,448 - INFO - 9030
+2026-11-17 19:42:51,404 - INFO - Evaluating log likelihood of:
+2026-11-17 19:42:51,404 - INFO - 9040
+2026-11-17 19:43:14,337 - INFO - Evaluating log likelihood of:
+2026-11-17 19:43:14,337 - INFO - 9050
+2026-11-17 19:43:36,675 - INFO - Evaluating log likelihood of:
+2026-11-17 19:43:36,676 - INFO - 9060
+2026-11-17 19:43:59,767 - INFO - Evaluating log likelihood of:
+2026-11-17 19:43:59,767 - INFO - 9070
+2026-11-17 19:44:23,518 - INFO - Evaluating log likelihood of:
+2026-11-17 19:44:23,518 - INFO - 9080
+2026-11-17 19:44:47,994 - INFO - Evaluating log likelihood of:
+2026-11-17 19:44:47,995 - INFO - 9090
+2026-11-17 19:45:11,290 - INFO - Evaluating log likelihood of:
+2026-11-17 19:45:11,290 - INFO - 9100
+2026-11-17 19:45:34,075 - INFO - Evaluating log likelihood of:
+2026-11-17 19:45:34,075 - INFO - 9110
+2026-11-17 19:45:56,990 - INFO - Evaluating log likelihood of:
+2026-11-17 19:45:56,990 - INFO - 9120
+2026-11-17 19:46:19,630 - INFO - Evaluating log likelihood of:
+2026-11-17 19:46:19,630 - INFO - 9130
+2026-11-17 19:46:41,983 - INFO - Evaluating log likelihood of:
+2026-11-17 19:46:41,983 - INFO - 9140
+2026-11-17 19:47:04,610 - INFO - Evaluating log likelihood of:
+2026-11-17 19:47:04,610 - INFO - 9150
+2026-11-17 19:47:27,034 - INFO - Evaluating log likelihood of:
+2026-11-17 19:47:27,034 - INFO - 9160
+2026-11-17 19:47:49,030 - INFO - Evaluating log likelihood of:
+2026-11-17 19:47:49,030 - INFO - 9170
+2026-11-17 19:48:11,943 - INFO - Evaluating log likelihood of:
+2026-11-17 19:48:11,943 - INFO - 9180
+2026-11-17 19:48:34,041 - INFO - Evaluating log likelihood of:
+2026-11-17 19:48:34,042 - INFO - 9190
+2026-11-17 19:48:55,870 - INFO - Evaluating log likelihood of:
+2026-11-17 19:48:55,870 - INFO - 9200
+2026-11-17 19:49:18,736 - INFO - Evaluating log likelihood of:
+2026-11-17 19:49:18,737 - INFO - 9210
+2026-11-17 19:49:41,228 - INFO - Evaluating log likelihood of:
+2026-11-17 19:49:41,229 - INFO - 9220
+2026-11-17 19:50:03,324 - INFO - Evaluating log likelihood of:
+2026-11-17 19:50:03,324 - INFO - 9230
+2026-11-17 19:50:26,206 - INFO - Evaluating log likelihood of:
+2026-11-17 19:50:26,206 - INFO - 9240
+2026-11-17 19:50:49,404 - INFO - Evaluating log likelihood of:
+2026-11-17 19:50:49,404 - INFO - 9250
+2026-11-17 19:51:11,806 - INFO - Evaluating log likelihood of:
+2026-11-17 19:51:11,807 - INFO - 9260
+2026-11-17 19:51:34,208 - INFO - Evaluating log likelihood of:
+2026-11-17 19:51:34,208 - INFO - 9270
+2026-11-17 19:51:57,229 - INFO - Evaluating log likelihood of:
+2026-11-17 19:51:57,229 - INFO - 9280
+2026-11-17 19:52:19,991 - INFO - Evaluating log likelihood of:
+2026-11-17 19:52:19,991 - INFO - 9290
+2026-11-17 19:52:42,497 - INFO - Evaluating log likelihood of:
+2026-11-17 19:52:42,497 - INFO - 9300
+2026-11-17 19:53:05,182 - INFO - Evaluating log likelihood of:
+2026-11-17 19:53:05,183 - INFO - 9310
+2026-11-17 19:53:27,848 - INFO - Evaluating log likelihood of:
+2026-11-17 19:53:27,848 - INFO - 9320
+2026-11-17 19:53:51,119 - INFO - Evaluating log likelihood of:
+2026-11-17 19:53:51,119 - INFO - 9330
+2026-11-17 19:54:14,286 - INFO - Evaluating log likelihood of:
+2026-11-17 19:54:14,286 - INFO - 9340
+2026-11-17 19:54:37,585 - INFO - Evaluating log likelihood of:
+2026-11-17 19:54:37,585 - INFO - 9350
+2026-11-17 19:55:01,462 - INFO - Evaluating log likelihood of:
+2026-11-17 19:55:01,462 - INFO - 9360
+2026-11-17 19:55:27,376 - INFO - Evaluating log likelihood of:
+2026-11-17 19:55:27,376 - INFO - 9370
+2026-11-17 19:55:53,255 - INFO - Evaluating log likelihood of:
+2026-11-17 19:55:53,256 - INFO - 9380
+2026-11-17 19:56:18,581 - INFO - Evaluating log likelihood of:
+2026-11-17 19:56:18,581 - INFO - 9390
+2026-11-17 19:56:43,650 - INFO - Evaluating log likelihood of:
+2026-11-17 19:56:43,650 - INFO - 9400
+2026-11-17 19:57:07,972 - INFO - Evaluating log likelihood of:
+2026-11-17 19:57:07,973 - INFO - 9410
+2026-11-17 19:57:32,031 - INFO - Evaluating log likelihood of:
+2026-11-17 19:57:32,031 - INFO - 9420
+2026-11-17 19:57:56,017 - INFO - Evaluating log likelihood of:
+2026-11-17 19:57:56,017 - INFO - 9430
+2026-11-17 19:58:23,201 - INFO - Evaluating log likelihood of:
+2026-11-17 19:58:23,201 - INFO - 9440
+2026-11-17 19:58:49,033 - INFO - Evaluating log likelihood of:
+2026-11-17 19:58:49,033 - INFO - 9450
+2026-11-17 19:59:14,895 - INFO - Evaluating log likelihood of:
+2026-11-17 19:59:14,896 - INFO - 9460
+2026-11-17 19:59:40,069 - INFO - Evaluating log likelihood of:
+2026-11-17 19:59:40,069 - INFO - 9470
+2026-11-17 20:00:04,870 - INFO - Evaluating log likelihood of:
+2026-11-17 20:00:04,871 - INFO - 9480
+2026-11-17 20:00:29,064 - INFO - Evaluating log likelihood of:
+2026-11-17 20:00:29,065 - INFO - 9490
+2026-11-17 20:00:53,141 - INFO - Evaluating log likelihood of:
+2026-11-17 20:00:53,141 - INFO - 9500
+2026-11-17 20:01:17,631 - INFO - Evaluating log likelihood of:
+2026-11-17 20:01:17,631 - INFO - 9510
+2026-11-17 20:01:42,297 - INFO - Evaluating log likelihood of:
+2026-11-17 20:01:42,298 - INFO - 9520
+2026-11-17 20:02:06,318 - INFO - Evaluating log likelihood of:
+2026-11-17 20:02:06,319 - INFO - 9530
+2026-11-17 20:02:29,829 - INFO - Evaluating log likelihood of:
+2026-11-17 20:02:29,829 - INFO - 9540
+2026-11-17 20:02:53,962 - INFO - Evaluating log likelihood of:
+2026-11-17 20:02:53,962 - INFO - 9550
+2026-11-17 20:03:18,209 - INFO - Evaluating log likelihood of:
+2026-11-17 20:03:18,209 - INFO - 9560
+2026-11-17 20:03:42,784 - INFO - Evaluating log likelihood of:
+2026-11-17 20:03:42,785 - INFO - 9570
+2026-11-17 20:04:07,212 - INFO - Evaluating log likelihood of:
+2026-11-17 20:04:07,212 - INFO - 9580
+2026-11-17 20:04:31,507 - INFO - Evaluating log likelihood of:
+2026-11-17 20:04:31,507 - INFO - 9590
+2026-11-17 20:04:55,664 - INFO - Evaluating log likelihood of:
+2026-11-17 20:04:55,665 - INFO - 9600
+2026-11-17 20:05:19,996 - INFO - Evaluating log likelihood of:
+2026-11-17 20:05:19,996 - INFO - 9610
+2026-11-17 20:05:45,812 - INFO - Evaluating log likelihood of:
+2026-11-17 20:05:45,813 - INFO - 9620
+2026-11-17 20:06:12,711 - INFO - Evaluating log likelihood of:
+2026-11-17 20:06:12,711 - INFO - 9630
+2026-11-17 20:06:38,716 - INFO - Evaluating log likelihood of:
+2026-11-17 20:06:38,716 - INFO - 9640
+2026-11-17 20:07:03,254 - INFO - Evaluating log likelihood of:
+2026-11-17 20:07:03,254 - INFO - 9650
+2026-11-17 20:07:27,144 - INFO - Evaluating log likelihood of:
+2026-11-17 20:07:27,145 - INFO - 9660
+2026-11-17 20:07:50,959 - INFO - Evaluating log likelihood of:
+2026-11-17 20:07:50,960 - INFO - 9670
+2026-11-17 20:08:14,340 - INFO - Evaluating log likelihood of:
+2026-11-17 20:08:14,341 - INFO - 9680
+2026-11-17 20:08:38,189 - INFO - Evaluating log likelihood of:
+2026-11-17 20:08:38,189 - INFO - 9690
+2026-11-17 20:09:01,932 - INFO - Evaluating log likelihood of:
+2026-11-17 20:09:01,932 - INFO - 9700
+2026-11-17 20:09:26,262 - INFO - Evaluating log likelihood of:
+2026-11-17 20:09:26,263 - INFO - 9710
+2026-11-17 20:09:50,096 - INFO - Evaluating log likelihood of:
+2026-11-17 20:09:50,096 - INFO - 9720
+2026-11-17 20:10:14,365 - INFO - Evaluating log likelihood of:
+2026-11-17 20:10:14,365 - INFO - 9730
+2026-11-17 20:10:38,519 - INFO - Evaluating log likelihood of:
+2026-11-17 20:10:38,520 - INFO - 9740
+2026-11-17 20:11:05,251 - INFO - Evaluating log likelihood of:
+2026-11-17 20:11:05,251 - INFO - 9750
+2026-11-17 20:11:31,581 - INFO - Evaluating log likelihood of:
+2026-11-17 20:11:31,581 - INFO - 9760
+2026-11-17 20:11:58,211 - INFO - Evaluating log likelihood of:
+2026-11-17 20:11:58,211 - INFO - 9770
+2026-11-17 20:12:23,423 - INFO - Evaluating log likelihood of:
+2026-11-17 20:12:23,423 - INFO - 9780
+2026-11-17 20:12:48,672 - INFO - Evaluating log likelihood of:
+2026-11-17 20:12:48,672 - INFO - 9790
+2026-11-17 20:13:14,100 - INFO - Evaluating log likelihood of:
+2026-11-17 20:13:14,100 - INFO - 9800
+2026-11-17 20:13:39,747 - INFO - Evaluating log likelihood of:
+2026-11-17 20:13:39,747 - INFO - 9810
+2026-11-17 20:14:04,940 - INFO - Evaluating log likelihood of:
+2026-11-17 20:14:04,940 - INFO - 9820
+2026-11-17 20:14:30,081 - INFO - Evaluating log likelihood of:
+2026-11-17 20:14:30,081 - INFO - 9830
+2026-11-17 20:14:55,213 - INFO - Evaluating log likelihood of:
+2026-11-17 20:14:55,213 - INFO - 9840
+2026-11-17 20:15:20,788 - INFO - Evaluating log likelihood of:
+2026-11-17 20:15:20,789 - INFO - 9850
+2026-11-17 20:15:46,025 - INFO - Evaluating log likelihood of:
+2026-11-17 20:15:46,025 - INFO - 9860
+2026-11-17 20:16:10,808 - INFO - Evaluating log likelihood of:
+2026-11-17 20:16:10,808 - INFO - 9870
+2026-11-17 20:16:36,160 - INFO - Evaluating log likelihood of:
+2026-11-17 20:16:36,160 - INFO - 9880
+2026-11-17 20:17:01,482 - INFO - Evaluating log likelihood of:
+2026-11-17 20:17:01,483 - INFO - 9890
+2026-11-17 20:17:26,446 - INFO - Evaluating log likelihood of:
+2026-11-17 20:17:26,446 - INFO - 9900
+2026-11-17 20:17:51,614 - INFO - Evaluating log likelihood of:
+2026-11-17 20:17:51,615 - INFO - 9910
+2026-11-17 20:18:17,125 - INFO - Evaluating log likelihood of:
+2026-11-17 20:18:17,125 - INFO - 9920
+2026-11-17 20:18:42,761 - INFO - Evaluating log likelihood of:
+2026-11-17 20:18:42,762 - INFO - 9930
+2026-11-17 20:19:08,500 - INFO - Evaluating log likelihood of:
+2026-11-17 20:19:08,500 - INFO - 9940
+2026-11-17 20:19:33,731 - INFO - Evaluating log likelihood of:
+2026-11-17 20:19:33,731 - INFO - 9950
+2026-11-17 20:19:59,804 - INFO - Evaluating log likelihood of:
+2026-11-17 20:19:59,805 - INFO - 9960
+2026-11-17 20:20:25,362 - INFO - Evaluating log likelihood of:
+2026-11-17 20:20:25,363 - INFO - 9970
+2026-11-17 20:20:50,888 - INFO - Evaluating log likelihood of:
+2026-11-17 20:20:50,889 - INFO - 9980
+2026-11-17 20:21:16,577 - INFO - Evaluating log likelihood of:
+2026-11-17 20:21:16,577 - INFO - 9990
+2026-11-17 20:21:42,400 - INFO - Evaluating log likelihood of:
+2026-11-17 20:21:42,400 - INFO - 10000
+2026-11-17 20:22:08,213 - INFO - range(10, 10001, 10)
+2026-11-17 20:22:08,214 - INFO - [-94858.43582571376, -189717.48622226084, -284579.1556423169, -379437.7925146884, -474295.767750929, -569153.7540256168, -664013.4579150417, -758872.5795174174, -853734.0034564949, -948592.3986140944, -1043448.7121526288, -1138309.705239894, -1233169.6870139507, -1328028.1735326333, -1422888.8524365234, -1517748.4534457363, -1612607.2668094544, -1707466.9759507326, -1802323.645057101, -1897183.1282974093, -1992043.5092973348, -2086904.7817497607, -2181761.117045358, -2276621.508010559, -2371478.8708104575, -2466339.7724442706, -2561197.3771266905, -2656056.76029257, -2750916.3843658613, -2845773.53440092, -2940636.882142947, -3035494.0029720925, -3130354.2032225137, -3225212.0061010984, -3320071.4823780823, -3414932.225026993, -3509790.919994793, -3604648.429954264, -3699509.0031833714, -3794368.0203186795, -3889229.4399709003, -3984084.515968307, -4078945.13812232, -4173806.5232513202, -4268665.539853246, -4363522.850800545, -4458380.899063537, -4553241.294159313, -4648101.45477683, -4742960.308238606, -4837820.321014659, -4932677.499801162, -5027540.233244337, -5122397.808232106, -5217255.289091388, -5312115.628268001, -5406974.493458782, -5501833.632596235, -5596692.920709516, -5691553.751425672, -5786412.827096523, -5881269.334845945, -5976130.96028015, -6070988.063494969, -6165846.463387007, -6260707.1035156045, -6355569.690111247, -6450424.867870387, -6545283.100242582, -6640143.643223593, -6735006.505871014, -6829863.001048468, -6924723.134644356, -7019581.9171683155, -7114441.577982455, -7209298.8345728805, -7304156.844255761, -7399017.760707763, -7493876.847587836, -7588735.693946945, -7683595.326421193, -7778454.84872884, -7873314.40387121, -7968171.416638244, -8063032.2076924695, -8157889.988251867, -8252750.23553982, -8347609.8476024, -8442468.282798028, -8537327.190717015, -8632187.264059633, -8727046.690041007, -8821906.338672277, -8916765.814646358, -9011624.445493516, -9106482.809190432, -9201343.395967955, -9296201.050697641, -9391061.559481539, -9485920.021879368, -9580779.985687446, -9675638.597664181, -9770500.096444558, -9865356.383577257, -9960217.200743591, -10055077.06893635, -10149936.460597696, -10244794.625031164, -10339651.223659527, -10434512.480633892, -10529370.527569601, -10624234.025784781, -10719090.064042902, -10813947.731166204, -10908810.35650871, -11003670.400480013, -11098525.659231946, -11193384.818342993, -11288247.368040958, -11383105.153961297, -11477962.747693567, -11572823.647267712, -11667683.35067877, -11762541.473281676, -11857400.323947983, -11952258.857261816, -12047118.969540488, -12141979.18792485, -12236835.577619383, -12331696.738695731, -12426556.421412377, -12521415.413706696, -12616272.882382024, -12711133.138905562, -12805992.520357799, -12900852.403308375, -12995711.300005205, -13090571.373411128, -13185429.32589864, -13280288.238609573, -13375146.936127117, -13470007.061675025, -13564866.040911863, -13659726.06994192, -13754582.339639915, -13849443.40168116, -13944300.10886821, -14039161.652684785, -14134022.550312666, -14228879.639345445, -14323740.199350353, -14418600.061532995, -14513459.65455765, -14608318.08324869, -14703177.037376394, -14798035.28004548, -14892895.5768733, -14987753.831253244, -15082613.600891199, -15177470.725525122, -15272333.220792139, -15367190.865200251, -15462050.987895718, -15556909.641621882, -15651768.907177122, -15746628.79769401, -15841487.800763011, -15936347.58035732, -16031205.231095016, -16126062.370480115, -16220925.201935457, -16315783.377405543, -16410641.540315477, -16505500.652767735, -16600359.840352181, -16695220.66288766, -16790080.5942427, -16884938.103886697, -16979798.008654926, -17074656.812451, -17169515.80635566, -17264373.359337512, -17359233.973672766, -17454090.685096737, -17548952.378724754, -17643810.6196954, -17738670.412712473, -17833527.913139716, -17928389.001869082, -18023248.24251632, -18118108.457240805, -18212966.97466972, -18307826.92408693, -18402685.469404723, -18497545.206968796, -18592402.151564118, -18687261.023695853, -18782122.734569374, -18876983.4837719, -18971840.85434792, -19066699.524270438, -19161557.375615112, -19256419.821985696, -19351275.84850629, -19446137.825752664, -19540996.920059513, -19635855.40572954, -19730715.4482881, -19825574.315232817, -19920430.707961082, -20015291.565869775, -20110149.349557973, -20205009.432474934, -20299871.339620326, -20394728.577743776, -20489586.721018963, -20584448.903123796, -20679305.406522807, -20774165.44326819, -20869023.14651879, -20963887.00069772, -21058743.93450292, -21153601.903739836, -21248460.127290078, -21343322.441802114, -21438178.25308593, -21533039.756673813, -21627895.69755691, -21722757.900878545, -21817619.135001417, -21912473.063450098, -22007332.13169064, -22102194.023560815, -22197052.371126045, -22291911.823006056, -22386772.86678399, -22481632.15783373, -22576493.79805213, -22671351.87488286, -22766208.495620117, -22861069.153689507, -22955925.82376033, -23050784.109709896, -23145644.67950628, -23240505.301329613, -23335367.224777713, -23430223.299553398, -23525081.73083565, -23619942.235665735, -23714801.7086372, -23809658.409119897, -23904518.705702957, -23999378.6299663, -24094239.495281607, -24189097.617349785, -24283956.66324358, -24378817.54516627, -24473673.46890638, -24568532.870038275, -24663392.257009264, -24758253.84809497, -24853111.06979906, -24947971.034171242, -25042829.27276981, -25137690.850745637, -25232546.039246697, -25327409.288361266, -25422267.279988892, -25517124.842579447, -25611985.919255253, -25706844.467223596, -25801704.66706131, -25896563.3906923, -25991419.90577625, -26086281.29296676, -26181141.904585265, -26275999.091031004, -26370859.498681664, -26465717.57245441, -26560577.82300533, -26655437.40764888, -26750295.523781177, -26845154.227975063, -26940014.52520801, -27034872.3787024, -27129733.02151908, -27224592.34686216, -27319447.62508674, -27414309.92802775, -27509171.878498007, -27604028.319760352, -27698888.01485031, -27793746.210056923, -27888606.012810566, -27983465.720638808, -28078321.77437244, -28173184.042585988, -28268042.53015349, -28362901.438186396, -28457763.419996634, -28552621.78313104, -28647480.850259867, -28742337.070146967, -28837197.40394639, -28932056.849423703, -29026916.614845246, -29121774.53851813, -29216632.648390822, -29311494.23267518, -29406349.64097571, -29501214.49750574, -29596071.341115948, -29690931.680942837, -29785791.23348907, -29880647.544435002, -29975509.553848334, -30070370.130338114, -30165229.62405551, -30260085.317903075, -30354944.279298447, -30449805.05809577, -30544662.27447058, -30639524.043441236, -30734382.617307838, -30829242.618324753, -30924101.405148566, -31018961.786681257, -31113818.576186426, -31208678.689078834, -31303535.997043446, -31398397.27834784, -31493255.06263463, -31588114.359821666, -31682972.832083732, -31777835.263023034, -31872691.846997347, -31967552.25971756, -32062409.056883864, -32157270.560451146, -32252129.388812013, -32346989.624232765, -32441846.98378895, -32536706.59647694, -32631565.981979728, -32726425.44401287, -32821283.155110754, -32916141.290835917, -33011002.21452866, -33105861.384243645, -33200720.857052978, -33295581.507993862, -33390438.278121155, -33485299.257417385, -33580159.08220719, -33675017.19230587, -33769875.44901983, -33864738.24570087, -33959596.89213875, -34054454.064116955, -34149313.12741794, -34244171.6341467, -34339030.23741356, -34433890.4447774, -34528750.18118267, -34623607.89353306, -34718467.546423115, -34813329.367321625, -34908186.82667877, -35003045.38664192, -35097904.39129985, -35192763.16994792, -35287624.90487523, -35382483.84343195, -35477342.89233894, -35572201.06145645, -35667061.31748624, -35761921.13684211, -35856778.295997396, -35951635.18563085, -36046498.98435528, -36141357.343275, -36236215.98639185, -36331075.24813988, -36425934.13093991, -36520794.235309914, -36615651.1467372, -36710508.30231557, -36805370.60000242, -36900230.96896523, -36995089.7184569, -37089948.35592029, -37184808.98233477, -37279668.91302858, -37374526.187120765, -37469386.72890341, -37564243.83631676, -37659103.70345505, -37753961.569873326, -37848823.308492124, -37943680.6230391, -38038541.68216256, -38133402.572539195, -38228260.41910553, -38323116.470402986, -38417978.46484379, -38512835.72791295, -38607694.671741545, -38702557.73850669, -38797416.018897496, -38892273.54426778, -38987132.787006594, -39081994.31660246, -39176850.936617516, -39271709.984263435, -39366567.8388466, -39461429.00922392, -39556285.86549696, -39651147.5073292, -39746006.41253517, -39840865.42794977, -39935724.374271326, -40030585.839731686, -40125443.68433379, -40220301.852921635, -40315163.18871992, -40410021.14704967, -40504881.13047089, -40599739.2135228, -40694598.25011502, -40789457.287878126, -40884316.02928473, -40979175.09513822, -41074036.39880486, -41168891.620254114, -41263753.595607705, -41358612.67523336, -41453473.71951134, -41548330.21778939, -41643192.53591147, -41738049.40880717, -41832908.20482198, -41927766.87707852, -42022630.14618035, -42117485.13701032, -42212346.224041164, -42307205.788485125, -42402064.126739144, -42496921.448791005, -42591782.36873268, -42686640.00436123, -42781499.22583942, -42876360.17172271, -42971220.22636782, -43066078.453966804, -43160936.80280825, -43255797.58383706, -43350654.20132625, -43445514.49951132, -43540374.6914939, -43635231.519727185, -43730092.43621723, -43824953.612311386, -43919811.34495142, -44014672.31687214, -44109529.010684095, -44204389.428707175, -44299247.22411652, -44394105.96429601, -44488964.317580014, -44583825.999077216, -44678686.18789427, -44773542.38308074, -44868404.82157088, -44963262.8010852, -45058122.77379367, -45152978.28348333, -45247840.18437572, -45342699.924957186, -45437557.79152583, -45532416.59780359, -45627275.46052299, -45722136.61373711, -45816995.05110353, -45911855.60796846, -46006712.743718505, -46101572.63747947, -46196433.404950686, -46291293.894873224, -46386149.88009959, -46481011.871089526, -46575869.85182901, -46670727.25021575, -46765589.107402526, -46860448.85210024, -46955305.48340814, -47050162.96231555, -47145023.46370084, -47239884.12661877, -47334741.939471826, -47429600.80356056, -47524460.70738654, -47619321.2864058, -47714179.15562783, -47809037.68399867, -47903899.65008876, -47998755.548058696, -48093614.69599793, -48188470.807710946, -48283337.73709495, -48378191.7224417, -48473053.41105594, -48567910.31753431, -48662772.00251351, -48757627.89089861, -48852488.134368256, -48947350.492686816, -49042208.51519658, -49137067.02879037, -49231924.35213884, -49326786.26762234, -49421644.633503616, -49516500.914008535, -49611362.53782614, -49706223.463801324, -49801081.97081527, -49895940.97880452, -49990800.60842335, -50085658.92740475, -50180518.790401, -50275378.68183547, -50370237.59641633, -50465097.25511915, -50559958.10259088, -50654814.776188865, -50749674.76727055, -50844531.51608255, -50939392.85495156, -51034252.125761844, -51129113.666860424, -51223968.96701492, -51318830.744708836, -51413689.558375254, -51508548.69551081, -51603405.42639839, -51698262.865918726, -51793124.19241509, -51887983.501453824, -51982843.53564899, -52077702.21987109, -52172562.903801695, -52267421.10636165, -52362278.77247766, -52457138.01817465, -52552001.2906429, -52646858.021072365, -52741717.229772426, -52836575.34427051, -52931433.94927175, -53026295.76539398, -53121154.03816314, -53216011.478253625, -53310872.21053612, -53405730.05325673, -53500589.29976432, -53595448.4575493, -53690308.162251376, -53785166.48795464, -53880026.97079574, -53974884.45532382, -54069747.46383688, -54164605.35886182, -54259464.16042041, -54354322.34658432, -54449183.40853123, -54544042.13028144, -54638902.09903684, -54733761.38981845, -54828620.10452009, -54923479.25851985, -55018337.88572193, -55113199.242134064, -55208055.40009338, -55302915.88611598, -55397772.63102831, -55492635.51722392, -55587491.09916416, -55682351.37943426, -55777211.14895808, -55872070.7657274, -55966929.250051744, -56061790.82761256, -56156649.40463713, -56251508.46552273, -56346365.344872914, -56441225.50280481, -56536083.85725277, -56630945.405498, -56725803.76267847, -56820662.533408634, -56915521.766957775, -57010382.57594037, -57105239.74003646, -57200100.465741016, -57294958.73049927, -57389818.046050765, -57484677.253004536, -57579535.38312587, -57674396.903760746, -57769255.22032862, -57864114.44300153, -57958972.25578692, -58053832.04049821, -58148693.3353527, -58243553.75127204, -58338410.354120515, -58433270.453637555, -58528128.6362967, -58622987.63666498, -58717845.61929276, -58812707.60953353, -58907565.31275886, -59002423.968881495, -59097283.72734085, -59192143.622713394, -59287002.94859953, -59381861.61512237, -59476721.86875417, -59571578.84378696, -59666437.741015404, -59761297.62866474, -59856155.88293661, -59951015.51320579, -60045875.57383858, -60140733.29778224, -60235593.27795832, -60330453.596803024, -60425313.00543947, -60520173.28601897, -60615029.994484395, -60709889.7810614, -60804749.28455285, -60899607.72747004, -60994466.52617691, -61089327.69318362, -61184186.42930821, -61279042.746490344, -61373904.02822861, -61468761.849967055, -61563625.45700189, -61658481.3776896, -61753342.11318871, -61848199.82814377, -61943058.935212046, -62037915.36244342, -62132781.183480546, -62227635.80147898, -62322497.079103254, -62417356.15164792, -62512213.36593698, -62607074.19376508, -62701932.44508627, -62796793.841244735, -62891655.30090416, -62986514.03244065, -63081370.01279734, -63176229.47081483, -63271087.278086744, -63365949.66510363, -63460808.03187923, -63555666.42520314, -63650524.333922125, -63745385.70969876, -63840242.29664599, -63935103.85645051, -64029964.116316855, -64124820.40842537, -64219679.68106252, -64314537.74304715, -64409400.384590656, -64504258.88419946, -64599119.961895645, -64693976.839347035, -64788836.32438248, -64883694.517806, -64978553.837929875, -65073412.23362496, -65168273.50231657, -65263132.24301359, -65357990.98951724, -65452853.6265924, -65547705.928137966, -65642571.006042324, -65737427.63073082, -65832286.973200515, -65927145.06234556, -66022007.18137504, -66116865.659195065, -66211724.02970942, -66306581.55003982, -66401443.56219936, -66496300.77926797, -66591162.7351131, -66686020.081492126, -66780878.74115938, -66875738.97276876, -66970598.20439929, -67065456.99242451, -67160315.7458459, -67255175.93971382, -67350031.82287684, -67444891.86489952, -67539755.49435852, -67634611.56812514, -67729470.35186367, -67824331.50393097, -67919189.01456062, -68014049.9400993, -68108906.80636758, -68203765.88640356, -68298628.8092785, -68393485.47842579, -68488343.97925419, -68583204.72043768, -68678061.43162416, -68772922.06040378, -68867780.30861305, -68962640.8684887, -69057501.14854345, -69152359.6361787, -69247218.42089328, -69342078.1293897, -69436936.11815754, -69531797.12273113, -69626654.31701311, -69721513.92803279, -69816374.99399239, -69911232.69805703, -70006093.26280037, -70100951.85698983, -70195809.90091941, -70290668.79202333, -70385530.15152334, -70480391.1759699, -70575247.67694703, -70670108.4752774, -70764967.40035784, -70859826.27365965, -70954681.10563646, -71049543.08954692, -71144401.29726563, -71239263.22664051, -71334123.77503741, -71428980.26189652, -71523838.6006026, -71618700.48226519, -71713556.19736798, -71808415.21296948, -71903276.22925356, -71998134.53925318, -72092996.2885956, -72187854.62828082, -72282713.10308267, -72377572.21550311, -72472429.32726993, -72567290.37440564, -72662149.5402167, -72757009.14009283, -72851868.2870446, -72946727.10815448, -73041587.86260396, -73136447.55922125, -73231306.20348196, -73326164.49556594, -73421025.60899755, -73515881.13804984, -73610741.28718331, -73705600.58119193, -73800459.29903463, -73895320.26864657, -73990177.01849003, -74085036.86434373, -74179898.43428712, -74274757.30438717, -74369616.77928576, -74464475.30354469, -74559332.96451303, -74654192.01795532, -74749051.15162891, -74843912.38479221, -74938770.22470646, -75033630.54139183, -75128489.58318986, -75223347.13266674, -75318205.59685096, -75413065.27733955, -75507925.6242323, -75602785.02728952, -75697643.12956308, -75792503.98732226, -75887364.68165442, -75982223.48977941, -76077081.17445663, -76171941.73957871, -76266801.24364989, -76361657.33703853, -76456519.27014647, -76551375.64854203, -76646237.51672511, -76741096.45344746, -76835954.89322512, -76930815.67614043, -77025672.76336636, -77120530.02247055, -77215391.44594114, -77310252.01522894, -77405112.10693583, -77499968.5565632, -77594828.24893658, -77689688.74992435, -77784547.5291225, -77879402.91290848, -77974264.14146239, -78069122.92653699, -78163982.29299973, -78258843.5969592, -78353703.79608454, -78448563.00660956, -78543421.73158608, -78638281.1299153, -78733140.06632426, -78827997.55652478, -78922857.0807359, -79017718.71134715, -79112575.79744166, -79207436.06206232, -79302293.83274591, -79397153.9683089, -79492011.36211686, -79586871.94845682, -79681732.92663096, -79776588.71695894, -79871449.27217014, -79966310.24623555, -80061168.16920952, -80156026.91159457, -80250886.25814164, -80345745.57825229, -80440605.45299697, -80535463.59828189, -80630322.10835625, -80725181.81691115, -80820040.65381306, -80914901.2563119, -81009759.12395391, -81104619.1733165, -81199476.01895939, -81294339.71355128, -81389195.27062592, -81484055.63008977, -81578914.53973576, -81673774.354518, -81768633.98271392, -81863491.10044739, -81958349.42429526, -82053210.46595581, -82148071.51236294, -82242926.64904836, -82337788.90838051, -82432648.72345829, -82527507.46455029, -82622369.29761721, -82717224.1487805, -82812083.94096668, -82906941.52277307, -83001801.44811456, -83096662.06311059, -83191519.46482308, -83286379.97889434, -83381240.71685423, -83476101.13495517, -83570958.47063716, -83665819.19366403, -83760676.5801218, -83855534.72317399, -83950396.34695926, -84045254.0065509, -84140115.78126483, -84234973.40513287, -84329831.57098812, -84424689.01212975, -84519551.5468161, -84614410.34232931, -84709270.41868414, -84804128.9502632, -84898986.38174002, -84993846.56616093, -85088706.47549365, -85183562.9553445, -85278422.27392593, -85373284.65223359, -85468143.4979921, -85563000.90344487, -85657859.62928882, -85752721.0932004, -85847582.02855293, -85942438.05816887, -86037296.64328936, -86132154.17883673, -86227016.87723394, -86321874.05808786, -86416735.86331512, -86511593.7659023, -86606452.41264306, -86701311.36087748, -86796171.7249621, -86891029.5216137, -86985888.60033038, -87080749.25257891, -87175609.0442589, -87270466.56366833, -87365326.63019964, -87460185.30252515, -87555045.17335956, -87649903.44247986, -87744762.96144375, -87839620.7111491, -87934480.60195854, -88029340.94271934, -88124199.92257947, -88219055.8370319, -88313919.5719501, -88408779.57266761, -88503637.1902288, -88598495.27464753, -88693353.8484004, -88788218.20591897, -88883074.01473641, -88977935.17799544, -89072791.80837284, -89167651.98782513, -89262508.74278705, -89357371.83830862, -89452228.291598, -89547087.00458317, -89641946.9356074, -89736807.8076429, -89831666.77319007, -89926525.32642348, -90021386.75936235, -90116242.24210173, -90211102.43247859, -90305961.67580518, -90400820.38671349, -90495680.53083947, -90590540.06702794, -90685397.99351601, -90780256.38092136, -90875118.88915542, -90969976.59158461, -91064834.87024397, -91159696.6424814, -91254552.72008747, -91349411.7779748, -91444271.26950316, -91539131.82109055, -91633992.28864549, -91728848.8405591, -91823710.55181633, -91918568.10488203, -92013428.15844284, -92108286.41150936, -92203146.57120515, -92298003.10747112, -92392862.64472346, -92487723.3127624, -92582583.100486, -92677442.51393951, -92772301.29007602, -92867159.07944088, -92962016.81624782, -93056876.95775233, -93151739.67612806, -93246597.82690771, -93341456.6758003, -93436315.12940477, -93531173.31874986, -93626032.22703129, -93720894.49314252, -93815751.41873102, -93910612.10898994, -94005469.87777078, -94100332.98658186, -94195190.41579568, -94290047.63159014, -94384908.84919946, -94479766.95071134, -94574623.63514769, -94669486.06080201, -94764343.21842821, -94859202.66953877]
+2026-11-17 20:22:08,238 - INFO - Finished benchmarking ARG.
+2026-11-17 20:22:08,239 - INFO - Finished in 3h 33m 16.4s
+2026-11-17 20:22:08,239 - INFO - Pipeline executed succesfully.

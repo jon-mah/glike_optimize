@@ -1,0 +1,28 @@
+2026-11-18 07:01:22,213 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-18 07:01:22,213 - INFO - Progress is being logged to ../opt_results_glike_3G09_no_m1_kappa_10000_bug/ntree_25_rep_8_simulate_ARG.log
+
+2026-11-18 07:01:22,213 - INFO - Parsed the following arguments:
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 25
+	OPTIMIZER = gLike
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = True
+	RANDOM_START = True
+	START_SEED = 1
+	outprefix = ../opt_results_glike_3G09_no_m1_kappa_10000_bug/ntree_25_rep_8
+
+2026-11-18 07:01:22,417 - INFO - Finished simulating ARG.
+2026-11-18 07:01:22,608 - INFO - Log likelihood of simulation parameters: -237148.49872894774.
+2026-11-18 07:01:22,608 - INFO - Using randomly generated starting conditions (seed=1).
+2026-11-18 07:01:22,609 - INFO - Random starting parameters: {'t1': 3.77257993778382, 't2': 111.50298626945477, 't3': 6336.578001821523, 'N_anc': 36339.2870445674, 'N_yri': 694.4224222943129, 'N_ooa': 523.864463371299, 'N_ceu': 2548.249099493679, 'N_chb': 495.6978765442459, 'gr_ceu': 0.027479684383652975, 'gr_chb': 0.0013779556621534184}
+2026-11-18 07:01:22,609 - INFO - Starting glike optimization.
+2026-11-18 12:31:01,895 - INFO - Finished fitting ARG.
+2026-11-18 12:31:01,895 - INFO - Finished in 5h 29m 39.3s
+2026-11-18 12:31:01,895 - INFO - Estimated: {'t1': 20.62439, 't2': 171.47854, 't3': 6336.578001821523, 'N_anc': 36339.2870445674, 'N_yri': 336.91823, 'N_ooa': 482.48007, 'N_ceu': 270.86078, 'N_chb': 293.40985, 'gr_ceu': 0.01395, 'gr_chb': 0.00032}
+2026-11-18 12:31:01,895 - INFO - logp = -168952.3354433525  (true = -237148.49872894774)
+2026-11-18 12:31:01,895 - INFO - Pipeline executed succesfully.
