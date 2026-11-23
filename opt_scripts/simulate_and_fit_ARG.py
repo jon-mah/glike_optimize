@@ -1,4 +1,4 @@
-""" Simulate Ancestral Recombination Graph (ARG) using a given set of parameters.
+""" Simulate or load an Ancestral Recombination Graph (ARG), then fit it.
 
 JCM 20260801
 """
@@ -640,12 +640,24 @@ class SimulateARG():
         parser = ArgumentParserNoArgHelp(
             description=(
                 '''
-                Simulate a given number of equally distant trees using 
-                the true demographic parameters of a Native Hawaiian 
-                Ancestral Recombination Graph (ARG). We then fit those 
-                trees to the demographic model of the NH scenario.
+                Simulate and fit trees, or load an existing 3G09 replicate
+                from true_<rep>.trees and positions_<rep>.json. Loaded samples
+                must be ordered YRI, CEU, CHB, with equal counts per population.
                 '''),
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        parser.add_argument(
+            '--trees-dir', '--TREES_DIR', dest='TREES_DIR',
+            default='/project2/jitang_1167/projects/glike_sglike_data/glike_on_3g09_model/trees_reps20-trees20_msprime1.0.0_fix-all-mig-rates',
+            help='Directory containing true_<rep>.trees and positions_<rep>.json; '
+                 'skip simulation when supplied.')
+        parser.add_argument(
+            '--rep', '--REP', dest='REP', type=int,
+            help='Replicate ID in the input filenames (required with --trees-dir).')
+        parser.add_argument(
+            '--samples-per-pop', '--N_SAMPLES_PER_POP',
+            dest='N_SAMPLES_PER_POP', type=int, default=500,
+            help='Number of sample nodes per population in loaded trees '
+                 '(YRI, then CEU, then CHB; not diploid individuals).')
         parser.add_argument(
             '--N_SAMPLES', type=float,
             dest='N_SAMPLES',
@@ -688,11 +700,18 @@ class SimulateARG():
             default=10000)
         parser.add_argument(
             '--TRUE_START', action='store_true',
-            help=('Initial starting conditions based on simulation.'))
+            help=('Initial starting conditions based on simulation.')
+        )
+        parser.add_argument(
+            '--FIXED_START',
+            action='store_true',
+            default=True,
+            help='Fixed starting conditions.'
+        )
         parser.add_argument(
             '--RANDOM_START',
             action='store_true',
-            default=True,
+            default=False,
             help='Generate random starting conditions.'
         )
         parser.add_argument(
@@ -706,12 +725,63 @@ class SimulateARG():
             help='The file prefix for the output files.')
         return parser
 
+    def load_trees(self, trees_dir, rep, n_samples_per_pop, logger):
+        """Load one replicate and assign populations by sample-node order."""
+        arg_path = os.path.join(trees_dir, f"true_{rep}.trees")
+        positions_path = os.path.join(trees_dir, f"positions_{rep}.json")
+        for path in (arg_path, positions_path):
+            if not os.path.isfile(path):
+                raise FileNotFoundError(f"Input file not found: {path}")
+
+        arg = tskit.load(arg_path)
+        with open(positions_path) as f:
+            positions = json.load(f)
+        if not isinstance(positions, list) or not positions:
+            raise ValueError(f"{positions_path} must contain a nonempty JSON list.")
+        for pos in positions:
+            if (isinstance(pos, bool) or not isinstance(pos, (int, float))
+                    or not math.isfinite(pos) or not 0 <= pos < arg.sequence_length):
+                raise ValueError(
+                    f"Invalid tree position {pos!r}; expected 0 <= position "
+                    f"< {arg.sequence_length} in {positions_path}."
+                )
+
+        sample_ids = list(arg.samples())
+        expected = 3 * n_samples_per_pop
+        if len(sample_ids) != expected:
+            raise ValueError(
+                f"Expected {expected} sample nodes ({n_samples_per_pop} per "
+                f"population), found {len(sample_ids)} in {arg_path}. "
+                "Set --samples-per-pop to match the input."
+            )
+        pops = (["yri"] * n_samples_per_pop + ["ceu"] * n_samples_per_pop
+                + ["chb"] * n_samples_per_pop)
+        # Use actual node IDs; these need not be consecutive in external files.
+        samples = dict(zip(sample_ids, pops))
+        trees = [arg.at(pos).copy() for pos in positions]
+        logger.info(f"Loaded {len(trees)} trees from {arg_path}")
+        logger.info(
+            f"Assigned {n_samples_per_pop} sample nodes each to YRI, CEU, CHB "
+            "in sample-node order."
+        )
+        return trees, samples
+
     def main(self):
         """Execute main function."""
         # Parse command line arguments
         parser = self.simulateARGParser()
         args = vars(parser.parse_args())
         prog = parser.prog
+        if args['TREES_DIR'] is not None:
+            if args['REP'] is None:
+                parser.error('--rep is required with --trees-dir.')
+            if args['MODEL'] not in ('3G09', '3G09_no_m'):
+                parser.error('--trees-dir requires --MODEL 3G09 or 3G09_no_m '
+                             'for the YRI/CEU/CHB sample mapping.')
+            if args['N_SAMPLES_PER_POP'] <= 0:
+                parser.error('--samples-per-pop must be positive.')
+        elif args['REP'] is not None:
+            parser.error('--rep requires --trees-dir.')
 
         # Assign arguments
         N_SAMPLES = args['N_SAMPLES']
@@ -723,6 +793,7 @@ class SimulateARG():
         MODEL = args['MODEL']
         KAPPA = args['KAPPA']
         TRUE_START = args['TRUE_START']
+        FIXED_START = args['FIXED_START']
         RANDOM_START = args['RANDOM_START']
         START_SEED = args['START_SEED']
         outprefix = args['outprefix']
@@ -745,7 +816,9 @@ class SimulateARG():
         output_posfile = \
             '{0}{1}NH_positions.json'.format(
                 args['outprefix'], underscore)
-        to_remove = [logfile, output_posfile]
+        to_remove = [logfile]
+        if args['TREES_DIR'] is None:
+            to_remove.append(output_posfile)
         for f in to_remove:
             if os.path.isfile(f):
                 os.remove(f)
@@ -773,86 +846,98 @@ class SimulateARG():
         logger.info('Parsed the following arguments:\n{0}\n'.format(
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
-        # inherit true params from glike
-        if MODEL == '3G09' or MODEL == '3G09_no_m':
-            demography = self.three_pop_out_of_africa_demography( 
-                t1=848, t2=5600, t3=8800,
-                N_anc=7300, N_yri=12300, N_ooa=2100, N_ceu=1000, N_chb=510,
-                gr_ceu=0.004, gr_chb=0.0055,
-                m_yri_ooa=0, m_yri_ceu=0, m_yri_chb=0, m_ceu_chb=0
-            )
-            arg = msprime.sim_ancestry(
-                {"ceu": N_SAMPLES},
-                sequence_length=SEQUENCE_LENGTH,
-                recombination_rate=RECOMBINATION_RATE,
-                demography=demography,
-                ploidy=1,
-                random_seed=SEED
-            )
-        elif MODEL == '3I21':
-            demography = glike.neandertal_admixture_demography(
-                t1=30, t2=50, t3=73.95, t4=290, 
-                N_yri=10000, N_ceu=10000, N_nea = 10000,
-                m1=0.029
-            )
-            arg = msprime.sim_ancestry(
-                {"ceu": N_SAMPLES},
-                sequence_length=SEQUENCE_LENGTH,
-                recombination_rate=RECOMBINATION_RATE,
-                demography=demography,
-                ploidy=1,
-                random_seed=SEED
-            )
-        elif MODEL == '4A21':
-            demography = glike.ancient_europe_demography()
-            arg = msprime.sim_ancestry(
-                {"bronze": N_SAMPLES},
-                sequence_length=SEQUENCE_LENGTH,
-                recombination_rate=RECOMBINATION_RATE,
-                demography=demography,
-                ploidy=1,
-                random_seed=SEED
-            )
+        samples = {}
+        if args['TREES_DIR'] is not None:
+            try:
+                trees, samples = self.load_trees(
+                    args['TREES_DIR'], args['REP'],
+                    args['N_SAMPLES_PER_POP'], logger
+                )
+                print(trees[0])
+            except (OSError, ValueError, tskit.FileFormatError) as exc:
+                logger.error(f"Could not load input trees: {exc}")
+                raise SystemExit(1) from exc
         else:
-            demography = glike.native_hawaiians_demography()
-            arg = msprime.sim_ancestry(
-                {"admix": N_SAMPLES},
-                sequence_length=SEQUENCE_LENGTH,
-                recombination_rate=RECOMBINATION_RATE,
-                demography=demography,
-                ploidy=1,
-                random_seed=SEED,
-            )
+            # inherit true params from glike
+            if MODEL == '3G09' or MODEL == '3G09_no_m':
+                demography = self.three_pop_out_of_africa_demography(
+                    t1=848, t2=5600, t3=8800,
+                    N_anc=7300, N_yri=12300, N_ooa=2100, N_ceu=1000, N_chb=510,
+                    gr_ceu=0.004, gr_chb=0.0055,
+                    m_yri_ooa=0, m_yri_ceu=0, m_yri_chb=0, m_ceu_chb=0
+                )
+                arg = msprime.sim_ancestry(
+                    {"ceu": N_SAMPLES},
+                    sequence_length=SEQUENCE_LENGTH,
+                    recombination_rate=RECOMBINATION_RATE,
+                    demography=demography,
+                    ploidy=1,
+                    random_seed=SEED
+                )
+            elif MODEL == '3I21':
+                demography = glike.neandertal_admixture_demography(
+                    t1=30, t2=50, t3=73.95, t4=290,
+                    N_yri=10000, N_ceu=10000, N_nea = 10000,
+                    m1=0.029
+                )
+                arg = msprime.sim_ancestry(
+                    {"ceu": N_SAMPLES},
+                    sequence_length=SEQUENCE_LENGTH,
+                    recombination_rate=RECOMBINATION_RATE,
+                    demography=demography,
+                    ploidy=1,
+                    random_seed=SEED
+                )
+            elif MODEL == '4A21':
+                demography = glike.ancient_europe_demography()
+                arg = msprime.sim_ancestry(
+                    {"bronze": N_SAMPLES},
+                    sequence_length=SEQUENCE_LENGTH,
+                    recombination_rate=RECOMBINATION_RATE,
+                    demography=demography,
+                    ploidy=1,
+                    random_seed=SEED
+                )
+            else:
+                demography = glike.native_hawaiians_demography()
+                arg = msprime.sim_ancestry(
+                    {"admix": N_SAMPLES},
+                    sequence_length=SEQUENCE_LENGTH,
+                    recombination_rate=RECOMBINATION_RATE,
+                    demography=demography,
+                    ploidy=1,
+                    random_seed=SEED,
+                )
 
-        trees = [
-            arg.at((i + 0.5) * SEQUENCE_LENGTH // NUM_TREES).copy()
-            for i in range(NUM_TREES)
-        ]
-        i = 0
-        for tree in trees:
-            # Save ARG
-            output_treefile = \
-                '{0}{1}NH_ARG_{2}.trees'.format(
-                    args['outprefix'], underscore, i)
-            arg_path = output_treefile
-            arg.dump(arg_path)
-            i = i + 1
+            trees = [
+                arg.at((i + 0.5) * SEQUENCE_LENGTH // NUM_TREES).copy()
+                for i in range(NUM_TREES)
+            ]
+            i = 0
+            for tree in trees:
+                # Save ARG
+                output_treefile = \
+                    '{0}{1}NH_ARG_{2}.trees'.format(
+                        args['outprefix'], underscore, i)
+                arg_path = output_treefile
+                arg.dump(arg_path)
+                i = i + 1
 
-        # Compute and save tree position
-        step = int(SEQUENCE_LENGTH) // (NUM_TREES + 1)
-        positions = list(range(step, int(SEQUENCE_LENGTH), step))[:NUM_TREES]
-        positions_path = output_posfile
-        with open(positions_path, "w") as f:
-            json.dump(positions, f)
+            # Compute and save tree position
+            step = int(SEQUENCE_LENGTH) // (NUM_TREES + 1)
+            positions = list(range(step, int(SEQUENCE_LENGTH), step))[:NUM_TREES]
+            positions_path = output_posfile
+            with open(positions_path, "w") as f:
+                json.dump(positions, f)
 
-        logger.info('Finished simulating ARG.')
+            logger.info('Finished simulating ARG.')
 
         # Demographic model
         if MODEL == '3G09_no_m':
             x_true = {
                 "t1": 848, "t2": 5600, "t3": 8800,
                 "N_anc": 7300, "N_yri": 12300, "N_ooa": 2100, "N_ceu": 1000, "N_chb": 510,
-                "gr_ceu": 0.004, "gr_chb": 0.0055                
+                "gr_ceu": 0.004, "gr_chb": 0.0055
             }
             true_demo = self.three_pop_out_of_africa_demo_no_m(**x_true)
         elif MODEL == '3G09':
@@ -867,32 +952,32 @@ class SimulateARG():
         elif MODEL == '3I21':
             x_true = {
                 't1': 30, 't2': 50, 't3': 73.95, 't4': 290,
-                'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000, 
+                'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000,
                 'm1': 0.029
             }
             # m1 temporarily set to 0, originally set to 0.029
             true_demo = glike.neandertal_admixture_demo(**x_true)
         elif MODEL == '4A21':
             x_true = {
-                't1': 140, 't2': 180, 't3': 200, 't4': 600, 
+                't1': 140, 't2': 180, 't3': 200, 't4': 600,
                 't5': 800, 't6': 1500,'r1': 0.5, 'r2': 0.5, 'r3': 0.75,
-                'N_ana': 50000, 'N_neo': 50000, 'N_whg': 10000, 
+                'N_ana': 50000, 'N_neo': 50000, 'N_whg': 10000,
                 'N_bronze': 50000, 'N_yam': 5000, 'N_ehg': 10000,
                 'N_ne': 5000, 'N_wa': 5000, 'N_ooa': 5000, 'gr': 0.067
             }
             true_demo = glike.ancient_europe_demo(**x_true)
-        else: 
+        else:
             x_true = {
-                't1':19, 't2':411, 't3':1040, 't4':2004, 'r1':0.0, 
-                'r2':0.198, 'r3':0.334, 'N_admix':35682, 'N_afr':10000, 
-                'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702, 
+                't1':19, 't2':411, 't3':1040, 't4':2004, 'r1':0.0,
+                'r2':0.198, 'r3':0.334, 'N_admix':35682, 'N_afr':10000,
+                'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702,
                 'N_ooa':2470, 'N_anc':2665, 'gr':0.078
             }
             true_demo = glike.native_hawaiians_demo(**x_true)
         true_demo.print()
 
-        logp_true = glike.glike_trees(trees, true_demo)
-        logger.info(f'Log likelihood of simulation parameters: {logp_true}.')
+        logp_true = glike.glike_trees(trees, true_demo, samples=samples)
+        logger.info(f'Log likelihood of reference parameters: {logp_true}.')
         parameter_scales = None
 
         if MODEL == '3G09_no_m':
@@ -900,35 +985,35 @@ class SimulateARG():
                 demo = self.three_pop_out_of_africa_demo_no_m(
                     t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb
                 )
-                return glike.glike_trees(trees, demo, kappa=KAPPA)
+                return glike.glike_trees(trees, demo, samples=samples, kappa=KAPPA, spread=1.0)
             x0 = {
                 't1': 1000, 't2': 5000, 't3': 10000,
-                'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 1000, 'N_ceu': 1000,
-                'N_chb': 1000, 'gr_ceu': 0.01, 'gr_chb': 0.01,
+                'N_anc': 7500, 'N_yri': 12500, 'N_ooa': 2000, 'N_ceu': 1000,
+                'N_chb': 500, 'gr_ceu': 0.01, 'gr_chb': 0.01,
             }
             bounds = [
-                (1, 't2'), ('t1', 't3'), ('t2', 1e4),
+                (1, 't2'), ('t1', 't3'), ('t2', 3e4),
                 (100, 50000), (100, 50000), (100, 5000), (100, 5000),
                 (100, 5000), (0, 0.05), (0, 0.05),
             ]
         elif MODEL == '3G09':
-            def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb, 
+            def fun(t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, gr_ceu, gr_chb,
                     m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb):
                 demo = self.three_pop_out_of_africa_demo(
-                    t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb, 
+                    t1, t2, t3, N_anc, N_yri, N_ooa, N_ceu, N_chb,
                     gr_ceu, gr_chb, m_yri_ooa, m_yri_ceu, m_yri_chb, m_ceu_chb
                 )
-                return glike.glike_trees(trees, demo, kappa=KAPPA)
+                return glike.glike_trees(trees, demo, samples=samples, kappa=KAPPA)
             x0 = {
                 't1': 10, 't2': 50, 't3': 100,
                 'N_anc': 10000, 'N_yri': 10000, 'N_ooa': 10000, 'N_ceu': 10000,
-                'N_chb': 10000, 'gr_ceu': 0.1, 'gr_chb': 0.1, 
+                'N_chb': 10000, 'gr_ceu': 0.1, 'gr_chb': 0.1,
                 'm_yri_ooa': 0.0, 'm_yri_ceu': 0.0, 'm_yri_chb': 0.0,
                 'm_ceu_chb': 0.0
             }
             bounds = [
                 (1, 't2'), ('t1', 't3'), ('t2', 1e4),
-                (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
+                (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5), (0, 0.5),
                 (0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0)
             ]
@@ -937,7 +1022,7 @@ class SimulateARG():
                 demo = glike.neandertal_admixture_demo(
                     t1, t2, t3, t4, N_yri, N_ceu, N_nea, m1
                 )
-                return glike.glike_trees(trees, demo)
+                return glike.glike_trees(trees, demo, samples=samples)
             x0 = {
                 't1': 10, 't2': 50, 't3': 100, 't4': 300,
                 'N_yri': 10000, 'N_ceu': 10000, 'N_nea': 10000,
@@ -948,45 +1033,46 @@ class SimulateARG():
                 (100, 100000), (100, 100000), (100, 100000), (0.0, 0.0)
             ]
         elif MODEL == '4A21':
-            def fun(t1, t2, t3, t4, t5, t6, r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, 
+            def fun(t1, t2, t3, t4, t5, t6, r1, r2, r3, N_ana, N_neo, N_whg, N_bronze,
                     N_yam, N_ehg, N_chg, N_ne, N_wa, N_ooa, gr):
                 demo = glike.ancient_europe_demo(
                     t1, t2, t3, t4, t5, t6,
-                    r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, N_yam, N_ehg, N_chg, 
+                    r1, r2, r3, N_ana, N_neo, N_whg, N_bronze, N_yam, N_ehg, N_chg,
                     N_ne, N_wa, N_ooa, gr
                 )
             x0 = {
                 't1': 100, 't2': 200, 't3': 300, 't4': 500, 't5': 1000, 't6': 2000,
                 'r1': 0.5, 'r2': 0.5, 'r3': 0.5,
-                'N_ana': 10000, 'N_neo': 10000, 'N_whg': 10000, 'N_bronze': 10000, 
+                'N_ana': 10000, 'N_neo': 10000, 'N_whg': 10000, 'N_bronze': 10000,
                 'N_yam': 10000, 'N_ehg': 10000, 'N_ne': 10000, 'N_wa': 10000, 'N_ooa': 10000,
                 'gr': 0.1
             }
             bounds = [
-                (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 't5'), ('t4', 't6'), 
+                (1, 't2'), ('t1', 't3'), ('t2', 't4'), ('t3', 't5'), ('t4', 't6'),
                 ('t5', 5e3), (0, 1), (0, 1), (0, 1),
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                 (100, 100000), (0, 0.5)
             ]
         else:
-            def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia, 
+            def fun(t1, t2, t3, t4, r1, r2, r3, N_admix, N_afr, N_eur, N_asia,
                     N_pol, N_aa, N_ooa, N_anc, gr):
-                demo = glike.native_hawaiians_demo(t1, t2, t3, t4, r1, r2, r3, 
-                                            N_admix, N_afr, N_eur, N_asia, 
-                                            N_pol, N_aa, N_ooa, N_anc, gr) 
-                return glike.glike_trees(trees, demo)
+                demo = glike.native_hawaiians_demo(t1, t2, t3, t4, r1, r2, r3,
+                                            N_admix, N_afr, N_eur, N_asia,
+                                            N_pol, N_aa, N_ooa, N_anc, gr)
+                return glike.glike_trees(trees, demo, samples=samples)
 
             x0 = {'t1':10, 't2': 100, 't3': 1000, 't4': 2000,
                   'r1':0.25, 'r2':0.25, 'r3':0.25,
                   'N_admix': 10000, 'N_afr': 10000, 'N_eur': 10000,
                   'N_asia': 10000, 'N_pol': 10000, 'N_aa': 10000,
                   'N_ooa': 10000, 'N_anc': 10000, 'gr': 0.1}
-            bounds = [(1, "t2"), ("t1", "t3"), ("t2", "t4"), ("t3", 1e4), 
-                      (0.0, 1.0), (0.0, 1.0), (0.0, 1.0), 
-                      (100, 100000), (100, 100000), (100, 100000), (100, 100000), 
+            bounds = [(1, "t2"), ("t1", "t3"), ("t2", "t4"), ("t3", 1e4),
+                      (0.0, 1.0), (0.0, 1.0), (0.0, 1.0),
+                      (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                       (100, 100000), (100, 100000), (100, 100000), (100, 100000),
                       (0, 0.5)]
+            print('wrong_model')
 
         if TRUE_START:
             if MODEL == '3G09_no_m':
@@ -1023,7 +1109,6 @@ class SimulateARG():
                     'N_eur':13388, 'N_asia':25234, 'N_pol':15695, 'N_aa':2702,
                     'N_ooa':2470, 'N_anc':2665, 'gr':0.078
                 }
-
             x0 = x_true
         # -----------------------------------------------------
         # Random optimizer initialization
@@ -1054,7 +1139,7 @@ class SimulateARG():
         if OPTIMIZER == 'CMA_ES':
             print(bounds)
             x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True, parameter_scales = parameter_scales)
-        else: 
+        else:
             x, logp = glike.maximize(fun, x0, bounds = bounds, verbose = True)
         elapsed = time.time() - t_start
         hours = int(elapsed // 3600)
@@ -1070,4 +1155,3 @@ class SimulateARG():
 
 if __name__ == '__main__':
     SimulateARG().main()
-

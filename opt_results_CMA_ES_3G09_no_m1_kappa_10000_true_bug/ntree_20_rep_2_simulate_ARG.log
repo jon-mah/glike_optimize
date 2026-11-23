@@ -1,0 +1,31 @@
+2026-11-23 06:18:59,951 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-23 06:18:59,951 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000_true_bug/ntree_20_rep_2_simulate_ARG.log
+
+2026-11-23 06:18:59,951 - INFO - Parsed the following arguments:
+	TREES_DIR = /project2/jitang_1167/projects/glike_sglike_data/glike_on_3g09_model/trees_reps20-trees20_msprime1.0.0_fix-all-mig-rates
+	REP = 2
+	N_SAMPLES_PER_POP = 500
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 20
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = True
+	FIXED_START = True
+	RANDOM_START = False
+	START_SEED = 1
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_10000_true_bug/ntree_20_rep_2
+
+2026-11-23 06:18:59,962 - INFO - Loaded 20 trees from /project2/jitang_1167/projects/glike_sglike_data/glike_on_3g09_model/trees_reps20-trees20_msprime1.0.0_fix-all-mig-rates/true_2.trees
+2026-11-23 06:18:59,984 - INFO - Assigned 500 sample nodes each to YRI, CEU, CHB in sample-node order.
+2026-11-23 06:19:00,153 - INFO - Log likelihood of reference parameters: -inf.
+2026-11-23 06:19:00,153 - INFO - Starting glike optimization.
+2026-11-23 06:20:19,382 - INFO - Finished fitting ARG.
+2026-11-23 06:20:19,383 - INFO - Finished in 0h 1m 19.2s
+2026-11-23 06:20:19,383 - INFO - Estimated: {'t1': 1.0000093332423783, 't2': 1.0008135615762321, 't3': 1.0124963801373257, 'N_anc': 49165.335819493164, 'N_yri': 12229.039453022106, 'N_ooa': 3654.677370155045, 'N_ceu': 4848.813659213135, 'N_chb': 4987.070093260788, 'gr_ceu': 0.004454557870944198, 'gr_chb': 9.572664192927157e-13}
+2026-11-23 06:20:19,383 - INFO - logp = -357750.38221409527  (true = -inf)
+2026-11-23 06:20:19,383 - INFO - Pipeline executed succesfully.

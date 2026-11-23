@@ -789,8 +789,8 @@ def maximize_CMA_ES(
     fun,
     x0,
     bounds=None,
-    precision=0.05,
-    epochs=20,
+    precision=0.2,
+    epochs=50,
     verbose=False,
     model=None,
     parameter_scales=None

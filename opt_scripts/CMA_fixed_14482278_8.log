@@ -1,0 +1,95 @@
+2026-11-23 05:21:43,952 - INFO - Beginning execution of simulate_and_fit_ARG.py in directory /home1/mahj/glike_optimize/opt_scripts
+
+2026-11-23 05:21:43,952 - INFO - Progress is being logged to ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_20_rep_8_simulate_ARG.log
+
+2026-11-23 05:21:43,952 - INFO - Parsed the following arguments:
+	TREES_DIR = /project2/jitang_1167/projects/glike_sglike_data/glike_on_3g09_model/trees_reps20-trees20_msprime1.0.0_fix-all-mig-rates
+	REP = 8
+	N_SAMPLES_PER_POP = 500
+	N_SAMPLES = 1000.0
+	SEQUENCE_LENGTH = 30000000.0
+	RECOMBINATION_RATE = 1e-08
+	SEED = 1
+	NUM_TREES = 20
+	OPTIMIZER = CMA_ES
+	MODEL = 3G09_no_m
+	KAPPA = 10000
+	TRUE_START = False
+	FIXED_START = True
+	RANDOM_START = False
+	START_SEED = 1
+	outprefix = ../opt_results_CMA_ES_3G09_no_m1_kappa_10000/ntree_20_rep_8
+
+2026-11-23 05:21:43,968 - INFO - Loaded 20 trees from /project2/jitang_1167/projects/glike_sglike_data/glike_on_3g09_model/trees_reps20-trees20_msprime1.0.0_fix-all-mig-rates/true_8.trees
+2026-11-23 05:21:43,968 - INFO - Assigned 500 sample nodes each to YRI, CEU, CHB in sample-node order.
+╔═══════════════════════════════════════════╗
+║Tree                                       ║
+╠═══════════════════╤═══════════════════════╣
+║Index              │                     48║
+╟───────────────────┼───────────────────────╢
+║Interval           │1402894-1474282 (71388)║
+╟───────────────────┼───────────────────────╢
+║Roots              │                      1║
+╟───────────────────┼───────────────────────╢
+║Nodes              │                   2999║
+╟───────────────────┼───────────────────────╢
+║Sites              │                      0║
+╟───────────────────┼───────────────────────╢
+║Mutations          │                      0║
+╟───────────────────┼───────────────────────╢
+║Total Branch Length│              333260.21║
+╚═══════════════════╧═══════════════════════╝
+
+[phase from 0.0 to 1e-06]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 1e-06 to 848.0]
+          yri       ceu       chb
+ns   0.000081  0.000034  0.000018
+grs  0.000000  0.004000  0.005500
+
+[phase from 848.0 to 5600.0]
+     yri  ooa
+yri    1    0
+ceu    0    1
+chb    0    1
+          yri       ooa
+ns   0.000081  0.000476
+grs  0.000000  0.000000
+
+[phase from 5600.0 to 8800.0]
+     anc
+yri    1
+ooa    1
+          anc
+ns   0.000476
+grs  0.000000
+
+[phase from 8800.0 to inf]
+          anc
+ns   0.000137
+grs  0.000000
+
+2026-11-23 05:21:44,169 - INFO - Log likelihood of reference parameters: -inf.
+2026-11-23 05:21:44,170 - INFO - Starting glike optimization.
+[(1, 't2'), ('t1', 't3'), ('t2', 30000.0), (100, 50000), (100, 50000), (100, 5000), (100, 5000), (100, 5000), (0, 0.05), (0, 0.05)]
+
+Initial parameters:
+{'t1': 1000, 't2': 5000, 't3': 10000, 'N_anc': 7500, 'N_yri': 12500, 'N_ooa': 2000, 'N_ceu': 1000, 'N_chb': 500, 'gr_ceu': 0.01, 'gr_chb': 0.01}
+
+Initial log-scaled CMA-ES coordinates:
+{'t1': 0.9417235292894494, 't2': 0.9706514568240532, 't3': 0.9417524996386653, 'N_anc': 0.930927597842299, 'N_yri': 0.9496100949615705, 'N_ooa': 0.965713126743693, 'N_ceu': 0.9386705357842343, 'N_chb': 0.9093219926082874, 'gr_ceu': 0.9417524996386651, 'gr_chb': 0.9417524996386651}
+-inf
+Starting iterative process.
+Generation   1  No valid CMA-ES solution yet.
+Generation   2  No valid CMA-ES solution yet.
+Traceback (most recent call last):
+  File "simulate_and_fit_ARG.py", line 1157, in <module>
+    SimulateARG().main()
+  File "simulate_and_fit_ARG.py", line 1141, in main
+    x, logp = estimate.maximize_CMA_ES(fun, x0, bounds = bounds, model=MODEL, verbose = True, parameter_scales = parameter_scales)
+  File "/home1/mahj/glike_optimize/opt_scripts/../glike/estimate.py", line 900, in maximize_CMA_ES
+    raise RuntimeError("CMA-ES failed to find a valid solution.")
+RuntimeError: CMA-ES failed to find a valid solution.
